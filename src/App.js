@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Headers from "./components/Header";
 import Footer from "./components/Footer";
@@ -15,6 +15,14 @@ const KrafThink = lazy(() => import("./pages/krafThink/KrafThink"));
 const NotFound = lazy(() => import("./pages/404Page"));
 
 function App() {
+  useEffect(() => {
+    const hasSeenAlert = localStorage.getItem("maintenanceAlertShown");
+    if (!hasSeenAlert) {
+      alert("This website is under maintenance. Some features may not work. Please wait for maintenance to complete.");
+      localStorage.setItem("maintenanceAlertShown", "true");
+    }
+  }, []); // Empty dependency array ensures this runs only once on initial mount
+
   return (
     <Router>
       <Headers />
