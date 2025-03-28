@@ -94,7 +94,7 @@ export default function Footer() {
                 <Link to="/products" className="block hover:text-white transition-colors">
                   Products
                 </Link>
-                <Link to="/services" className="block hover:text-white transition-colors">
+                <Link to="/our-solutions" className="block hover:text-white transition-colors">
                   Services
                 </Link>
                 <Link to="/portfolio" className="block hover:text-white transition-colors">
@@ -162,12 +162,12 @@ export default function Footer() {
                 <p>
                   Contact:{" "}
                   <a href="tel:+919670269295" className="text-white hover:opacity-80">
-                    +919670269295
+                    +91 9670269295
                   </a>
                 </p>
                 <p>
                   HQ Office Address:{" "}
-                  <span className="text-white hover:opacity-80">Property No. 55, 3rd Floor Saidulajab, Near Westend, Marg Lane-2, New Delhi 110030</span>
+                  <span className="text-white hover:opacity-80">Property No. 55, 3rd Floor Saidulajab, Near Westend, Marg Lane-2, New Delhi, 110030</span>
                 </p>
               </div>
             </div>
