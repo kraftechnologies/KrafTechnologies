@@ -19,10 +19,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "./hooks/use-media-query";
 
 const navigation = [
-  { name: "Solutions", href: "/our-services" },
+  { name: "Solutions", href: "/our-solutions" },
   { name: "Products", href: "/products" },
   { name: "Resources", href: "/resources" },
-  { name: "Partners", href: "partners" },
+  { name: "Partners", href: "/partners" },
   { name: "Company", href: "/company" },
 ];
 
@@ -168,7 +168,7 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
             <a
-              href="#"
+              href="/kraf-think-2025"
               className="hidden md:block text-white hover:text-[#18CB96] transition-colors duration-200 text-sm md:text-base relative group"
             >
               #KrafThink2025
@@ -183,7 +183,7 @@ export default function Header() {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#18CB96] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </a>
             <a
-              href="#"
+              href="/contact-us"
               className="hidden md:block text-white border border-white rounded-md px-3 py-1 md:px-4 md:py-1 hover:bg-white hover:text-[#0a0e1a] transition-colors duration-200 text-sm md:text-base"
             >
               Contact Us
@@ -351,14 +351,14 @@ export default function Header() {
                     )}
                   </div>
                 ))}
-                <a href="#" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                <a href="/kraf-think-2025" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm">
                   #KrafThink2025
                 </a>
                 <a href="https://ems.kraftechnologies.com/" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm" target="_blank">
                   Employee Login
                 </a>
                 <a
-                  href="#"
+                  href="/contact-us"
                   className="text-white border border-white rounded-md px-4 py-2 text-center hover:bg-white hover:text-[#0a0e1a] transition-colors duration-200 text-sm"
                 >
                   Contact Us
