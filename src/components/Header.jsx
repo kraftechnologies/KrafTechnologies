@@ -19,7 +19,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "./hooks/use-media-query";
 
 const navigation = [
-  { name: "Solutions", href: "our-services" },
+  { name: "Solutions", href: "/our-services" },
   { name: "Products", href: "/products" },
   { name: "Resources", href: "/resources" },
   { name: "Partners", href: "partners" },
@@ -178,10 +178,11 @@ export default function Header() {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#18CB96] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </a>
             <a
-              href="#"
+              href="https://ems.kraftechnologies.com/"
               className="hidden md:block text-white hover:text-[#18CB96] transition-colors duration-200 text-sm md:text-base relative group"
+              target="_blank"
             >
-              Login
+              Employee Login
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#18CB96] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </a>
             <a
@@ -200,7 +201,7 @@ export default function Header() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              className="md:hidden bg-[#0a0e1a] text-white absolute left-0 right-0 z-40"
+              className="md:hidden bg-[#121212] text-white absolute left-0 right-0 z-40"
               style={{ top: bannerVisible ? "48px" : "0px" }}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
@@ -356,8 +357,8 @@ export default function Header() {
                 <a href="#" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm">
                   Support
                 </a>
-                <a href="#" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm">
-                  Login
+                <a href="https://ems.kraftechnologies.com/" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm" target="_blank">
+                  Employee Login
                 </a>
                 <a
                   href="#"
