@@ -167,14 +167,11 @@ export default function Header() {
             </nav>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
-            <button className="text-white p-1 md:p-2">
-              <Globe className="h-4 w-4 md:h-5 md:w-5" />
-            </button>
             <a
               href="#"
               className="hidden md:block text-white hover:text-[#18CB96] transition-colors duration-200 text-sm md:text-base relative group"
             >
-              Support
+              #KrafThink2025
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#18CB96] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </a>
             <a
@@ -189,7 +186,7 @@ export default function Header() {
               href="#"
               className="hidden md:block text-white border border-white rounded-md px-3 py-1 md:px-4 md:py-1 hover:bg-white hover:text-[#0a0e1a] transition-colors duration-200 text-sm md:text-base"
             >
-              Get Started
+              Contact Us
             </a>
             <button className="md:hidden text-white p-1" onClick={toggleMobileMenu}>
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -355,7 +352,7 @@ export default function Header() {
                   </div>
                 ))}
                 <a href="#" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm">
-                  Support
+                  #KrafThink2025
                 </a>
                 <a href="https://ems.kraftechnologies.com/" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm" target="_blank">
                   Employee Login
@@ -364,7 +361,7 @@ export default function Header() {
                   href="#"
                   className="text-white border border-white rounded-md px-4 py-2 text-center hover:bg-white hover:text-[#0a0e1a] transition-colors duration-200 text-sm"
                 >
-                  Get Started
+                  Contact Us
                 </a>
               </div>
             </motion.div>

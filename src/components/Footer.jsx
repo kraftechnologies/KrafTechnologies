@@ -161,13 +161,13 @@ export default function Footer() {
                 </p>
                 <p>
                   Contact:{" "}
-                  <a href="tel:+919588746232" className="text-white hover:opacity-80">
-                    +919588746232
+                  <a href="tel:+919670269295" className="text-white hover:opacity-80">
+                    +919670269295
                   </a>
                 </p>
                 <p>
                   HQ Office Address:{" "}
-                  <span className="text-white hover:opacity-80">11/2, Tech Park, Mohali, Punjab, 160055</span>
+                  <span className="text-white hover:opacity-80">Property No. 55, 3rd Floor Saidulajab, Near Westend, Marg Lane-2, New Delhi 110030</span>
                 </p>
               </div>
             </div>
