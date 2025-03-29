@@ -23,8 +23,6 @@ import animesh from '../../assets/founders/animesh.JPG';
 import punnet from '../../assets/founders/puneet.JPG';
 import yash from '../../assets/founders/yash.JPG';
 import {useNavigate} from "react-router-dom";
-import sonu from '../../assets/sonu.png';
-import tarveen from "../../assets/tarveen.jpg";
 import { Helmet } from "react-helmet";
 
 const KrafThink = () => {
