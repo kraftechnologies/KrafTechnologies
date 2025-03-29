@@ -21,6 +21,7 @@ import emailjs from "emailjs-com";
 const positions = [
   "Software Engineer",
   "Frontend Developer",
+  "Sales/Marketing Executive",
   "Backend Developer",
   "Full Stack Developer",
   "DevOps Engineer",
