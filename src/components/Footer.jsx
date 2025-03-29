@@ -100,9 +100,14 @@ export default function Footer() {
                 <Link to="/portfolio" className="block hover:text-white transition-colors">
                   Portfolio
                 </Link>
-                <Link to="/careers" className="block hover:text-white transition-colors">
-                  Careers
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link to="/careers" className="block hover:text-white transition-colors">
+                    Careers
+                  </Link>
+                  <span className="text-xs font-medium bg-[#12cb96] text-black px-2 py-1 rounded">
+                    WE'RE HIRING
+                  </span>
+                </div>
                 <Link to="/contact-us" className="block hover:text-white transition-colors">
                   Contact us
                 </Link>
@@ -173,7 +178,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="border-t border-gray-700 pt-4 text-center">
-            <p className="text-sm">&copy; 2025 Kraf Technologies. All rights reserved.</p>
+            <p className="text-sm">© 2025 Kraf Technologies. All rights reserved.</p>
           </div>
         </div>
       </div>
