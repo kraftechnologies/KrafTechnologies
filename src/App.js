@@ -1,9 +1,10 @@
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Headers from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 
+// Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
 const Products = lazy(() => import("./pages/Products"));
 const About = lazy(() => import("./pages/About"));
@@ -14,17 +15,29 @@ const CareerRegistration = lazy(() => import("./pages/CareerRegistration"));
 const KrafThink = lazy(() => import("./pages/krafThink/KrafThink"));
 const NotFound = lazy(() => import("./pages/404Page"));
 
-function App() {
+// Scroll to Top Component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
   useEffect(() => {
-    const hasSeenAlert = localStorage.getItem("maintenanceAlertShown");
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+function App() {
+  // Maintenance alert (runs once on first visit)
+  useEffect(() => {
+    const hasSeenAlert = sessionStorage.getItem("maintenanceAlertShown");
     if (!hasSeenAlert) {
       alert("This website is under maintenance. Some features may not work. Please wait for maintenance to complete.");
-      localStorage.setItem("maintenanceAlertShown", "true");
+      sessionStorage.setItem("maintenanceAlertShown", "true");
     }
-  }, []); // Empty dependency array ensures this runs only once on initial mount
+  }, []);
 
   return (
     <Router>
+      <ScrollToTop />
       <Headers />
       <Suspense fallback={<Loader />}>
         <Routes>
