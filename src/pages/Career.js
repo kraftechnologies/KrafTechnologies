@@ -433,7 +433,7 @@ function CareersPage() {
               {
                 step: 4,
                 title: "Career Advancement",
-                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                image: companyImg,
                 items: [
                   {
                     icon: <Layers className="h-5 w-5" />,
@@ -647,7 +647,7 @@ function CareersPage() {
                 <div className="w-1/2 pr-12">
                   <div className="overflow-hidden rounded-xl shadow-lg">
                     <img
-                      src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                      src={companyImg3}
                       alt="Career Advancement"
                       className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                       onError={(e) => (e.target.src = companyImg)}

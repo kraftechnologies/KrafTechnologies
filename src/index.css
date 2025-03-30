@@ -397,12 +397,7 @@
 }
 
 .animate-marquee {
-  animation: marquee 50s linear infinite;
-  display: inline-block;
-}
-
-.animate-marquee-reverse {
-  animation: marquee-reverse 20s linear infinite;
+  animation: marquee 70s linear infinite;
   display: inline-block;
 }
 

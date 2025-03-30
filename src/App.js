@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Headers from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
+import BookFreeConsultation from "./components/BookFreeConsultation";
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -52,6 +53,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      <BookFreeConsultation />
       <Footer />
     </Router>
   );
