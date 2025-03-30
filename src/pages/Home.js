@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Brands from '../components/Brands';
 import Portfolio from "./../components/portfolio";
+// import GrowthforBusinesses from '../components/GrowthforBusinesses';
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
       <div className="min-h-screen bg-black">
         <Hero />
         <About />
+        {/* <GrowthforBusinesses /> */}
         <Portfolio />
         <Brands />
       </div>

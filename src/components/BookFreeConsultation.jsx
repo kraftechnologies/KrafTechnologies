@@ -3,6 +3,7 @@ import { Phone, Mail, MessageSquare, Trophy, Users, Building2, Rocket, Heart, Up
 import { supabase } from '../services/supabaseClient';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from '@emailjs/browser';
 
 function BookFreeConsultation() {
   const [formData, setFormData] = useState({
@@ -44,6 +45,25 @@ function BookFreeConsultation() {
     setFormData((prev) => ({ ...prev, files }));
   };
 
+  const sendConfirmationEmail = async () => {
+    const emailParams = {
+      to_email: formData.email,
+      full_name: formData.fullName,
+      country: formData.country,
+      phone: formData.phone,
+      project_brief: formData.brief,
+    };
+
+    try {
+      const result = await emailjs.send('service_oh34q42', 'template_lr3cssi', emailParams, 'FG0nWkLd_43JaXqVE');
+      console.log('EmailJS response:', result);
+      toast.success('Confirmation email sent successfully!');
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast.error('Failed to send confirmation email: ' + error.text);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -70,6 +90,7 @@ function BookFreeConsultation() {
         }
         fileUrl = supabase.storage.from('consultation').getPublicUrl(filePath).data.publicUrl;
       } catch (error) {
+        console.error('Upload error:', error);
         toast.error(error.message);
         setUploading(false);
         setSubmitting(false);
@@ -89,15 +110,17 @@ function BookFreeConsultation() {
     };
 
     try {
-      const { error } = await supabase.from('consultations').insert([submissionData]);
-      if (error) {
-        throw new Error(`Submission failed: ${error.message}`);
+      const { error: insertError } = await supabase.from('consultations').insert([submissionData]);
+      if (insertError) {
+        throw new Error(`Submission failed: ${insertError.message}`);
       }
+      await sendConfirmationEmail();
       toast.success('Consultation request submitted successfully!');
       setFormData({ fullName: '', email: '', country: '', phone: '', brief: '', files: null });
       if (fileInputRef.current) fileInputRef.current.value = '';
     } catch (error) {
-      toast.error(error.message);
+      console.error('Submission error:', error);
+      toast.error(`Error: ${error.message}`);
     } finally {
       setSubmitting(false);
     }
@@ -113,7 +136,7 @@ function BookFreeConsultation() {
             <Phone className="w-5 h-5" />
             <span>Book A Call</span>
           </a>
-          <a href="https://wa.me/919670269295" className="flex items-center space-x-2 hover:text-[#18cb96] transition-colors underline decoration-dotted" target='_blank'>
+          <a href="https://wa.me/919670269295" className="flex items-center space-x-2 hover:text-[#18cb96] transition-colors underline decoration-dotted" target="_blank">
             <MessageSquare className="w-5 h-5" />
             <span>WhatsApp</span>
           </a>
