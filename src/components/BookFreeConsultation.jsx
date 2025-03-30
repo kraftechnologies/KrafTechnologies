@@ -113,7 +113,7 @@ function BookFreeConsultation() {
             <Phone className="w-5 h-5" />
             <span>Book A Call</span>
           </a>
-          <a href="#" className="flex items-center space-x-2 hover:text-[#18cb96] transition-colors underline decoration-dotted">
+          <a href="https://wa.me/919670269295" className="flex items-center space-x-2 hover:text-[#18cb96] transition-colors underline decoration-dotted" target='_blank'>
             <MessageSquare className="w-5 h-5" />
             <span>WhatsApp</span>
           </a>
