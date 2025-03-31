@@ -1,9 +1,9 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import Brands from '../components/Brands';
 import IndustrySpecificSolutions from "./../components/Industry-SpecificSolutions";
 import BusinessGrowthShowcase from '../components/GrowthforBusinesses'; 
 import WhatWeOffer from '../components/WhatWeOffer';
+import HowWeHelp from '../components/HowWeHelp';
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
       <BusinessGrowthShowcase />
       <WhatWeOffer />
       <IndustrySpecificSolutions />
-      <Brands />
+      <HowWeHelp />
     </div>
   );
 }

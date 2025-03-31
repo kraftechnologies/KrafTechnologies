@@ -303,3 +303,11 @@ body {
   animation: marquee 70s linear infinite;
   display: inline-block;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
