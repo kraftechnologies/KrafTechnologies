@@ -4,6 +4,9 @@ import IndustrySpecificSolutions from "./../components/Industry-SpecificSolution
 import BusinessGrowthShowcase from '../components/GrowthforBusinesses'; 
 import WhatWeOffer from '../components/WhatWeOffer';
 import HowWeHelp from '../components/HowWeHelp';
+import OpenInnovation from '../components/OpenInnovation';
+import FeaturedInsights from '../components/‘FeaturedInsights';
+import ExpertiseSection from '../components/ExpertiseIn';
 
 function Home() {
   return (
@@ -13,6 +16,9 @@ function Home() {
       <WhatWeOffer />
       <IndustrySpecificSolutions />
       <HowWeHelp />
+      <OpenInnovation />
+      <ExpertiseSection />
+      <FeaturedInsights />
     </div>
   );
 }
