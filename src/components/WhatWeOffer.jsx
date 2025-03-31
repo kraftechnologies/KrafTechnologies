@@ -357,7 +357,7 @@ const WhatWeOffer = () => {
   }, []);
 
   return (
-    <section ref={ref} className="w-full py-16 md:py-24 bg-black text-white relative overflow-hidden">
+    <section ref={ref} className="w-full py-8 bg-black text-white relative overflow-hidden">
       <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-teal-500/20 filter blur-[100px] opacity-40"></div>
       <div className="absolute bottom-1/4 right-1/3 w-96 h-96 rounded-full bg-teal-500/10 filter blur-[120px] opacity-30"></div>
 
