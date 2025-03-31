@@ -367,7 +367,7 @@ const WhatWeOffer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
             transition={{ duration: 0.5 }}
-            className="text-teal-500 font-medium text-xl md:text-2xl tracking-wide"
+            className="text-[#18cb96] font-medium text-xl md:text-2xl tracking-wide"
           >
             WHAT WE OFFER
           </motion.h2>

@@ -108,7 +108,7 @@ const BusinessGrowthShowcase = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-16 md:py-24 bg-black overflow-hidden">
+    <section ref={sectionRef} className="w-full py-8 bg-black overflow-hidden">
       <div className="container px-4 mx-auto max-w-[1400px]">
         {/* Header Section */}
         <motion.div
@@ -136,8 +136,8 @@ const BusinessGrowthShowcase = () => {
                   className={cn(
                     "h-12 px-6 md:px-8 rounded-full text-sm md:text-base font-medium transition-all",
                     activeTab === category.id
-                      ? "bg-gradient-to-r from-teal-500 to-teal-400 text-white shadow-lg shadow-teal-500/20"
-                      : "text-gray-300 hover:text-teal-400"
+                      ? "bg-gradient-to-r from-[#18cb96] to-[#18cb96] text-white shadow-lg shadow-[#18cb96]/20"
+                      : "text-gray-300 hover:text-[#18cb96]"
                   )}
                 >
                   {category.label}
@@ -188,8 +188,8 @@ const BusinessGrowthShowcase = () => {
                             transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
                             className="flex items-center gap-3 text-gray-200"
                           >
-                            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-500/20 flex items-center justify-center">
-                              <Check className="h-3 w-3 text-teal-500" />
+                            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#18cb96]/20 flex items-center justify-center">
+                              <Check className="h-3 w-3 text-[#18cb96]" />
                             </div>
                             <span>{service}</span>
                           </motion.li>
@@ -203,7 +203,7 @@ const BusinessGrowthShowcase = () => {
                       transition={{ delay: 0.6, duration: 0.5 }}
                       className="pt-4"
                     >
-                      <button className="group flex items-center gap-2 text-teal-500 font-medium hover:text-teal-400 transition-colors">
+                      <button className="group flex items-center gap-2 text-[#18cb96] font-medium hover:text-[#18cb96]/70 transition-colors">
                         <span>Learn more about our approach</span>
                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -219,7 +219,7 @@ const BusinessGrowthShowcase = () => {
                       transition={{ delay: 0.3, duration: 0.6 }}
                       className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
                     >
-                      <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-teal-500 shadow-xl shadow-teal-500/20">
+                      <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-[#18cb96] shadow-xl shadow-[#18cb96]/20">
                         <img
                           src={category.image}
                           alt={`${category.label} business`}
@@ -259,7 +259,7 @@ const BusinessGrowthShowcase = () => {
                           transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
                           className="absolute -bottom-12 -left-8"
                         >
-                          <ArrowUpRight className="h-6 w-6 text-teal-500" />
+                          <ArrowUpRight className="h-6 w-6 text-[#18cb96]" />
                         </motion.div>
                       </div>
                     </motion.div>
@@ -273,7 +273,7 @@ const BusinessGrowthShowcase = () => {
                         transition={{ delay: 0.7 + index * 0.2, duration: 0.5 }}
                         className={`absolute ${
                           index === 0 ? "bottom-10 left-0 md:left-10" : "bottom-40 right-0 md:right-20"
-                        } bg-gradient-to-br from-teal-500 to-teal-600 p-3 md:p-4 rounded-xl shadow-lg shadow-teal-500/20 text-white text-center w-28 md:w-32 z-20`}
+                        } bg-gradient-to-br from-[#18cb96] to-[#18cb96] p-3 md:p-4 rounded-xl shadow-lg shadow-[#18cb96]/20 text-white text-center w-28 md:w-32 z-20`}
                       >
                         <p className="text-xl md:text-2xl font-bold">{stat.value}</p>
                         <p className="text-xs md:text-sm font-medium opacity-90">{stat.label}</p>
@@ -287,9 +287,9 @@ const BusinessGrowthShowcase = () => {
                       transition={{ delay: 0.2, duration: 0.8 }}
                       className="absolute inset-0 z-0"
                     >
-                      <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-teal-500 opacity-10 blur-xl" />
-                      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 rounded-full bg-teal-500 opacity-10 blur-xl" />
-                      <div className="absolute top-1/2 left-1/2 w-24 h-24 rounded-full bg-teal-500 opacity-15 blur-lg" />
+                      <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-[#18cb96] opacity-10 blur-xl" />
+                      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 rounded-full bg-[#18cb96] opacity-10 blur-xl" />
+                      <div className="absolute top-1/2 left-1/2 w-24 h-24 rounded-full bg-[#18cb96] opacity-15 blur-lg" />
                     </motion.div>
                   </div>
                 </motion.div>
@@ -306,7 +306,7 @@ const BusinessGrowthShowcase = () => {
           className="mt-16 md:mt-20 text-center"
         >
           <p className="text-base md:text-lg text-gray-300 mb-6">Ready to accelerate your business growth?</p>
-          <button className="px-8 py-3 bg-gradient-to-r from-teal-500 to-teal-400 text-white rounded-full font-medium hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300 transform hover:-translate-y-1">
+          <button className="px-8 py-3 bg-gradient-to-r from-[#18cb96] to-[#18cb96]/80 text-white rounded-full font-medium hover:shadow-lg hover:shadow-[#18cb96]/30 transition-all duration-300 transform hover:-translate-y-1">
             Schedule a Consultation
           </button>
         </motion.div>

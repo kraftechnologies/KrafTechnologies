@@ -29,7 +29,7 @@ const navigation = [
 // Array of titles for the top banner
 const bannerTitles = [
   {
-    text: "EMS by Kraf Technologies – The ultimate Employee Management System for businesses!",
+    text: "EMS by Kraf Technologies - The ultimate Employee Management System for businesses!",
   },
   {
     text: "Exclusive Offer: Get 20% OFF on software development!",
@@ -143,7 +143,7 @@ export default function Header() {
             <a href="/" className="flex items-center">
               <img src={logo} alt="KRAF TECHNOLOGY" className="h-10 w-auto md:h-12" />
             </a>
-            <nav className="hidden md:flex items-center space-x-6">
+            <nav className="hidden lg:flex items-center space-x-6">
               {navigation.map((item) => (
                 <div className="relative" key={item.name}>
                   <button
@@ -169,14 +169,14 @@ export default function Header() {
           <div className="flex items-center space-x-2 md:space-x-4">
             <a
               href="/kraf-think-2025"
-              className="hidden md:block text-white hover:text-[#18CB96] transition-colors duration-200 text-sm md:text-base relative group"
+              className="hidden lg:block text-white hover:text-[#18CB96] transition-colors duration-200 text-sm md:text-base relative group"
             >
               #KrafThink2025
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#18CB96] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </a>
             <a
               href="https://ems.kraftechnologies.com/"
-              className="hidden md:block text-white hover:text-[#18CB96] transition-colors duration-200 text-sm md:text-base relative group"
+              className="hidden lg:block text-white hover:text-[#18CB96] transition-colors duration-200 text-sm md:text-base relative group"
               target="_blank"
             >
               Employee Login
@@ -184,11 +184,11 @@ export default function Header() {
             </a>
             <a
               href="/contact-us"
-              className="hidden md:block text-white border border-white rounded-md px-3 py-1 md:px-4 md:py-1 hover:bg-white hover:text-[#0a0e1a] transition-colors duration-200 text-sm md:text-base"
+              className="hidden lg:block text-white border border-white rounded-md px-3 py-1 md:px-4 md:py-1 hover:bg-white hover:text-[#0a0e1a] transition-colors duration-200 text-sm md:text-base"
             >
               Contact Us
             </a>
-            <button className="md:hidden text-white p-1" onClick={toggleMobileMenu}>
+            <button className="lg:hidden text-white p-1" onClick={toggleMobileMenu}>
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
@@ -198,7 +198,7 @@ export default function Header() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              className="md:hidden bg-[#121212] text-white absolute left-0 right-0 z-40"
+              className="lg:hidden bg-[#121212] text-white absolute left-0 right-0 z-40"
               style={{ top: bannerVisible ? "48px" : "0px" }}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
