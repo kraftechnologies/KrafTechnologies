@@ -217,7 +217,7 @@ const BusinessGrowthShowcase = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.3, duration: 0.6 }}
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+                      className="absolute top-1/2 left-1/3 md:left-1/2 transform md:-translate-x-1/2 -translate-x-1/3 -translate-y-1/2 z-10"
                     >
                       <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-[#18cb96] shadow-xl shadow-[#18cb96]/20">
                         <img
@@ -235,7 +235,7 @@ const BusinessGrowthShowcase = () => {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{ delay: 0.6, duration: 0.5 }}
                       whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                      className="absolute top-0 right-0 md:right-10 bg-gray-900/80 backdrop-blur-sm border border-gray-800 p-5 rounded-2xl shadow-lg max-w-[280px] z-20"
+                      className="absolute top-0 right-1/4 md:right-1/3 lg:right-0 md:right-10 bg-gray-900/80 backdrop-blur-sm border border-gray-800 p-5 rounded-2xl shadow-lg max-w-[280px] z-20"
                     >
                       <div className="relative">
                         <p className="text-gray-200 italic mb-4 text-sm md:text-base">
