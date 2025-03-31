@@ -158,7 +158,7 @@ const BusinessGrowthShowcase = () => {
                   className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center min-h-[500px]"
                 >
                   {/* Left Content Section */}
-                  <div className="space-y-8 order-2 lg:order-1">
+                  <div className=" pt-6 md:pt-0 space-y-8 order-2 lg:order-1">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -235,7 +235,7 @@ const BusinessGrowthShowcase = () => {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{ delay: 0.6, duration: 0.5 }}
                       whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                      className="absolute top-0 right-1/4 md:right-1/3 lg:right-0 md:right-10 bg-gray-900/80 backdrop-blur-sm border border-gray-800 p-5 rounded-2xl shadow-lg max-w-[280px] z-20"
+                      className="absolute top-0 right-1/5 md:right-1/4 lg:right-0 md:right-10 bg-gray-900/80 backdrop-blur-sm border border-gray-800 p-5 rounded-2xl shadow-lg max-w-[320px] z-20"
                     >
                       <div className="relative">
                         <p className="text-gray-200 italic mb-4 text-sm md:text-base">
