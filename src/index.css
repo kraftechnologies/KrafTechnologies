@@ -99,29 +99,21 @@ body {
 
 /* Upgraded Auto-scrolling Animation for ServiceCard */
 @keyframes scroll-up {
-  0% { transform: translateY(100%); opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
-  100% { transform: translateY(-100%); opacity: 0; }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 .animate-scroll-up {
-  animation: scroll-up 25s linear infinite;
-  will-change: transform, opacity; /* Optimize for performance */
+  animation: scroll-up 10s linear infinite;
+  will-change: transform;
 }
 
-/* Pause animation on hover for desktop */
-@media (min-width: 768px) {
-  .animate-scroll-up:hover {
-    animation-play-state: paused;
-  }
-}
-
-/* Responsive adjustments for scroll speed */
-@media (max-width: 768px) {
-  .animate-scroll-up {
-    animation-duration: 18s; /* Faster on mobile */
-  }
+.pause-animation {
+  animation-play-state: paused;
 }
 
 /* Animation Classes */
