@@ -248,7 +248,7 @@ const TechCard = ({ icon: Icon, title, items }) => {
       />
     </>
   );
-};
+}; 
 
 function App() {
   const [isCompanyModalOpen, setIsCompanyModalOpen] = useState(false);
