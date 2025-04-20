@@ -7,10 +7,17 @@ import HowWeHelp from '../components/HowWeHelp';
 import OpenInnovation from '../components/OpenInnovation';
 import FeaturedInsights from '../components/‘FeaturedInsights';
 import ExpertiseSection from '../components/ExpertiseIn';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
-function Home() {
+const Home = () => {
+  const containerRef = useScrollRestoration('home');
+
   return (
-    <div className="min-h-screen bg-black">
+    <div 
+      ref={containerRef} 
+      className="h-screen overflow-y-auto bg-black"
+      style={{ scrollBehavior: 'smooth' }}
+    >
       <Hero />
       <BusinessGrowthShowcase />
       <WhatWeOffer />
@@ -21,6 +28,6 @@ function Home() {
       <FeaturedInsights />
     </div>
   );
-}
+};
 
 export default Home;

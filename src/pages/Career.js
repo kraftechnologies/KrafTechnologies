@@ -26,8 +26,11 @@ import aditya from "../assets/testonomy/adithya - Adithya Bharadwaj.png";
 import john from "../assets/testonomy/inbound1979158642610545244 - John Ayomide (Perspicacious).jpg";
 import diya from "../assets/testonomy/profile - Diya Arora.jpg";
 import { Helmet } from "react-helmet";
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 function CareersPage() {
+  const containerRef = useScrollRestoration('career');
+
   // Combined testimonials for single row
   const testimonials = [
     {
@@ -41,14 +44,14 @@ function CareersPage() {
       name: "ADITHYA BHARADWAJ C",
       position: "Full Stack Developer Intern",
       years: "2 Months at KT",
-      quote: "I’m completely satisfied with the process and genuinely enjoying it!",
+      quote: "I'm completely satisfied with the process and genuinely enjoying it!",
       avatar: aditya,
     },
     {
       name: "Suyesh Kumar",
       position: "Team Lead, Oparation",
       years: "1 years at KT",
-      quote: "A smooth, well-structured process with great team support. Every challenge is a learning opportunity, and Kraf’s commitment to excellence is inspiring.",
+      quote: "A smooth, well-structured process with great team support. Every challenge is a learning opportunity, and Kraf's commitment to excellence is inspiring.",
       avatar: "https://ideogram.ai/assets/progressive-image/balanced/response/Jse3aie5Tq-6aY3fgOFjQQ",
     },
     {
@@ -69,7 +72,7 @@ function CareersPage() {
       name: "Diya Arora",
       position: "HR Intern",
       years: "2 Months at KT",
-      quote: "Kraf Technologies’ mentors provided exceptional support, guidance, and insights into HR processes, recruitment, and employee engagement, fostering learning and professional growth.",
+      quote: "Kraf Technologies' mentors provided exceptional support, guidance, and insights into HR processes, recruitment, and employee engagement, fostering learning and professional growth.",
       avatar: diya,
     },
     {
@@ -89,7 +92,11 @@ function CareersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div 
+      ref={containerRef} 
+      className="h-screen overflow-y-auto bg-black text-white"
+      style={{ scrollBehavior: 'smooth' }}
+    >
         <Helmet>
           <title>Careers at Kraf Technologies - Join Our Team</title>
           <meta name="description" content="Join Kraf Technologies and be part of an innovative team. Explore exciting career opportunities in software development, AI, and cloud computing." />

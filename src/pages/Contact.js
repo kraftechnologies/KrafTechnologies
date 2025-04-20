@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {Instagram, Linkedin, Github } from 'lucide-react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { db, collection, addDoc } from "../services/firebase";
+import useScrollRestoration from '../hooks/useScrollRestoration';
+
 function ContactUs() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -13,6 +15,8 @@ function ContactUs() {
 
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+
+  const containerRef = useScrollRestoration('contact');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +39,11 @@ function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen flex items-center relative">
+    <div 
+      ref={containerRef} 
+      className="h-screen overflow-y-auto flex items-center relative"
+      style={{ scrollBehavior: 'smooth' }}
+    >
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"

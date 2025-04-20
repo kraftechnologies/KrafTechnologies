@@ -7,15 +7,21 @@ import punnet from "../assets/founders/puneet.JPG"
 import yash from "../assets/founders/yash.JPG"
 import tushar from "../assets/founders/tushar.JPG"
 import allFounders from '../assets/founders/all.jpg'
-
+import React from 'react';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 export default function AboutUs() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+  const containerRef = useScrollRestoration('about');
 
   return (
-    <div className="min-h-screen bg-black text-gray-900">
+    <div 
+      ref={containerRef} 
+      className="h-screen overflow-y-auto bg-black text-gray-900"
+      style={{ scrollBehavior: 'smooth' }}
+    >
       {/* Hero Section */}
       <section className="relative py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -46,10 +52,10 @@ export default function AboutUs() {
                 Kraf Technologies, founded in 2022, is a cutting-edge software and B2B development company dedicated to delivering innovative solutions across multiple industries. With a strong focus on technology-driven advancements, Kraf Technologies specializes in building software products that streamline business operations, enhance user experiences, and drive digital transformation. The company was established with a vision to revolutionize the tech industry by offering robust, scalable, and secure solutions tailored to meet the evolving needs of businesses and consumers alike. Through a commitment to innovation, Kraf Technologies has successfully developed a diverse portfolio of products and brands, catering to a wide range of industries, from fintech and event management to e-commerce and project collaboration.
                 </p>
                 <p className="text-lg mb-6 leading-relaxed text-justify text-gray-400">
-                One of Kraf Technologies’ flagship and most successful products is KRAFX-Q1, a futuristic event management system designed to revolutionize large-scale events with seamless organization, digital transactions, and real-time data insights. This advanced solution integrates NFC-based cashless payments, automated attendee management, and live event analytics, providing organizers with a comprehensive tool to enhance efficiency and engagement. KRAFX-Q1 ensures secure, contactless transactions using NFC-enabled cards, eliminating the hassle of cash handling and long queues. Event organizers and merchants can leverage this cutting-edge system to streamline ticketing, access control, vendor payments, and financial operations, offering attendees a smooth and hassle-free experience. 
+                One of Kraf Technologies' flagship and most successful products is KRAFX-Q1, a futuristic event management system designed to revolutionize large-scale events with seamless organization, digital transactions, and real-time data insights. This advanced solution integrates NFC-based cashless payments, automated attendee management, and live event analytics, providing organizers with a comprehensive tool to enhance efficiency and engagement. KRAFX-Q1 ensures secure, contactless transactions using NFC-enabled cards, eliminating the hassle of cash handling and long queues. Event organizers and merchants can leverage this cutting-edge system to streamline ticketing, access control, vendor payments, and financial operations, offering attendees a smooth and hassle-free experience. 
                 </p>
                 <p className="text-lg mb-6 leading-relaxed text-justify text-gray-400">
-                Another key product developed by Kraf Technologies is InnovateX, a bill management system designed to simplify and automate financial transactions for businesses. This solution helps companies manage their invoices, track expenses, and generate reports, reducing the complexities associated with manual financial handling. InnovateX is built with smart analytics and AI-powered automation, allowing businesses to gain real-time insights into their financial data. Whether it’s subscription-based billing, utility payments, or business-to-business transactions, InnovateX ensures transparency and efficiency, making it a vital tool for organizations looking to modernize their billing processes.
+                Another key product developed by Kraf Technologies is InnovateX, a bill management system designed to simplify and automate financial transactions for businesses. This solution helps companies manage their invoices, track expenses, and generate reports, reducing the complexities associated with manual financial handling. InnovateX is built with smart analytics and AI-powered automation, allowing businesses to gain real-time insights into their financial data. Whether it's subscription-based billing, utility payments, or business-to-business transactions, InnovateX ensures transparency and efficiency, making it a vital tool for organizations looking to modernize their billing processes.
                 </p>
               </div>
               <div>

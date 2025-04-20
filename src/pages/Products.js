@@ -6,23 +6,30 @@ import {
 import KrafX from '../assets/MacBook.png';
 
 import { Helmet } from "react-helmet";
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
-const App: React.FC = () => {
+const App = () => {
+  const containerRef = useScrollRestoration('products');
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white">
-            <Helmet>
-              <title>Our Products -  Kraf Technologies</title>
-              <meta
-                name="description"
-                content="Explore our cutting-edge SaaS solutions, AI-powered analytics, and enterprise-grade cloud infrastructure. Built for scale and security."
-              />
-              <meta name="keywords" content="SaaS, AI, Cloud, Security, Analytics, Kraf Technologies" />
-              <meta property="og:title" content="Enterprise Solutions & SaaS Products | Kraf Technologies" />
-              <meta property="og:description" content="Explore our latest innovations in AI, cloud computing, and security solutions for enterprises." />
-              <meta property="og:image" content="https://kraftechnologies.com/assets/products-og-image.jpg" />
-              <meta property="og:url" content="https://kraftechnologies.com/products/" />
-              <link rel="canonical" href="https://kraftechnologies.com/products/" />
-            </Helmet>
+    <div 
+      ref={containerRef} 
+      className="h-screen overflow-y-auto bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white"
+      style={{ scrollBehavior: 'smooth' }}
+    >
+      <Helmet>
+        <title>Our Products -  Kraf Technologies</title>
+        <meta
+          name="description"
+          content="Explore our cutting-edge SaaS solutions, AI-powered analytics, and enterprise-grade cloud infrastructure. Built for scale and security."
+        />
+        <meta name="keywords" content="SaaS, AI, Cloud, Security, Analytics, Kraf Technologies" />
+        <meta property="og:title" content="Enterprise Solutions & SaaS Products | Kraf Technologies" />
+        <meta property="og:description" content="Explore our latest innovations in AI, cloud computing, and security solutions for enterprises." />
+        <meta property="og:image" content="https://kraftechnologies.com/assets/products-og-image.jpg" />
+        <meta property="og:url" content="https://kraftechnologies.com/products/" />
+        <link rel="canonical" href="https://kraftechnologies.com/products/" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-12 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="relative max-w-7xl mx-auto">
@@ -181,9 +188,9 @@ const App: React.FC = () => {
       </section>
     </div>
   );
-}
+};
 
-const projects: Project[] = [
+const projects = [
   {
     name: "KrafX-Q1: Business Solution & Hackathon Management Platform",
     description: "KrafX-Q1 is a B2B SaaS solution designed to help companies and organizations efficiently manage hackathons. It streamlines the entire hackathon process, from listing and registration to evaluation, team collaboration, and final submission.",
@@ -200,7 +207,7 @@ const projects: Project[] = [
   }
 ];
 
-const products: Product[] = [
+const products = [
   {
     name: "Enterprise Analytics",
     description: "Advanced data analytics platform with real-time insights and predictive modeling powered by machine learning.",
@@ -233,7 +240,7 @@ const products: Product[] = [
   }
 ];
 
-const futureProjects: FutureProject[] = [
+const futureProjects = [
   {
     name: "AI-Powered Business Intelligence",
     description: "Next-generation analytics platform leveraging artificial intelligence for predictive insights and automated decision-making, with advanced visualization capabilities.",

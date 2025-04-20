@@ -7,6 +7,7 @@ import {
   Info, Check, Terminal, Sparkles,
   Network, Bot, Braces, MessageSquare
 } from 'lucide-react';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 const technologies = {
   frontend: ['React', 'Vue.js', 'Next.js', 'TypeScript', 'Angular', 'Svelte'],
@@ -252,9 +253,14 @@ const TechCard = ({ icon: Icon, title, items }) => {
 
 function App() {
   const [isCompanyModalOpen, setIsCompanyModalOpen] = useState(false);
+  const containerRef = useScrollRestoration('service');
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div 
+      ref={containerRef} 
+      className="h-screen overflow-y-auto bg-black text-white"
+      style={{ scrollBehavior: 'smooth' }}
+    >
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-black" />

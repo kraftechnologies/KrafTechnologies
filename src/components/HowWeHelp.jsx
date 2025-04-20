@@ -36,21 +36,25 @@ function SolutionCard({ solution, index }) {
 
   return (
     <motion.div
-      className="relative group bg-gray-900/50 backdrop-blur-md rounded-2xl p-6 transition-all duration-700 font-jost border border-gray-800 hover:shadow-xl hover:shadow-teal-500/20 flex-shrink-0 w-80"
+      className="relative group bg-gray-900/50 backdrop-blur-md rounded-2xl p-6 transition-all duration-700 font-jost border border-gray-800 hover:shadow-xl hover:shadow-[#18CB96]/20 flex-shrink-0 w-80"
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.5,
+        delay: index * 0.01,
+        ease: "easeOut"
+      }}
+      viewport={{ once: true, margin: "-100px" }}
       style={{
         background: 'radial-gradient(circle at 10% 20%, rgba(24, 203, 150, 0.1), rgba(0, 0, 0, 0.9))',
       }}
     >
       <div className="absolute inset-0 rounded-2xl bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <div className="relative z-10 flex flex-col items-center text-center space-y-4">
-        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-teal-500/10 group-hover:scale-110 transition-transform duration-300">
-          <Icon className="text-3xl text-teal-400" />
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#18CB96]/10 group-hover:scale-110 transition-transform duration-300">
+          <Icon className="text-3xl text-[#18CB96]" />
         </div>
-        <h3 className="text-xl font-semibold text-white group-hover:text-teal-400 transition-colors duration-300">
+        <h3 className="text-xl font-semibold text-white group-hover:text-[#18CB96] transition-colors duration-300">
           {solution.title}
         </h3>
         <p className="text-gray-300 leading-relaxed">{solution.description}</p>
@@ -118,17 +122,17 @@ export default function HowWeHelp() {
           {/* Navigation Buttons */}
           <motion.button
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-teal-500/80 rounded-full shadow-lg hover:bg-teal-400 transition-all duration-300"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96] transition-all duration-300"
+            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+            animate={{ scale: 1, transition: { duration: 0.2 } }}
           >
             <ArrowLeft className="w-6 h-6 text-white" />
           </motion.button>
           <motion.button
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-teal-500/80 rounded-full shadow-lg hover:bg-teal-400 transition-all duration-300"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96] transition-all duration-300"
+            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+            animate={{ scale: 1, transition: { duration: 0.2 } }}
           >
             <ArrowRight className="w-6 h-6 text-white" />
           </motion.button>

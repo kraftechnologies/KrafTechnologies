@@ -187,11 +187,11 @@ function StatsSection() {
         </div>
       </div>
       
-      <div className="relative group p-6 rounded-2xl bg-gradient-to-r from-emerald-600/20 to-emerald-600/10 backdrop-blur-lg hover:scale-105 transition-transform duration-300">
-        <div className="absolute inset-0 rounded-2xl bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="relative group p-6 rounded-2xl bg-gradient-to-r from-[#18cb96]/20 to-[#18cb96]/10 backdrop-blur-lg hover:scale-105 transition-transform duration-300">
+        <div className="absolute inset-0 rounded-2xl bg-[#18cb96]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className="relative flex items-center gap-4">
-          <div className="p-3 rounded-lg bg-emerald-500/10">
-            <Clock className="w-6 h-6 text-emerald-400" />
+          <div className="p-3 rounded-lg bg-[#18cb96]/10">
+            <Clock className="w-6 h-6 text-[#18cb96]" />
           </div>
           <div>
             <h4 className="text-white font-semibold group-hover:translate-x-2 transition-transform duration-300">24/7 Support</h4>
