@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Lightbulb, Users, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const features = [
   {
@@ -26,7 +27,7 @@ function FeatureCard({ feature, index, isLast }) {
   return (
     <div className="relative flex items-center">
       <motion.div
-        className="relative bg-gray-900/70 backdrop-blur-md rounded-2xl p-6 font-jost border border-teal-500/30 hover:shadow-teal-500/40 transition-all duration-500 w-72 text-center"
+        className="relative bg-gray-900/70 backdrop-blur-md rounded-2xl p-6 font-jost border border-[#18CB96]/30 hover:shadow-[#18CB96]/40 transition-all duration-500 w-72 text-center"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: index * 0.3 }}
@@ -36,10 +37,10 @@ function FeatureCard({ feature, index, isLast }) {
       >
         <div className="absolute inset-0 rounded-2xl bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className="relative z-10 flex flex-col items-center space-y-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 group-hover:scale-110 transition-transform duration-300">
-            <Icon className="w-6 h-6 text-teal-400" />
+          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#18CB96]/20 group-hover:scale-110 transition-transform duration-300">
+            <Icon className="w-6 h-6 text-[#18CB96]" />
           </div>
-          <h3 className="text-lg font-medium text-white group-hover:text-teal-400 transition-colors duration-300">
+          <h3 className="text-lg font-medium text-white group-hover:text-[#18CB96] transition-colors duration-300">
             {feature.title}
           </h3>
           <p className="text-gray-300 text-sm leading-relaxed">{feature.description}</p>
@@ -47,7 +48,7 @@ function FeatureCard({ feature, index, isLast }) {
       </motion.div>
       {!isLast && (
         <svg
-          className="w-16 h-8 text-teal-500"
+          className="w-16 h-8 text-[#18CB96]"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -117,21 +118,21 @@ export default function OpenInnovation() {
           transition={{ duration: 1.2 }}
         >
           <p className="text-lg text-gray-300 mb-6">
-            Ready to transform your ideas into reality? Let’s collaborate!
+            Ready to transform your ideas into reality? Let's collaborate!
           </p>
           <div className="flex justify-center gap-4">
-            <a
-              href="#learn-more"
-              className="px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-400 text-white font-semibold rounded-full shadow-lg hover:shadow-teal-500/50 transition-all duration-300"
+            <Link
+              to="/open-innovation"
+              className="px-6 py-3 bg-gradient-to-r from-[#18CB96] to-[#18CB96]/80 text-white font-semibold rounded-full shadow-lg hover:shadow-[#18CB96]/50 transition-all duration-300"
             >
               Learn More
-            </a>
-            <a
-              href="#apply-now"
-              className="px-6 py-3 bg-gray-800 text-teal-400 font-semibold rounded-full border border-teal-500/50 hover:bg-teal-500/10 hover:text-teal-300 transition-all duration-300"
+            </Link>
+            <Link
+              to="/open-innovation/#apply-now"
+              className="px-6 py-3 bg-gray-800 text-[#18CB96] font-semibold rounded-full border border-[#18CB96]/50 hover:bg-[#18CB96]/10 hover:text-[#18CB96] transition-all duration-300"
             >
               Apply Now
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

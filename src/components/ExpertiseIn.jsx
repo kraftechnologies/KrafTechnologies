@@ -72,17 +72,17 @@ function ExpertiseCard({ icon: Icon, text, isActive, onClick }) {
     <motion.div
       className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 cursor-pointer ${
         isActive
-          ? 'bg-white text-teal-500 shadow-lg'
-          : 'text-gray-300 hover:text-teal-400 hover:bg-teal-500/10'
+          ? 'bg-white text-[#18CB96] shadow-lg'
+          : 'text-gray-300 hover:text-[#18CB96] hover:bg-[#18CB96]/10'
       }`}
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}
       onClick={onClick}
     >
-      <Icon className={`w-6 h-6 ${isActive ? 'text-teal-500' : 'text-gray-300 group-hover:text-teal-400'}`} />
+      <Icon className={`w-6 h-6 ${isActive ? 'text-[#18CB96]' : 'text-gray-300 group-hover:text-[#18CB96]'}`} />
       <span className="font-medium">{text}</span>
-      {isActive && <ArrowRight className="ml-auto text-teal-500" />}
+      {isActive && <ArrowRight className="ml-auto text-[#18CB96]" />}
     </motion.div>
   );
 }
@@ -90,7 +90,7 @@ function ExpertiseCard({ icon: Icon, text, isActive, onClick }) {
 function SubcategoryCard({ icon: Icon, text }) {
   return (
     <motion.div
-      className="bg-gray-800/50 backdrop-blur-md rounded-xl p-3 transition-all duration-300 border border-teal-500/20 hover:shadow-teal-500/30 cursor-pointer"
+      className="bg-gray-800/50 backdrop-blur-md rounded-xl p-3 transition-all duration-300 border border-[#18CB96]/20 hover:shadow-[#18CB96]/30 cursor-pointer"
       style={{
         background:
           'radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.1), rgba(0, 0, 0, 0.9))',
@@ -101,16 +101,16 @@ function SubcategoryCard({ icon: Icon, text }) {
       whileHover={{ scale: 1.05 }}
     >
       <div className="flex flex-col items-center text-center gap-1">
-        <div className="bg-teal-500/20 p-2 rounded-full shadow-md">
-          <Icon className="w-4 h-4 text-teal-400" />
+        <div className="bg-[#18CB96]/20 p-2 rounded-full shadow-md">
+          <Icon className="w-4 h-4 text-[#18CB96]" />
         </div>
-        <h3 className="text-xs font-medium text-white hover:text-teal-400 transition-colors duration-300">
+        <h3 className="text-xs font-medium text-white hover:text-[#18CB96] transition-colors duration-300">
           {text}
         </h3>
         <div className="flex flex-wrap justify-center gap-1 mt-1">
           {techLogos[text]?.map((tech, index) => (
             <div key={index} className="flex items-center gap-1">
-              <tech.icon className="w-3 h-3 text-teal-400" />
+              <tech.icon className="w-3 h-3 text-[#18CB96]" />
               <span className="text-[10px] text-gray-400">{tech.name}</span>
             </div>
           ))}
@@ -148,7 +148,7 @@ function ExpertiseSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-400 mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#18CB96] to-[#18CB96]/80 mb-4 tracking-tight">
             We Have Expertise In
           </h2>
           <p className="text-base md:text-lg text-gray-300 max-w-3xl leading-relaxed">

@@ -48,7 +48,7 @@ const articles = [
     title: 'Personalization in eCommerce: The AI Advantage',
     description:
       'AI-driven personalization boosts sales. Learn how to implement it effectively.',
-    image: 'https://images.unsplash.com/photo-1556740738-6b4d6b6b6b6b?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1657812159103-1b2a52a7f5e8?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     author: { name: 'David Kim', image: 'https://randomuser.me/api/portraits/men/6.jpg' },
   },
   {
@@ -106,17 +106,17 @@ function FeaturedInsights() {
           transition={{ duration: 1 }}
         >
           <div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-400 mb-4 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#18CB96] to-[#18CB96]/80 mb-4 tracking-tight">
               Featured Insights
             </h1>
             <p className="text-base md:text-lg text-gray-300 max-w-2xl leading-relaxed">
-              Explore Kraf Technologies’ insights on leveraging tech and talent to turn your vision
+              Explore Kraf Technologies' insights on leveraging tech and talent to turn your vision
               into reality.
             </p>
           </div>
           <motion.a
             href="#"
-            className="hidden md:flex items-center text-teal-400 hover:text-teal-300 font-medium transition-colors duration-300"
+            className="hidden md:flex items-center text-[#18CB96] hover:text-[#18CB96]/80 font-medium transition-colors duration-300"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -136,7 +136,7 @@ function FeaturedInsights() {
             {articles.map((article, index) => (
               <motion.div
                 key={index}
-                className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 backdrop-blur-md border border-teal-500/30 hover:shadow-teal-500/40 transition-all duration-500"
+                className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 backdrop-blur-md border border-[#18CB96]/30 hover:shadow-[#18CB96]/40 transition-all duration-500"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -151,12 +151,12 @@ function FeaturedInsights() {
                     alt={article.title}
                     className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
                   />
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-teal-500/90 rounded-full text-sm font-medium text-white">
+                  <span className="absolute top-4 left-4 px-3 py-1 bg-[#18CB96]/90 rounded-full text-sm font-medium text-white">
                     {article.category}
                   </span>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-medium text-white mb-3 line-clamp-2 group-hover:text-teal-400 transition-colors duration-300">
+                  <h3 className="text-xl font-medium text-white mb-3 line-clamp-2 group-hover:text-[#18CB96] transition-colors duration-300">
                     {article.title}
                   </h3>
                   <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
@@ -166,7 +166,7 @@ function FeaturedInsights() {
                     <img
                       src={article.author.image}
                       alt={article.author.name}
-                      className="w-10 h-10 rounded-full mr-3 border border-teal-500/50"
+                      className="w-10 h-10 rounded-full mr-3 border border-[#18CB96]/50"
                     />
                     <span className="text-gray-300 text-sm font-medium">
                       {article.author.name}
@@ -180,17 +180,17 @@ function FeaturedInsights() {
           {/* Navigation Buttons */}
           <motion.button
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-teal-500/80 rounded-full shadow-lg hover:bg-teal-400 transition-all duration-300"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
+            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+            animate={{ scale: 1, transition: { duration: 0.2 } }}
           >
             <ArrowLeft className="w-6 h-6 text-white" />
           </motion.button>
           <motion.button
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-teal-500/80 rounded-full shadow-lg hover:bg-teal-400 transition-all duration-300"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
+            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+            animate={{ scale: 1, transition: { duration: 0.2 } }}
           >
             <ArrowRight className="w-6 h-6 text-white" />
           </motion.button>
