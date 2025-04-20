@@ -1,19 +1,13 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import { SiBlockchaindotcom, SiOpenai, SiQuantcast, SiAmazons3 } from "react-icons/si";
 import { FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
-import AnimatedText from "../components/AnimatedText";
-import animesh from "../assets//founders/animesh.JPG"
-import punnet from "../assets/founders/puneet.JPG"
-import yash from "../assets/founders/yash.JPG"
-import tushar from "../assets/founders/tushar.JPG"
+import AnimatedText from "../components/AnimatedText.jsx";
 import allFounders from '../assets/founders/all.jpg'
+import macbook from '../assets/MacBook.png'
 import React from 'react';
 import useScrollRestoration from '../hooks/useScrollRestoration';
 
 export default function AboutUs() {
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
   const containerRef = useScrollRestoration('about');
 
   return (
@@ -25,11 +19,16 @@ export default function AboutUs() {
       {/* Hero Section */}
       <section className="relative py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div style={{ opacity, scale }} className="text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 animate-fade-in">
               <span className="text-[#18CB96] bg-clip-text animate-pulse"><AnimatedText text="About Kraf Technologies" /></span>
             </h1>
-            <p className="text-base md:text-xl mb-8 max-w-3xl mx-auto text-gray-300 md:mb-8 max-w-2xl">
+            <p className="text-base md:text-xl max-w-3xl mx-auto text-gray-300  max-w-2xl">
               Revolutionizing B2B Software Solutions with Cutting-Edge Technology and Innovative Approaches
             </p>
           </motion.div>
@@ -37,7 +36,7 @@ export default function AboutUs() {
       </section>
 
       {/* Company Information */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+      <section className="px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,55 +72,6 @@ export default function AboutUs() {
               </div>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Founders Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-2 md:mb-2 text-center bg-clip-text text-transparent bg-white to-emerald-300">Meet Our Founders</h2>
-        {/* Team Section */}
-        <div className="max-w-6xl mx-auto relative">
-          <div className="w-40 h-1 bg-[#18CB96] mx-auto mb-16"></div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-            <TeamMember
-              image={tushar}
-              name="Tushar Gupta"
-              role="Founder & Lead Developer"
-              bio="Software Developer skilled in designing, developing, and optimizing scalable applications across various platforms and technologies."
-              linkedin="https://www.linkedin.com/in/imtushaarr"
-              instagram="https://www.instagram.com/imtushaarr"
-              twitter="https://twitter.com/imtushaarr"
-              />
-            <TeamMember
-              image={animesh}
-              name="Animesh Upadhyay"
-              role="Co-Founder & Software Developer"
-              bio="Software Developer crafted innovative solutions and seamless user experiences."
-              linkedin="https://www.linkedin.com/in/animesh-upadhyay-74a32a1b5/"
-              instagram="https://www.instagram.com/aniiiimeshhh/"
-              twitter="https://twitter.com/Animesh09528786"
-              />
-            <TeamMember
-              image={punnet}
-              name="Puneet"
-              role="Co-Founder & Java Developer"
-              bio="Java Developer with expertise in building scalable, efficient, and secure applications using Java technologies"
-              linkedin="https://www.linkedin.com/in/puneetyadav09"
-              instagram="https://www.instagram.com/yadav_puneet_009"
-              twitter="https://twitter.com/PuneetY45565355"
-            />
-            <TeamMember
-              image={yash}
-              name="Yash Singh"
-              role="Co-founder & Lead Data Analyst"
-              bio="Data Engineer with expertise in building and optimizing data pipelines for efficient processing and storage"
-              linkedin="https://www.linkedin.com/in/yash-singh2109"
-              instagram="https://www.instagram.com/yash_ys_23"
-              twitter="https://twitter.com/yash-singh2109"
-            />
-          </div>
-        </div>
         </div>
       </section>
 
@@ -182,7 +132,7 @@ export default function AboutUs() {
             {[
               {
                 title: "KrafX-Q: The Future of Hackathon Management",
-                image: "https://media.licdn.com/dms/image/v2/D4D12AQHx_s7GnKZxFA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1738789892377?e=1744243200&v=beta&t=xp4EdyRp0lrPL7406-9mWrCII023gJVeerUpkvwwI3s",
+                image: macbook,
               },
               {
                 title: "Fintech Startup Scales to 1M Users",
@@ -199,7 +149,7 @@ export default function AboutUs() {
                 <img
                   src={study.image || "/placeholder.svg"}
                   alt={study.title}
-                  className="w-full h-56 object-cover"
+                  className="w-full h-[300px] object-contain bg-black/10"
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-3 text-gray-900">{study.title}</h3>
