@@ -5,17 +5,10 @@ import AnimatedText from "../components/AnimatedText.jsx";
 import allFounders from '../assets/founders/all.jpg'
 import macbook from '../assets/MacBook.png'
 import React from 'react';
-import useScrollRestoration from '../hooks/useScrollRestoration';
 
-export default function AboutUs() {
-  const containerRef = useScrollRestoration('about');
-
+const About = () => {
   return (
-    <div 
-      ref={containerRef} 
-      className="h-screen overflow-y-auto bg-black text-gray-900"
-      style={{ scrollBehavior: 'smooth' }}
-    >
+    <div className="about-container">
       {/* Hero Section */}
       <section className="relative py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -213,3 +206,5 @@ function TeamMember({ image, name, role, bio, linkedin, instagram, twitter }) {
     </div>
   );
 }
+
+export default About;

@@ -6,17 +6,10 @@ import {
 import KrafX from '../assets/MacBook.png';
 
 import { Helmet } from "react-helmet";
-import useScrollRestoration from '../hooks/useScrollRestoration';
 
-const App = () => {
-  const containerRef = useScrollRestoration('products');
-
+const Products = () => {
   return (
-    <div 
-      ref={containerRef} 
-      className="h-screen overflow-y-auto bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white"
-      style={{ scrollBehavior: 'smooth' }}
-    >
+    <div className="products-container">
       <Helmet>
         <title>Our Products -  Kraf Technologies</title>
         <meta
@@ -255,4 +248,4 @@ const futureProjects = [
   }
 ];
 
-export default App;
+export default Products;

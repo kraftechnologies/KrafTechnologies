@@ -26,11 +26,8 @@ import aditya from "../assets/testonomy/adithya - Adithya Bharadwaj.png";
 import john from "../assets/testonomy/inbound1979158642610545244 - John Ayomide (Perspicacious).jpg";
 import diya from "../assets/testonomy/profile - Diya Arora.jpg";
 import { Helmet } from "react-helmet";
-import useScrollRestoration from '../hooks/useScrollRestoration';
 
-function CareersPage() {
-  const containerRef = useScrollRestoration('career');
-
+const Career = () => {
   // Combined testimonials for single row
   const testimonials = [
     {
@@ -92,11 +89,7 @@ function CareersPage() {
   ];
 
   return (
-    <div 
-      ref={containerRef} 
-      className="h-screen overflow-y-auto bg-black text-white"
-      style={{ scrollBehavior: 'smooth' }}
-    >
+    <div className="career-container">
         <Helmet>
           <title>Careers at Kraf Technologies - Join Our Team</title>
           <meta name="description" content="Join Kraf Technologies and be part of an innovative team. Explore exciting career opportunities in software development, AI, and cloud computing." />
@@ -805,4 +798,4 @@ function ParticleBackground() {
   );
 }
 
-export default CareersPage;
+export default Career;
