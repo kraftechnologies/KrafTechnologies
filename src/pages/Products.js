@@ -4,10 +4,12 @@ import {
   Cpu, Brain, Command, Layers, Database, Network 
 } from 'lucide-react';
 import KrafX from '../assets/MacBook.png';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 import { Helmet } from "react-helmet";
 
 const Products = () => {
+  const containerRef = useScrollRestoration('products');
   return (
     <div className="products-container">
       <Helmet>

@@ -7,6 +7,7 @@ import {
   Info, Check, Terminal, Sparkles,
   Network, Bot, Braces, MessageSquare
 } from 'lucide-react';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 const technologies = {
   frontend: ['React', 'Vue.js', 'Next.js', 'TypeScript', 'Angular', 'Svelte'],
@@ -252,6 +253,7 @@ const TechCard = ({ icon: Icon, title, items }) => {
 
 const Service = () => {
   const [isCompanyModalOpen, setIsCompanyModalOpen] = useState(false);
+  const containerRef = useScrollRestoration('service');
 
   return (
     <div className="service-container">

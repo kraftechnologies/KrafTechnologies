@@ -26,8 +26,10 @@ import aditya from "../assets/testonomy/adithya - Adithya Bharadwaj.png";
 import john from "../assets/testonomy/inbound1979158642610545244 - John Ayomide (Perspicacious).jpg";
 import diya from "../assets/testonomy/profile - Diya Arora.jpg";
 import { Helmet } from "react-helmet";
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 const Career = () => {
+  const containerRef = useScrollRestoration('career');
   // Combined testimonials for single row
   const testimonials = [
     {

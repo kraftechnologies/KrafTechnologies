@@ -5,8 +5,10 @@ import AnimatedText from "../components/AnimatedText.jsx";
 import allFounders from '../assets/founders/all.jpg'
 import macbook from '../assets/MacBook.png'
 import React from 'react';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 const About = () => {
+  const containerRef = useScrollRestoration('about');
   return (
     <div className="about-container">
       {/* Hero Section */}

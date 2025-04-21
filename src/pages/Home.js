@@ -7,8 +7,10 @@ import HowWeHelp from '../components/HowWeHelp';
 import OpenInnovation from '../components/OpenInnovation';
 import FeaturedInsights from '../components/FeaturedInsights';
 import ExpertiseSection from '../components/ExpertiseIn';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 const Home = () => {
+  const containerRef = useScrollRestoration('home');
   return (
     <div className="home-container">
       <Hero />

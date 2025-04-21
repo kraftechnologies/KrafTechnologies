@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import {Instagram, Linkedin, Github } from 'lucide-react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { db, collection, addDoc } from "../services/firebase";
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 const Contact = () => {
+  const containerRef = useScrollRestoration('contact');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
