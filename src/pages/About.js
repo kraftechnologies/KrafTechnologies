@@ -40,32 +40,26 @@ const About = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-2 md:mb-2 text-center bg-clip-text text-transparent bg-white to-emerald-300">Our Story</h2>
             <div className="w-40 h-1 bg-[#18CB96] mx-auto mb-16"></div>
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              <div>
-                <p className="text-lg mb-6 leading-relaxed text-justify text-gray-400">
-                Kraf Technologies, founded in 2022, is a cutting-edge software and B2B development company dedicated to delivering innovative solutions across multiple industries. With a strong focus on technology-driven advancements, Kraf Technologies specializes in building software products that streamline business operations, enhance user experiences, and drive digital transformation. The company was established with a vision to revolutionize the tech industry by offering robust, scalable, and secure solutions tailored to meet the evolving needs of businesses and consumers alike. Through a commitment to innovation, Kraf Technologies has successfully developed a diverse portfolio of products and brands, catering to a wide range of industries, from fintech and event management to e-commerce and project collaboration.
+            <div className="mx-auto p-4">
+              <div className="flex flex-col space-y-3">
+                <p className="text-lg leading-relaxed text-justify text-gray-400">
+                  Kraf Technologies, founded in 2022, is a cutting-edge software and B2B development company dedicated to delivering innovative solutions across multiple industries. With a strong focus on technology-driven advancements, Kraf Technologies specializes in building software products that streamline business operations, enhance user experiences, and drive digital transformation. The company was established with a vision to revolutionize the tech industry by offering robust, scalable, and secure solutions tailored to meet the evolving needs of businesses and consumers alike. Through a commitment to innovation, Kraf Technologies has successfully developed a diverse portfolio of products and brands, catering to a wide range of industries, from fintech and event management to e-commerce and project collaboration.
                 </p>
-                <p className="text-lg mb-6 leading-relaxed text-justify text-gray-400">
-                One of Kraf Technologies' flagship and most successful products is KRAFX-Q1, a futuristic event management system designed to revolutionize large-scale events with seamless organization, digital transactions, and real-time data insights. This advanced solution integrates NFC-based cashless payments, automated attendee management, and live event analytics, providing organizers with a comprehensive tool to enhance efficiency and engagement. KRAFX-Q1 ensures secure, contactless transactions using NFC-enabled cards, eliminating the hassle of cash handling and long queues. Event organizers and merchants can leverage this cutting-edge system to streamline ticketing, access control, vendor payments, and financial operations, offering attendees a smooth and hassle-free experience. 
+                <p className="text-lg leading-relaxed text-justify text-gray-400">
+                  One of Kraf Technologies' flagship and most successful products is KRAFX-Q1, a futuristic event management system designed to revolutionize large-scale events with seamless organization, digital transactions, and real-time data insights. This advanced solution integrates NFC-based cashless payments, automated attendee management, and live event analytics, providing organizers with a comprehensive tool to enhance efficiency and engagement. KRAFX-Q1 ensures secure, contactless transactions using NFC-enabled cards, eliminating the hassle of cash handling and long queues. Event organizers and merchants can leverage this cutting-edge system to streamline ticketing, access control, vendor payments, and financial operations, offering attendees a smooth and hassle-free experience.
                 </p>
-                <p className="text-lg mb-6 leading-relaxed text-justify text-gray-400">
-                Another key product developed by Kraf Technologies is InnovateX, a bill management system designed to simplify and automate financial transactions for businesses. This solution helps companies manage their invoices, track expenses, and generate reports, reducing the complexities associated with manual financial handling. InnovateX is built with smart analytics and AI-powered automation, allowing businesses to gain real-time insights into their financial data. Whether it's subscription-based billing, utility payments, or business-to-business transactions, InnovateX ensures transparency and efficiency, making it a vital tool for organizations looking to modernize their billing processes.
+                <p className="text-lg leading-relaxed text-justify text-gray-400">
+                  Another key product developed by Kraf Technologies is InnovateX, a bill management system designed to simplify and automate financial transactions for businesses. This solution helps companies manage their invoices, track expenses, and generate reports, reducing the complexities associated with manual financial handling. InnovateX is built with smart analytics and AI-powered automation, allowing businesses to gain real-time insights into their financial data. Whether it's subscription-based billing, utility payments, or business-to-business transactions, InnovateX ensures transparency and efficiency, making it a vital tool for organizations looking to modernize their billing processes.
                 </p>
-              </div>
-              <div>
-                <p className="text-lg mb-6 leading-relaxed text-justify text-gray-400">
-                Beyond its B2B solutions, Kraf Technologies has also expanded its reach into consumer-facing markets with its in-house brands. Krafcool is an e-commerce clothing brand tailored for the youth, offering trendy and stylish apparel. With a focus on quality, affordability, and the latest fashion trends, Krafcool aims to redefine the online shopping experience for young consumers. Additionally, the company has launched ProjectVerse, a developer collaboration platform designed to connect professionals, students, and tech enthusiasts. ProjectVerse acts as a hub for project management, idea sharing, and team collaborations, making it easier for developers to work on software projects, find partners, and contribute to open-source initiatives.
+                <p className="text-lg leading-relaxed text-justify text-gray-400">
+                  Beyond its B2B solutions, Kraf Technologies has also expanded its reach into consumer-facing markets with its in-house brands. Krafcool is an e-commerce clothing brand tailored for the youth, offering trendy and stylish apparel. With a focus on quality, affordability, and the latest fashion trends, Krafcool aims to redefine the online shopping experience for young consumers. Additionally, the company has launched ProjectVerse, a developer collaboration platform designed to connect professionals, students, and tech enthusiasts. ProjectVerse acts as a hub for project management, idea sharing, and team collaborations, making it easier for developers to work on software projects, find partners, and contribute to open-source initiatives.
                 </p>
-                <p className="text-lg mb-6 leading-relaxed text-justify text-gray-400">
-                With a strong foundation in technology and a vision for future innovation, Kraf Technologies continues to push the boundaries of digital transformation. The company is committed to expanding its product line, exploring emerging technologies like AI, blockchain, and IoT, and fostering an ecosystem where businesses and individuals can thrive. As it grows, Kraf Technologies remains dedicated to delivering high-quality, scalable, and user-centric solutions that empower businesses and consumers alike, shaping the future of technology with its innovative approach.
+                <p className="text-lg leading-relaxed text-justify text-gray-400">
+                  With a strong foundation in technology and a vision for future innovation, Kraf Technologies continues to push the boundaries of digital transformation. The company is committed to expanding its product line, exploring emerging technologies like AI, blockchain, and IoT, and fostering an ecosystem where businesses and individuals can thrive. As it grows, Kraf Technologies remains dedicated to delivering high-quality, scalable, and user-centric solutions that empower businesses and consumers alike, shaping the future of technology with its innovative approach.
                 </p>
-                <img
-                  src={allFounders}
-                  alt="TechNova Team"
-                  className="rounded-lg shadow-2xl mb-6"
-                />
               </div>
             </div>
+
           </motion.div>
         </div>
       </section>
