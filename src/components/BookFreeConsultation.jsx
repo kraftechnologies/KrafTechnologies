@@ -185,12 +185,6 @@ function BookFreeConsultation() {
             </div>
           </div>
         </div>
-
-        <div className="mt-auto text-center md:text-left">
-          <p className="text-sm md:text-base text-gray-300" style={{ fontFamily: 'Dancing Script, cursive' }}>
-            Powered By Department of Research and Innovation - KT
-          </p>
-        </div>
       </div>
 
       {/* Right Panel */}
