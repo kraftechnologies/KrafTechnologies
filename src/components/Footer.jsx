@@ -87,7 +87,7 @@ export default function Footer() {
           <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-16">
             <div className="space-y-6">
               <h3 className="text-white text-lg">About</h3>
-              <nav className="space-y-4">
+              <nav className="space-y-4"> 
                 <Link to="/about" className="block hover:text-white transition-colors">
                   About us
                 </Link>
