@@ -1,54 +1,131 @@
-import React, { useState, useEffect } from "react";
-import { FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { Trophy, 
-Award, 
-Calendar, 
-MapPin, 
-Send, 
-Users, 
-Code, 
-Presentation as FilePresentation, 
-Github, 
-Globe, 
-Gift, 
-Target,
-Cpu, 
-Brain, 
-Lightbulb, 
-Laptop } from 'lucide-react';
+import React, { useRef, useEffect, useState } from "react";
+import { Trophy, Award, Users, Globe, Gift, Target, Cpu, Camera, Code, Network, Star, Handshake } from 'lucide-react';
 import { motion } from "framer-motion";
 import heroImage from "../../assets/Serendale.png";
-import tushar from "../../assets/founders/tushar.JPG";
-import animesh from '../../assets/founders/animesh.JPG';
-import punnet from '../../assets/founders/puneet.JPG';
-import yash from '../../assets/founders/yash.JPG';
-import {useNavigate} from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-const KrafThink = () => {
-  const navigate = useNavigate();
+// HighlightCard Component
+const HighlightCard = ({ icon, title, description }) => (
+  <motion.div
+    whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(24, 203, 150, 0.3)" }}
+    className="backdrop-blur-md bg-gray-900/80 border border-gray-800 rounded-xl p-6 sm:p-8 shadow-lg transition-all duration-300"
+  >
+    <div className="flex items-center mb-4">
+      {icon}
+      <h4 className="ml-4 text-xl sm:text-2xl font-semibold font-jost text-[#18CB96]">{title}</h4>
+    </div>
+    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{description}</p>
+  </motion.div>
+);
+
+// WinnerCard Component
+const WinnerCard = ({ icon, title, team, project }) => (
+  <motion.div
+    whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(24, 203, 150, 0.3)" }}
+    className="backdrop-blur-md bg-gray-900/80 border border-gray-800 rounded-xl p-6 sm:p-8 shadow-lg transition-all duration-300"
+  >
+    <div className="flex items-center mb-4">
+      {icon}
+      <h4 className="ml-4 text-xl sm:text-2xl font-semibold font-jost text-[#18CB96]">{title}</h4>
+    </div>
+    <p className="text-lg sm:text-xl font-bold text-[#18CB96]">{team}</p>
+    <p className="text-gray-300 mt-2 text-sm sm:text-base">{project}</p>
+  </motion.div>
+);
+
+// GalleryImage Component
+const GalleryImage = ({ src, alt }) => (
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    className="relative overflow-hidden rounded-xl shadow-lg"
+  >
+    <img src={src} alt={alt} className="w-full h-48 sm:h-64 object-cover" />
+    <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
+      <Camera className="text-white opacity-0 hover:opacity-100 transition-opacity duration-300" />
+    </div>
+  </motion.div>
+);
+
+// WhyJoinItem Component
+const WhyJoinItem = ({ icon, title, description }) => (
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    className="backdrop-blur-md bg-gray-900/80 border border-gray-800 rounded-xl p-4 sm:p-6 shadow-lg transition-all duration-300"
+  >
+    <div className="flex items-start gap-4">
+      {icon}
+      <div>
+        <h4 className="text-lg sm:text-xl font-semibold font-jost text-[#18CB96]">{title}</h4>
+        <div className="text-gray-300 text-sm sm:text-base">{description}</div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const KrafThinkMemories = () => {
+  const sectionRefs = {
+    memories: useRef(null),
+    highlights: useRef(null),
+    whyJoin: useRef(null),
+    winners: useRef(null),
+    gallery: useRef(null),
+    sponsor: useRef(null),
+  };
+  const [isInView, setIsInView] = useState({
+    memories: false,
+    highlights: false,
+    whyJoin: false,
+    winners: false,
+    gallery: false,
+    sponsor: false,
+  });
+
+  useEffect(() => {
+    const observers = Object.keys(sectionRefs).map((key) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsInView((prev) => ({ ...prev, [key]: entry.isIntersecting }));
+        },
+        { threshold: 0.2 }
+      );
+      if (sectionRefs[key].current) {
+        observer.observe(sectionRefs[key].current);
+      }
+      return { key, observer };
+    });
+
+    return () => {
+      observers.forEach(({ key, observer }) => {
+        if (sectionRefs[key].current) {
+          observer.unobserve(sectionRefs[key].current);
+        }
+      });
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-            <Helmet>
-              <title>Kraf Think 2025 Hackathon - Kraf Technologies</title>
-              <meta name="description" content="Join the biggest premier Hackathon, Kraf Think 2025, organized by Kraf Technologies." />
-              <meta name="keywords" content="Hackathon, IT solutions, Kraf Think 2025, AI, Blockchain, SaaS, kt, kraftechnologies" />
-              <meta property="og:title" content="Kraf Think 2025 Hackathon" />
-              <meta property="og:description" content="Empowering innovation and collaboration at Chandigarh University." />
-              <meta property="og:image" content="https://kraftechnologies.com/og-image.jpg" />
-              <meta property="og:url" content="https://kraftechnologies.com/kraf-think-2025/" />
-              <link rel="canonical" href="https://kraftechnologies.com/kraf-think-2025/" />
-            </Helmet>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden font-jost">
+      <Helmet>
+        <title>Kraf Think 2025 Hackathon Memories - Kraf Technologies</title>
+        <meta name="description" content="Relive the unforgettable moments of Kraf Think 2025 Hackathon, where innovation and collaboration shone at Chandigarh University." />
+        <meta name="keywords" content="Hackathon, Kraf Think 2025, AI, Blockchain, SaaS, Kraf Technologies, Chandigarh University" />
+        <meta property="og:title" content="Kraf Think 2025 Hackathon Memories" />
+        <meta property="og:description" content="Celebrating the success of Kraf Think 2025, a premier hackathon by Kraf Technologies." />
+        <meta property="og:image" content="https://kraftechnologies.com/og-image.jpg" />
+        <meta property="og:url" content="https://kraftechnologies.com/kraf-think-2025" />
+        <link rel="canonical" href="https://kraftechnologies.com/kraf-think-2025" />
+      </Helmet>
+
       <main>
         {/* Hero Section */}
-        <section className="relative text-center md:py-16 bg-cover bg-center h-screen" style={{ backgroundImage: `url(${heroImage})` }}>
+        <section className="relative text-center py-12 sm:py-16 bg-cover bg-center h-screen" style={{ backgroundImage: `url(${heroImage})` }}>
           <div className="absolute inset-0 bg-black opacity-20"></div>
-          <div className="relative z-10 flex flex-col items-center justify-start h-full text-white px-4 pt-8 sm:pt-4 md:pt-32">
+          <div className="relative z-10 flex flex-col items-center justify-start h-full text-white px-2 sm:px-4 pt-6 sm:pt-8 md:pt-32">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-6xl md:text-8xl font-medium mb-4 tracking-tighter"
+              className="text-4xl sm:text-6xl md:text-8xl font-medium mb-4 tracking-tighter font-jost"
             >
               Kraf Think 2025 Hackathon
             </motion.h1>
@@ -56,16 +133,16 @@ const KrafThink = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl text-[#18CB96] max-w-3xl mb-12 animate-fade-in-delay-1 leading-relaxed"
+              className="text-base sm:text-xl text-[#18CB96] max-w-3xl mb-8 sm:mb-12 leading-relaxed px-4"
             >
               Empowering innovation, fostering collaboration, and transforming ideas into reality – join the Kraf Think 2025 Hackathon revolution!
             </motion.p>
           </div>
-          <div className="relative mt-12 max-w-6xl mx-auto">
+          <div className="relative mt-8 sm:mt-12 max-w-6xl mx-auto">
             {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-4 h-4 rounded-full"
+                className="absolute w-3 sm:w-4 h-3 sm:h-4 rounded-full"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
@@ -87,464 +164,384 @@ const KrafThink = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="absolute bottom-32 md:bottom-24 left-8 flex items-center"
+              className="absolute bottom-16 sm:bottom-24 md:bottom-32 left-4 sm:left-8 flex items-center flex-wrap gap-2"
             >
-              <div className="flex -space-x-2">
-                  <img src={tushar} alt="Avatar 1" className="w-10 h-10 rounded-full border-2 border-black object-cover" />
-                  <img src={animesh} alt="Avatar 2" className="w-10 h-10 rounded-full border-2 border-black object-cover" />
-                  <img src={punnet} alt="Avatar 3" className="w-10 h-10 rounded-full border-2 border-black object-cover" />
-                  <img src={yash} alt="Avatar 4" className="w-10 h-10 rounded-full border-2 border-black object-cover" />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Memories Section */}
+        <section ref={sectionRefs.memories} className="w-full py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#18CB96]/20 filter blur-[80px] sm:blur-[100px] opacity-40"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-[#18CB96]/10 filter blur-[100px] sm:blur-[120px] opacity-30"></div>
+          <div className="max-w-full sm:max-w-4xl mx-auto relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.memories ? 1 : 0, y: isInView.memories ? 0 : 20 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#18CB96] font-medium text-lg sm:text-xl md:text-2xl tracking-wide text-center"
+            >
+              KRAF THINK 2025
+            </motion.h2>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.memories ? 1 : 0, y: isInView.memories ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-center font-jost mt-2"
+            >
+              Unforgettable Memories
+            </motion.h1>
+            <div className="w-32 sm:w-48 h-1 bg-[#18CB96] mx-auto my-6 sm:my-8"></div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.memories ? 1 : 0, y: isInView.memories ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="space-y-4 sm:space-y-6 text-center px-2 sm:px-4"
+            >
+              <p className="text-base sm:text-xl text-gray-300 leading-relaxed text-justify">
+                Kraf Think 2025 was more than just a hackathon—it was a celebration of innovation, teamwork, and future-ready tech. Over 500 aspiring developers, designers, and entrepreneurs came together at Chandigarh University to build solutions that could change the world.
+              </p>
+              <p className="text-base sm:text-xl text-gray-300 leading-relaxed text-justify">
+                Organized by Kraf Technologies in collaboration with Krafcool, the event featured intense 36-hour coding marathons, mentoring from industry experts, and powerful ideas in domains like Artificial Intelligence, Blockchain, and SaaS platforms. Participants didn't just code—they learned, networked, and pushed their limits.
+              </p>
+              <p className="text-base sm:text-xl text-gray-300 leading-relaxed text-justify">
+                From the electrifying opening ceremony to the final pitch showdown, every moment echoed with energy, passion, and potential. A heartfelt thanks to our sponsors, partners, and every innovator who made Kraf Think 2025 an inspiring success story.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 mt-6 sm:mt-8">
+                <div className="flex items-center gap-2 bg-[#18CB96]/10 px-3 sm:px-4 py-2 rounded-lg">
+                  <Users className="text-[#18CB96] w-5 sm:w-6" />
+                  <span className="text-sm sm:text-base">500+ Innovators</span>
+                </div>
+                <div className="flex items-center gap-2 bg-[#18CB96]/10 px-3 sm:px-4 py-2 rounded-lg">
+                  <Globe className="text-[#18CB96] w-5 sm:w-6" />
+                  <span className="text-sm sm:text-base">Chandigarh University</span>
+                </div>
+                <div className="flex items-center gap-2 bg-[#18CB96]/10 px-3 sm:px-4 py-2 rounded-lg">
+                  <Trophy className="text-[#18CB96] w-5 sm:w-6" />
+                  <span className="text-sm sm:text-base">30+ Projects</span>
+                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Enhanced About Section */}
-      <section className="py-20 px-8 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80"
-            alt="Innovation Background"
-            className="w-full h-full object-cover opacity-5"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black"></div>
-        </div>
-        <div className="max-w-6xl mx-auto relative">
-          <h2 className="text-white text-5xl font-bold mb-2 text-center animate-on-scroll">About Kraf Think 2025</h2>
-          <div className="w-40 h-1 bg-[#18CB96] mx-auto mb-6"></div>
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-            <div className="space-y-6 animate-on-scroll">
-              <p className="text-xl text-gray-300 leading-relaxed text-justify">
-              Kraf Think 2025 is Kraf Technologies premier hackathon, bringing together over 500 innovators, developers, and creative minds from across the globe. An exciting coding competition designed to test creativity, problem-solving, and innovation in technology.
-              </p>
-              <p className="text-xl text-gray-300 leading-relaxed text-justify">
-                Organized by industry leaders Krafcool and Kraf Technologies, this event offers participants the unique opportunity to transform their groundbreaking ideas into working softwares while competing for substantial prizes and networking with industry experts.
-              </p>
-              <div className="flex flex-wrap gap-4 mt-8">
-                <div className="flex items-center gap-2 bg-[#18CB96]/10 px-4 py-2 rounded-lg">
-                  <Users className="text-[#18CB96]" />
-                  <span>500+ Participants</span>
-                </div>
-                <div className="flex items-center gap-2 bg-[#18CB96]/10 px-4 py-2 rounded-lg">
-                  <Globe className="text-[#18CB96]" />
-                  <span>Chandigarh University</span>
-                </div>
-                <div className="flex items-center gap-2 bg-[#18CB96]/10 px-4 py-2 rounded-lg">
-                  <Trophy className="text-[#18CB96]" />
-                  <span>₹10,000 in Prizes</span>
-                </div>
-              </div>
-            </div>
-            <div className="relative group animate-on-scroll">
-              <img 
-                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80"
-                alt="Hackathon Collaboration"
-                className="rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+        {/* Highlights Section */}
+        <section ref={sectionRefs.highlights} className="w-full py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden bg-black">
+          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#18CB96]/20 filter blur-[80px] sm:blur-[100px] opacity-40"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-[#18CB96]/10 filter blur-[100px] sm:blur-[120px] opacity-30"></div>
+          <div className="max-w-full sm:max-w-6xl mx-auto relative z-10 text-center mb-12 sm:mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.highlights ? 1 : 0, y: isInView.highlights ? 0 : 20 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#18CB96] font-medium text-lg sm:text-xl md:text-2xl tracking-wide"
+            >
+              EVENT HIGHLIGHTS
+            </motion.h2>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.highlights ? 1 : 0, y: isInView.highlights ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-jost mt-2"
+            >
+              Moments That Defined Kraf Think
+            </motion.h1>
+            <div className="w-32 sm:w-48 h-1 bg-[#18CB96] mx-auto my-6 sm:my-8"></div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.highlights ? 1 : 0, y: isInView.highlights ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            >
+              Dive into the most electrifying moments – from high-energy team collaboration, late-night breakthroughs, inspiring mentorship sessions, to the final adrenaline-pumped pitch presentations that brought innovation to life.
+            </motion.p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 max-w-full sm:max-w-6xl mx-auto">
+            {[
+              { title: "AI-Powered Solutions", desc: "Innovative tools and platforms using AI to solve real-world problems." },
+              { title: "Blockchain Impact", desc: "Projects that redefined transparency, security, and decentralization." },
+              { title: "Startup-Ready SaaS", desc: "Deployable SaaS solutions with real market potential." },
+              { title: "Workshops & Mentorship", desc: "Expert-led sessions guided participants through cutting-edge technologies." },
+              { title: "Midnight Coding Buzz", desc: "An atmosphere of passion and determination as ideas turned into code." },
+              { title: "Award Ceremony", desc: "Winners celebrated for brilliance and creativity across categories." },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: isInView.highlights ? 1 : 0, y: isInView.highlights ? 0 : 20 }}
+                transition={{ duration: 0.5, delay: 0.2 * index }}
+                className="bg-[#18CB96]/10 p-4 sm:p-6 rounded-xl shadow-lg hover:bg-[#18CB96]/20 transition"
+              >
+                <h3 className="text-lg sm:text-2xl font-semibold text-[#18CB96] mb-2">{item.title}</h3>
+                <p className="text-gray-300 text-sm sm:text-base">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Why Join a Hackathon Section */}
+        <section ref={sectionRefs.whyJoin} className="w-full py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#18CB96]/20 filter blur-[80px] sm:blur-[100px] opacity-40"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-[#18CB96]/10 filter blur-[100px] sm:blur-[120px] opacity-30"></div>
+          <div className="max-w-full sm:max-w-7xl mx-auto relative z-10 text-center mb-12 sm:mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.whyJoin ? 1 : 0, y: isInView.whyJoin ? 0 : 20 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#18CB96] font-medium text-lg sm:text-xl md:text-2xl tracking-wide"
+            >
+              WHY JOIN A HACKATHON?
+            </motion.h2>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.whyJoin ? 1 : 0, y: isInView.whyJoin ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-jost mt-2"
+            >
+              Unleash Your Potential
+            </motion.h1>
+            <div className="w-32 sm:w-48 h-1 bg-[#18CB96] mx-auto my-6 sm:my-8"></div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.whyJoin ? 1 : 0, y: isInView.whyJoin ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            >
+              Hackathons like Kraf Think 2025 empower you to think big, learn fast, and build real solutions. Here's why you should jump in:
+            </motion.p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 max-w-full sm:max-w-7xl mx-auto text-left">
+            <WhyJoinItem
+              icon={<Users className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+              title="Skill Boost"
+              description={
+                <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base">
+                  <li>Hands-on coding experience</li>
+                  <li>Learn new tools & tech</li>
+                  <li>Solve real-world problems</li>
+                </ul>
+              }
+            />
+            <WhyJoinItem
+              icon={<Users className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+              title="Grow Your Network"
+              description={
+                <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base">
+                  <li>Meet mentors & peers</li>
+                  <li>Team up with innovators</li>
+                  <li>Build career connections</li>
+                </ul>
+              }
+            />
+            <WhyJoinItem
+              icon={<Trophy className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+              title="Showcase & Win"
+              description={
+                <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base">
+                  <li>Pitch your project</li>
+                  <li>Win exciting prizes</li>
+                  <li>Get recognized by industry</li>
+                </ul>
+              }
+            />
+          </div>
+        </section>
+
+        {/* Winners Section */}
+        <section ref={sectionRefs.winners} className="w-full py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden bg-black">
+          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#18CB96]/20 filter blur-[80px] sm:blur-[100px] opacity-40"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-[#18CB96]/10 filter blur-[100px] sm:blur-[120px] opacity-30"></div>
+          <div className="max-w-full sm:max-w-7xl mx-auto relative z-10 text-center mb-12 sm:mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.winners ? 1 : 0, y: isInView.winners ? 0 : 20 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#18CB96] font-medium text-lg sm:text-xl md:text-2xl tracking-wide"
+            >
+              OUR WINNERS
+            </motion.h2>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.winners ? 1 : 0, y: isInView.winners ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-jost mt-2"
+            >
+              Celebrating Excellence
+            </motion.h1>
+            <div className="w-32 sm:w-48 h-1 bg-[#18CB96] mx-auto my-6 sm:my-8"></div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.winners ? 1 : 0, y: isInView.winners ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            >
+              Honoring the brilliant minds who illuminated Kraf Think 2025 with their innovative solutions.
+            </motion.p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 max-w-full sm:max-w-7xl mx-auto">
+            <WinnerCard
+              icon={<Gift className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+              title="1st Place"
+              team="Team Aura"
+              project="Developed an AI-powered drone system for emergency medical delivery and campus surveillance, ensuring safety and rapid response."
+            />
+            <WinnerCard
+              icon={<Target className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+              title="2nd Place"
+              team="Team Markaish"
+              project="Created SafeSight – a real-time AI security system that proactively prevents incidents with intelligent surveillance."
+            />
+            <WinnerCard
+              icon={<Cpu className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+              title="3rd Place"
+              team="Team Code Busters"
+              project="Designed a non-contact, camera-based heart rate monitoring system using computer vision and AI for real-time health alerts."
+            />
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section ref={sectionRefs.gallery} className="w-full py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#18CB96]/20 filter blur-[80px] sm:blur-[100px] opacity-40"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-[#18CB96]/10 filter blur-[100px] sm:blur-[120px] opacity-30"></div>
+          <div className="max-w-full sm:max-w-7xl mx-auto relative z-10 text-center mb-12 sm:mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.gallery ? 1 : 0, y: isInView.gallery ? 0 : 20 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#18CB96] font-medium text-lg sm:text-xl md:text-2xl tracking-wide"
+            >
+              MEMORABLE MOMENTS
+            </motion.h2>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.gallery ? 1 : 0, y: isInView.gallery ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-jost mt-2"
+            >
+              Captured Creativity
+            </motion.h1>
+            <div className="w-32 sm:w-48 h-1 bg-[#18CB96] mx-auto my-6 sm:my-8"></div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.gallery ? 1 : 0, y: isInView.gallery ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            >
+              Kraf Think 2025 was more than just a hackathon — it was a celebration of innovation, teamwork, and creativity. From intense coding marathons and insightful mentorship sessions to electrifying pitches and heartfelt award moments, these snapshots capture the energy and essence of the event. Here's a glimpse into the journey that brought changemakers together.
+            </motion.p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-full sm:max-w-7xl mx-auto">
+            <GalleryImage
+              src="https://media.licdn.com/dms/image/v2/D4D22AQGpDKzPMmEDYQ/feedshare-shrink_2048_1536/B4DZV4HdxZGkAo-/0/1741476998072?e=1748476800&v=beta&t=SrnyoMuULZi4SGF0DVTcKZGSn2SO0kJ-BkvX-4Jm_mE"
+              alt="Team coding session"
+            />
+            <GalleryImage
+              src="https://media.licdn.com/dms/image/v2/D4D22AQFOH_jSqIeSAg/feedshare-shrink_2048_1536/B4DZV4Hd0mG4Ao-/0/1741476995740?e=1748476800&v=beta&t=ZE_P8J7bS7j2Jl3wahfjUraROrQj2VQKa6OyLinGCG8"
+              alt="Project presentation"
+            />
+            <GalleryImage
+              src="https://media.licdn.com/dms/image/v2/D4D22AQFeXon8pbYAEg/feedshare-shrink_2048_1536/B4DZV4Hd0LHAAo-/0/1741476997548?e=1748476800&v=beta&t=2mkYwZgCfqjtIzoJP9e4t_feblbb3MgYpyus_ls-S9M"
+              alt="Award ceremony"
+            />
+            <GalleryImage
+              src="https://media.licdn.com/dms/image/v2/D4D22AQFKcQsqlRvpDw/feedshare-shrink_2048_1536/B4DZV4Hd0OGcAo-/0/1741476993442?e=1748476800&v=beta&t=kBMFGjfllrQSUER3Gw2O_adwAuAmCqIN_ATgWClGcZU"
+              alt="Networking session"
+            />
+            <GalleryImage
+              src="https://media.licdn.com/dms/image/v2/D4D22AQHBN-VAqtTHvQ/feedshare-shrink_2048_1536/B4DZV4Hd2tG4As-/0/1741476993544?e=1748476800&v=beta&t=WLrCqzaYIKMdA6mtlY4SPmq5oQ-6xfgY2yQYe074P04"
+              alt="Hackathon venue"
+            />
+            <GalleryImage
+              src="https://media.licdn.com/dms/image/v2/D4D22AQHzJyJN86sthw/feedshare-shrink_2048_1536/B4DZV4Hd1tG8Aw-/0/1741476992687?e=1748476800&v=beta&t=yycV0Mxzt1H-u0RhRNVdorUYKiWWk5M9_hjEF_Wr7Xg"
+              alt="Team collaboration"
+            />
+          </div>
+        </section>
+
+        {/* Become a Sponsor Section */}
+        <section ref={sectionRefs.sponsor} className="w-full py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden bg-black">
+          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#18CB96]/20 filter blur-[80px] sm:blur-[100px] opacity-40"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-64 sm:w-96 h-64 sm:h-96 rounded-full bg-[#18CB96]/10 filter blur-[100px] sm:blur-[120px] opacity-30"></div>
+          <div className="max-w-full sm:max-w-7xl mx-auto relative z-10 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.sponsor ? 1 : 0, y: isInView.sponsor ? 0 : 20 }}
+              transition={{ duration: 0.5 }}
+              className="text-[#18CB96] font-medium text-lg sm:text-xl md:text-2xl tracking-wide"
+            >
+              BECOME A SPONSOR
+            </motion.h2>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.sponsor ? 1 : 0, y: isInView.sponsor ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-jost mt-2"
+            >
+              Empower Future Innovators
+            </motion.h1>
+            <div className="w-32 sm:w-48 h-1 bg-[#18CB96] mx-auto my-6 sm:my-8"></div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.sponsor ? 1 : 0, y: isInView.sponsor ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12"
+            >
+              Partner with Kraf Technologies to support the brightest tech talents. Our hackathons offer a dynamic platform to showcase your brand, recruit emerging innovators, and contribute to the advancement of technology.
+            </motion.p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 max-w-full sm:max-w-6xl mx-auto mb-12 sm:mb-16">
+              <WhyJoinItem
+                icon={<Handshake className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+                title="Brand Visibility"
+                description="Display your brand across event banners, social media, websites, and live streams seen by thousands."
               />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
-            <ThemeCard
-              icon={<Cpu className="w-8 h-8" />}
-              title="AI & Machine Learning"
-              description="Develop cutting-edge AI and ML models to solve real-world challenges and drive innovation"
-            />
-            <ThemeCard
-              icon={<Globe className="w-8 h-8" />}
-              title="Blockchain & Web3 Development"
-              description="Create decentralized applications and smart contracts that solve real-world challenges in security and transparency."
-            />
-            <ThemeCard
-              icon={<Brain className="w-8 h-8" />}
-              title="FinTech & Smart Solutions"
-              description="Build transformative solutions in FinTech that solve real-world challenges in finance and sustainability."
-            />
-            <ThemeCard
-              icon={<Laptop className="w-8 h-8" />}
-              title="Open Innovation"
-              description="Bring your unique ideas to the table, leveraging AI, Blockchain, and Full Stack Development to solve real-world challenges."
-            />
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative group animate-on-scroll order-2 lg:order-1">
-              <img 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
-                alt="Team Collaboration"
-                className="rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+              <WhyJoinItem
+                icon={<Users className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+                title="Talent Engagement"
+                description="Get early access to a pool of top students, coders, and future entrepreneurs."
               />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <WhyJoinItem
+                icon={<Star className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+                title="Innovation Support"
+                description="Back ideas and projects that could disrupt industries and drive real change."
+              />
+              <WhyJoinItem
+                icon={<Star className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+                title="Customized Promotions"
+                description="Enjoy tailored sponsor mentions, co-branded materials, speaking slots, and dedicated booths."
+              />
+              <WhyJoinItem
+                icon={<Star className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+                title="Recruitment Opportunity"
+                description="Connect with potential hires, conduct interviews, and collect resumes directly at the event."
+              />
+              <WhyJoinItem
+                icon={<Globe className="text-[#18CB96] w-8 sm:w-10 h-8 sm:h-10" />}
+                title="Global Recognition"
+                description="Be part of a global tech movement with participants from leading universities and companies."
+              />
             </div>
-            <div className="space-y-6 animate-on-scroll order-1 lg:order-2">
-              <h3 className="text-3xl font-bold text-white">Why Participate?</h3>
-              <ul className="space-y-4">
-                <WhyParticipateItem
-                  icon={<Lightbulb className="w-6 h-6" />}
-                  title="Innovation Platform"
-                  description="Access to cutting-edge tools, APIs, and technologies to bring your ideas to life"
-                />
-                <WhyParticipateItem
-                  icon={<Users className="w-6 h-6" />}
-                  title="Networking"
-                  description="Connect with industry leaders, mentors, and fellow innovators"
-                />
-                <WhyParticipateItem
-                  icon={<Target className="w-6 h-6" />}
-                  title="Career Growth"
-                  description="Opportunities for internships and full-time positions with leading tech companies"
-                />
-                <WhyParticipateItem
-                  icon={<Trophy className="w-6 h-6" />}
-                  title="Grand Prizes"
-                  description="Win from a prize pool of &#8377;10,000 and additional perks"
-                />
-              </ul>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isInView.sponsor ? 1 : 0, y: isInView.sponsor ? 0 : 20 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-md md:text-lg">
+                Interested in partnering with us or learning more about sponsorship benefits?
+              </p>
+              <a
+                href="mailto:info@kraftechnologies.com"
+                rel="noreferrer"
+                className="inline-block bg-gradient-to-r from-[#18CB96] to-[#15b083] text-white rounded-full px-6 sm:px-8 py-2 sm:py-3 font-medium text-sm sm:text-lg shadow-lg hover:shadow-[#18CB96]/30 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                Contact Us
+              </a>
+            </motion.div>
           </div>
-        </div>
-      </section>
-
-             {/* Prize Section */}
-      <section className="py-20 px-8 bg-gradient-to-b from-black via-gray-900/50 to-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')] opacity-5 bg-cover bg-center"></div>
-        <div className="max-w-6xl mx-auto relative">
-          <h2 className="text-white text-5xl font-bold mb-2 text-center animate-on-scroll">Prizes & Awards</h2>
-          <div className="w-40 h-1 bg-[#18CB96] mx-auto mb-16"></div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <PrizeCard
-              icon={<Trophy className="w-12 h-12" />}
-              title="Winner"
-              amount="&#8377;5K"
-              items={[
-                'Internship Opportunity at Kraf Technologies',
-                'Get 50% off vouchers for Krafcool',
-                'Certificates from Chandigarh University & Kraf Technologies',
-              ]}
-            />
-            <PrizeCard
-              icon={<Award className="w-12 h-12" />}
-              title="1st Runner-Up"
-              amount="&#8377;3K"
-              items={[
-                'Internship Opportunity at Kraf Technologies',
-                'Get 30% off vouchers for Krafcool',
-                'Certificates from Chandigarh University & Kraf Technologies',
-                
-              ]}
-            />
-            <PrizeCard
-              icon={<Gift className="w-12 h-12" />}
-              title="2nd Runner-Up"
-              amount="&#8377;2K"
-              items={[
-                'One-on-One Meeting with Our Industrial Members',
-                'Get 20% off vouchers for Krafcool',
-                'Certificates from Chandigarh University & Kraf Technologies',
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline Section */}
-      <section className="py-10 px-8 bg-black relative overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-white text-5xl font-bold mb-2 text-center animate-on-scroll">Event Timeline</h2>
-          <div className="w-40 h-1 bg-[#18CB96] mx-auto mb-16"></div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TimelineCard 
-              icon={<Users />}
-              title="Registrations"
-              date="February 04 to 18, 2025"
-              description="Early bird registration begins with team formation at Kraf Technology"
-            />
-            <TimelineCard 
-              icon={<Github />}
-              title="PPT Submissions"
-              date="February 22 to 24, 2025"
-              description="Submit your project's presentaion at KrafX-Q1"
-            />
-            <TimelineCard 
-              icon={<FilePresentation />}
-              title="Presentation Result" 
-              date="February 26, 2025"
-              description="Result will be declared at KrafX-Q1 and top 20 teams will move to next phase"
-            />
-            <TimelineCard 
-              icon={<Send />}
-              title="Mentoring Session"
-              date="February 28, 2025"
-              description="We will provide ideas to enhance and improve your project at KrafX-Q1 Platform"
-            />
-            <TimelineCard 
-              icon={<Code />}
-              title="Code Submission"
-              date="March 02, 2025"
-              description="Intense coding to bring your ideas to life and submission of project at KrafX-Q1"
-            />
-            <TimelineCard 
-              icon={<Trophy />}
-              title="Grand Finale"
-              date="March 06, 2025"
-              description="Winners announcement and prize distribution ceremony at D-7 Block, Seminar Hall Chandigarh University"
-            />
-          </div>
-        </div>
-      </section>
-
-            {/* Platform & Venue Section */}
-            <section className="py-10 px-8 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&q=80')] opacity-5 bg-cover bg-fixed"></div>
-        <div className="max-w-6xl mx-auto relative">
-          <h2 className="text-white text-5xl font-bold mb-2 text-center animate-on-scroll">Event Details</h2>
-          <div className="w-40 h-1 bg-[#18CB96] mx-auto mb-16"></div>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-black/50 p-8 rounded-xl border border-[#18CB96]/20 backdrop-blur-sm hover:border-[#18CB96]/50 transition-all duration-300">
-              <h3 className="text-2xl font-bold mb-6 text-white/8">Venue Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="text-[#18CB96] mt-1" />
-                  <div>
-                    <p className="font-semibold">D-7 Block, Seminar Hall, Chandigarh University</p>
-                    {/* <p className="text-gray-400">2000 Innovation Drive</p> */}
-                    <p className="text-gray-400">NH05, Chandigarh-Ludhiana Highway, Gharuan, Mohali, Punjab, India</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Calendar className="text-[#18CB96]" />
-                  <p>March 06, 2025 (9:30 AM IST Start)</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-black/50 p-8 rounded-xl border border-[#18CB96]/20 backdrop-blur-sm hover:border-[#18CB96]/50 transition-all duration-300">
-              <h3 className="text-2xl font-bold mb-6 text-white/8">Platform</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Globe className="text-[#18CB96] mt-1" />
-                  <div>
-                    <p className="font-semibold">Kraf Technology KrafX-Q1 Platform</p>
-                    <p className="text-gray-400">Team registration, presentations, and mentoring sessions conducted by Kraf Technologies and Chandigarh University.</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  {/* <Code className="text-[#18CB96]" /> */}
-                  {/* <p>GitHub for project submissions</p> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-       {/* Event Details */}
-        <div className="relative z-20">
-          <div className="container mx-auto px-4 md:px-8 py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <EventDetail title="Location" value="Chandigarh University" />
-              <EventDetail title="Register" value="At Kraf Technologies" />
-              <EventDetail title="Registration Start" value="04 February 2025" />
-              <EventDetail title="Grand Finale" value="06 March 2025" />
-            </div>
-          </div>
-        </div>
-
-      {<section className="py-20 px-8 bg-white text-black rounded-t-[3rem] mt-10 mx-4">
-  {/* Team Section */}
-  <div className="max-w-4xl mx-auto relative">
-  <h2 className="text-black text-5xl font-bold mb-2 text-center animate-on-scroll">
-    Meet Our Team
-  </h2>
-  <div className="w-40 h-1 bg-[#18CB96] mx-auto mb-16"></div>
-
-  {/* Team Members Grid */}
-  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-    {/* Team Member 1 */}
-    <TeamMember
-      image={tushar}
-      name="Tushar Gupta"
-      role="Founder & Lead Developer"
-      bio="Software Developer skilled in designing, developing, and optimizing scalable applications across various platforms and technologies."
-      linkedin="https://www.linkedin.com/in/imtushaarr"
-      instagram="https://www.instagram.com/imtushaarr"
-      twitter="https://x.com/imtushaarr"
-    />
-    
-    {/* Team Member 2 */}
-    <TeamMember
-      image={animesh}
-      name="Animesh Upadhyay"
-      role="Co-Founder & Software Developer"
-      bio="Software Developer crafted innovative solutions and seamless user experiences."
-      linkedin="https://www.linkedin.com/in/animesh-upadhyay-74a32a1b5/"
-      instagram="https://www.instagram.com/aniiiimeshhh/"
-      twitter="https://x.com/Animesh09528786"
-    />
-    
-    {/* Team Member 3 */}
-    <TeamMember
-      image={punnet}
-      name="Puneet"
-      role="Co-Founder & Java Developer"
-      bio="Java Developer with expertise in building scalable, efficient, and secure applications using Java technologies"
-      linkedin="https://www.linkedin.com/in/puneetyadav09"
-      instagram="https://www.instagram.com/yadav_puneet_009"
-      twitter="https://x.com/PuneetY45565355"
-    />
-    
-    {/* Team Member 4 */}
-    <TeamMember
-      image={yash}
-      name="Yash Singh"
-      role="Co-founder & Lead Data Analyst"
-      bio="Data Engineer with expertise in building and optimizing data pipelines for efficient processing and storage"
-      linkedin="https://www.linkedin.com/in/yash-singh2109"
-      instagram="https://www.instagram.com/yash_ys_23"
-      twitter="https://x.com/yash-singh2109"
-    />
-  </div>
-</div>
-  <div className="border-t border-gray-400 mt-20 text-center"></div>
-  {/* Contact Section */}
-  <div className="relative z-10 bg-white text-black rounded-t-[3rem] mt-10 mx-4">
-    <div className="container mx-auto px-4 md:px-6 py-10">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="md:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to showcase your skills and ideas to the world? Join us at Kraf Think 2025
-          </h2>
-        </div>
-        <div className="md:w-1/2 text-center md:text-right">
-          <p className="mb-4 text-gray-600 text-lg">
-            Get in touch and become part of the innovation revolution
-          </p>
-          <p className="text-gray-600 mb-8 text-lg">info@kraftechnologies.com</p>
-          <button onClick={() => navigate("/contact-us")}
-          className="bg-emerald-400 text-black px-10 py-3 rounded-full text-sm font-normal hover:bg-emerald-500 transition-all">
-            Contact Us
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-}
+        </section>
       </main>
     </div>
   );
 };
-function redirectContactUs(){
-  window.location.href="/contact-us";
-}
 
-function PrizeCard({ icon, title, amount, color, items = [] }) {
-  return (
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-emerald-400/30 transition-all">
-      <div className="flex justify-center mb-4">{icon}</div>
-      <h3 className={`text-2xl font-bold text-center mb-4 text-${color}-400`}>{title}</h3>
-      <p className={`text-4xl font-bold text-center mb-6 text-${color}-500`}>{amount}</p>
-      <ul className="space-y-2 text-gray-300">
-        {items.length > 0 ? (
-          items.map((item, index) => (
-            <li key={index} className="flex items-start gap-2">
-              <span className={`w-2 h-2 bg-${color}-400 rounded-full`}>
-              <svg width="10" height="10" className="mt-2">
-                  <circle cx="5" cy="5" r="5" fill="#18CB96" />
-              </svg>
-              </span>
-              {item}
-            </li>
-          ))
-        ) : (
-          <li>No items available</li> // Handle case when items are empty
-        )}
-      </ul>
-    </div>
-  );
-}
-
-function EventDetail({ title, value }) {
-  return (
-    <div className="text-center">
-      <h3 className="text-emerald-400 text-2xl font-medium mb-3">{title}</h3>
-      <p className="text-sm font-normal">{value}</p>
-    </div>
-  );
-}
-
-function ThemeCard({ icon, title, description }) {
-  return (
-    <div className="bg-gradient-to-br from-[#18CB96]/10 to-transparent p-6 rounded-xl border border-[#18CB96]/20 hover:border-[#18CB96]/50 transition-all duration-300 group animate-on-scroll">
-      <div className="text-[#18CB96] mb-4 group-hover:scale-110 transition-transform duration-300">{icon}</div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-400">{description}</p>
-    </div>
-  );
-}
-
-function WhyParticipateItem({ icon, title, description }) {
-  return (
-    <li className="flex gap-4 items-start p-4 rounded-lg bg-[#18CB96]/5 hover:bg-[#18CB96]/10 transition-colors duration-300">
-      <div className="text-[#18CB96] mt-1">{icon}</div>
-      <div>
-        <h4 className="font-semibold mb-1">{title}</h4>
-        <p className="text-gray-400">{description}</p>
-      </div>
-    </li>
-  );
-}
-
-  function TeamMember({ image, name, role, bio, linkedin, instagram, twitter }) {
-    return (
-      <div className="group">
-        <div className="relative mb-6">
-          <div className="aspect-square overflow-hidden rounded-2xl">
-            <img 
-              src={image} 
-              alt={name} 
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-            <p className="text-sm text-gray-300">{bio}</p>
-          </div>
-        </div>
-      </div>
-      <div className="text-center">
-        <h3 className="text-black text-xl font-bold mb-1">{name}</h3>
-        <p className="text-[#18CB96]">{role}</p>
-      </div>
-      <div className="flex justify-center gap-4 mt-4">
-        {linkedin && (
-          <a href={linkedin} target="_blank" rel="noopener noreferrer">
-            <FaLinkedin className="text-black text-2xl hover:text-[#18CB96] transition-colors duration-300" />
-          </a>
-        )}
-        {instagram && (
-          <a href={instagram} target="_blank" rel="noopener noreferrer">
-            <FaInstagram className="text-black text-2xl hover:text-[#18CB96] transition-colors duration-300" />
-          </a>
-        )}
-        {twitter && (
-          <a href={twitter} target="_blank" rel="noopener noreferrer">
-            <FaTwitter className="text-black text-2xl hover:text-[#18CB96] transition-colors duration-300" />
-          </a>
-        )}
-      </div>
-    </div>
-  );
-}
-
-
-function TimelineCard({ icon, title, date, platform, description }) {
-  return (
-    <div className="bg-gray-900/50 p-8 rounded-xl hover:transform hover:scale-105 transition-all duration-300 border border-[#18CB96]/10 hover:border-[#18CB96]/30 backdrop-blur-sm group">
-      <div className="text-[#18CB96] mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">{icon}</div>
-      <h3 className="text-xl font-bold mb-2 text-center">{title}</h3>
-      <p className="text-[#18CB96] text-sm mb-4 text-center">{date}</p>
-      <p className="text-gray-400 text-center">{description}</p>
-    </div>
-  );
-}
-
-export default KrafThink;
+export default KrafThinkMemories;
