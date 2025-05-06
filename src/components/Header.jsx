@@ -276,7 +276,7 @@ export default function Header() {
                               Enterprise Resource Planning (ERP)
                             </a>
                             <a
-                              href="#"
+                              href="/crm"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Customer Relationship Management (CRM)
@@ -522,7 +522,7 @@ export default function Header() {
                       Enterprise Resource Planning (ERP)
                     </a>
                     <a
-                      href="#"
+                      href="/crm"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Customer Relationship Management (CRM)

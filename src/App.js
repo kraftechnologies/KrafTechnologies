@@ -6,6 +6,7 @@ import Loader from "./components/Loader";
 import BookFreeConsultation from "./components/BookFreeConsultation";
 import CustomSoftware from "./pages/CustomSoftware";
 import WebMobilApp from "./pages/WebMobilApp";
+import CRM from "./pages/CRM";
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -55,6 +56,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/custom-software" element={<CustomSoftware />} />
           <Route path="/web-mobile-app-dev" element={< WebMobilApp />} />
+          <Route path="/crm" element={< CRM />} />
         </Routes>
       </Suspense>
       <BookFreeConsultation />
