@@ -275,18 +275,18 @@ export default function Header() {
                             >
                               Enterprise Resource Planning (ERP)
                             </a>
-                            <a
-                              href="#"
+                            <Link
+                              to="/customer-relationship-managemnet"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Customer Relationship Management (CRM)
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="/business-intelligence-analytics"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Business Intelligence & Analytics
-                            </a>
+                            </Link>
                           </div>
                           <div>
                             <p className="text-white font-semibold text-sm">
@@ -298,18 +298,18 @@ export default function Header() {
                             >
                               Custom Software Development
                             </Link>
-                            <a
-                              href="#"
+                            <Link
+                              to="/web-mobile-app-dev"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Web & Mobile App Development
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="/ai-ml-solution"
                               className="block  hover:text-[#18CB96] text-xs py-1"
                             >
                               AI & ML Solutions
-                            </a>
+                            </Link>
                           </div>
                           <div>
                             <p className="text-white font-semibold text-sm">
@@ -521,18 +521,18 @@ export default function Header() {
                     >
                       Enterprise Resource Planning (ERP)
                     </a>
-                    <a
-                      href="#"
+                    <Link
+                      to="/customer-relationship-managemnet"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Customer Relationship Management (CRM)
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      to="/business-intelligence-analytics"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Business Intelligence & Analytics
-                    </a>
+                    </Link>
                     <p className="text-[#0a0e1a] font-semibold mt-4">
                       Software Development
                     </p>
@@ -549,12 +549,12 @@ export default function Header() {
                       Web & Mobile App Development
   
                     </Link>   
-                    <a
-                      href="#"
+                    <Link
+                      to="/ai-ml-solution"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       AI & ML Solutions
-                    </a>
+                    </Link>
                   </div>
                   <div className="space-y-3">
                     <p className="text-[#0a0e1a] font-semibold">

@@ -6,6 +6,9 @@ import Loader from "./components/Loader";
 import BookFreeConsultation from "./components/BookFreeConsultation";
 import CustomSoftware from "./pages/CustomSoftware";
 import WebMobilApp from "./pages/WebMobilApp";
+import AiMlSolution from "./pages/AiMlSolution";
+import CustomerRelationshipCMR from "./pages/CustomerRelationshipCMR";
+import BusinessIntelligenceAnalytics from "./pages/BusinessIntelligenceAnalytics";
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -55,6 +58,11 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/custom-software" element={<CustomSoftware />} />
           <Route path="/web-mobile-app-dev" element={< WebMobilApp />} />
+          <Route path="/ai-ml-solution" element={< AiMlSolution />} />
+          <Route path="/customer-relationship-managemnet" element={< CustomerRelationshipCMR />} />
+          <Route path="/business-intelligence-analytics" element={< BusinessIntelligenceAnalytics/>} />
+
+
         </Routes>
       </Suspense>
       <BookFreeConsultation />
