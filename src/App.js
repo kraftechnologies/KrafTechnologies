@@ -6,13 +6,10 @@ import Loader from "./components/Loader";
 import BookFreeConsultation from "./components/BookFreeConsultation";
 import CustomSoftware from "./pages/CustomSoftware";
 import WebMobilApp from "./pages/WebMobilApp";
-<<<<<<< HEAD
 import AiMlSolution from "./pages/AiMlSolution";
 import CustomerRelationshipCMR from "./pages/CustomerRelationshipCMR";
 import BusinessIntelligenceAnalytics from "./pages/BusinessIntelligenceAnalytics";
-=======
 import CRM from "./pages/CRM";
->>>>>>> features/CRM
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
