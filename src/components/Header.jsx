@@ -275,12 +275,12 @@ export default function Header() {
                             >
                               Enterprise Resource Planning (ERP)
                             </a>
-                            <Link
-                              to="/customer-relationship-managemnet"
+                            <a
+                              href="/crm"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Customer Relationship Management (CRM)
-                            </Link>
+                            </a>
                             <Link
                               to="/business-intelligence-analytics"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
@@ -521,12 +521,12 @@ export default function Header() {
                     >
                       Enterprise Resource Planning (ERP)
                     </a>
-                    <Link
-                      to="/customer-relationship-managemnet"
+                    <a
+                      href="/crm"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Customer Relationship Management (CRM)
-                    </Link>
+                    </a>
                     <Link
                       to="/business-intelligence-analytics"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
