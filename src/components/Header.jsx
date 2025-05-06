@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "./hooks/use-media-query";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Solutions", href: "/our-solutions" },
@@ -51,14 +52,20 @@ export default function Header() {
   useEffect(() => {
     if (bannerVisible) {
       const interval = setInterval(() => {
-        setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % bannerTitles.length);
+        setCurrentTitleIndex(
+          (prevIndex) => (prevIndex + 1) % bannerTitles.length
+        );
       }, 5000);
       return () => clearInterval(interval);
     }
   }, [bannerVisible]);
 
   useEffect(() => {
-    if (!isMobile && activeMenu && !["solutions", "products"].includes(activeMenu)) {
+    if (
+      !isMobile &&
+      activeMenu &&
+      !["solutions", "products"].includes(activeMenu)
+    ) {
       setActiveMenu(null);
     }
   }, [isMobile, activeMenu]);
@@ -141,26 +148,36 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4 md:space-x-8">
             <a href="/" className="flex items-center">
-              <img src={logo} alt="KRAF TECHNOLOGY" className="h-10 w-auto md:h-12" />
+              <img
+                src={logo}
+                alt="KRAF TECHNOLOGY"
+                className="h-10 w-auto md:h-12"
+              />
             </a>
             <nav className="hidden lg:flex items-center space-x-6">
               {navigation.map((item) => (
                 <div className="relative" key={item.name}>
                   <button
                     className={`text-white hover:text-[#18CB96] transition-colors duration-200 flex items-center text-sm md:text-base ${
-                      activeMenu === item.name.toLowerCase() ? "border-b-2 border-[#18CB96]" : ""
+                      activeMenu === item.name.toLowerCase()
+                        ? "border-b-2 border-[#18CB96]"
+                        : ""
                     }`}
                     onClick={() =>
-                      ["solutions", "products"].includes(item.name.toLowerCase())
+                      ["solutions", "products"].includes(
+                        item.name.toLowerCase()
+                      )
                         ? toggleMenu(item.name.toLowerCase())
                         : (window.location.href = item.href)
                     }
-                    onMouseEnter={() => handleMouseEnter(item.name.toLowerCase())}
+                    onMouseEnter={() =>
+                      handleMouseEnter(item.name.toLowerCase())
+                    }
                   >
                     {item.name}
-                    {["solutions", "products"].includes(item.name.toLowerCase()) && (
-                      <ChevronDown className="h-4 w-4 ml-1" />
-                    )}
+                    {["solutions", "products"].includes(
+                      item.name.toLowerCase()
+                    ) && <ChevronDown className="h-4 w-4 ml-1" />}
                   </button>
                 </div>
               ))}
@@ -188,8 +205,15 @@ export default function Header() {
             >
               Contact Us
             </a>
-            <button className="lg:hidden text-white p-1" onClick={toggleMobileMenu}>
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <button
+              className="lg:hidden text-white p-1"
+              onClick={toggleMobileMenu}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -211,150 +235,254 @@ export default function Header() {
                     <button
                       className="text-white py-2 text-left hover:text-[#18CB96] transition-colors duration-200 flex items-center justify-between text-sm w-full"
                       onClick={() =>
-                        ["solutions", "products"].includes(item.name.toLowerCase())
+                        ["solutions", "products"].includes(
+                          item.name.toLowerCase()
+                        )
                           ? toggleMenu(item.name.toLowerCase())
                           : (window.location.href = item.href)
                       }
                     >
                       {item.name}
-                      {["solutions", "products"].includes(item.name.toLowerCase()) && (
+                      {["solutions", "products"].includes(
+                        item.name.toLowerCase()
+                      ) && (
                         <ChevronRight
                           className={`h-4 w-4 transition-transform duration-300 ${
-                            activeMenu === item.name.toLowerCase() ? "rotate-90" : ""
+                            activeMenu === item.name.toLowerCase()
+                              ? "rotate-90"
+                              : ""
                           }`}
                         />
                       )}
                     </button>
                     {/* Mobile Submenu for Solutions */}
-                    {activeMenu === "solutions" && item.name.toLowerCase() === "solutions" && (
-                      <motion.div
-                        className="pl-4 space-y-2 bg-[#1a1f2b] rounded-md py-2"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div>
-                          <p className="text-white font-semibold text-sm">Business Solutions</p>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Enterprise Resource Planning (ERP)
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Customer Relationship Management (CRM)
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Business Intelligence & Analytics
-                          </a>
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold text-sm">Software Development</p>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Custom Software Development
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Web & Mobile App Development
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            AI & ML Solutions
-                          </a>
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold text-sm">B2B SaaS Products</p>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            KrafX-Q1 (Hackathon Management System)
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            SkyGrade (Student Management with LMS & AI)
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Scheduler (Task & Project Management)
-                          </a>
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold text-sm">E-commerce & Fintech</p>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            E-commerce Platforms
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Secure Payment Gateway Solutions
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Subscription & Billing Systems
-                          </a>
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold text-sm">Security & Cloud Solutions</p>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Cybersecurity & Data Protection
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Cloud Infrastructure (AWS, Azure, GCP)
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            DevOps & CI/CD Solutions
-                          </a>
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold text-sm">AI & Automation</p>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            AI Chatbots & Virtual Assistants
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Workflow Automation
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Predictive Analytics
-                          </a>
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold text-sm">Healthcare & Pharma Solutions</p>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Telemedicine & Healthcare Apps
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            Pharmaceutical Management Software
-                          </a>
-                          <a href="#" className="block text-white hover:text-[#18CB96] text-xs py-1">
-                            AI-driven Health Insights
-                          </a>
-                        </div>
-                        <button className="w-full bg-[#18CB96] text-white py-2 rounded-md hover:bg-[#16b585] transition-colors duration-200 text-sm">
-                          Open Innovation
-                        </button>
-                      </motion.div>
-                    )}
+                    {activeMenu === "solutions" &&
+                      item.name.toLowerCase() === "solutions" && (
+                        <motion.div
+                          className="pl-4 space-y-2 bg-[#1a1f2b] rounded-md py-2"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div>
+                            <p className="text-white font-semibold text-sm">
+                              Business Solutions
+                            </p>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Enterprise Resource Planning (ERP)
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Customer Relationship Management (CRM)
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Business Intelligence & Analytics
+                            </a>
+                          </div>
+                          <div>
+                            <p className="text-white font-semibold text-sm">
+                              Software Development
+                            </p>
+                            <Link
+                              to="/custom-software"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Custom Software Development
+                            </Link>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Web & Mobile App Development
+                            </a>
+                            <a
+                              href="#"
+                              className="block  hover:text-[#18CB96] text-xs py-1"
+                            >
+                              AI & ML Solutions
+                            </a>
+                          </div>
+                          <div>
+                            <p className="text-white font-semibold text-sm">
+                              B2B SaaS Products
+                            </p>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              KrafX-Q1 (Hackathon Management System)
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              SkyGrade (Student Management with LMS & AI)
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Scheduler (Task & Project Management)
+                            </a>
+                          </div>
+                          <div>
+                            <p className="text-white font-semibold text-sm">
+                              E-commerce & Fintech
+                            </p>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              E-commerce Platforms
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Secure Payment Gateway Solutions
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Subscription & Billing Systems
+                            </a>
+                          </div>
+                          <div>
+                            <p className="text-white font-semibold text-sm">
+                              Security & Cloud Solutions
+                            </p>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Cybersecurity & Data Protection
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Cloud Infrastructure (AWS, Azure, GCP)
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              DevOps & CI/CD Solutions
+                            </a>
+                          </div>
+                          <div>
+                            <p className="text-white font-semibold text-sm">
+                              AI & Automation
+                            </p>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              AI Chatbots & Virtual Assistants
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Workflow Automation
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Predictive Analytics
+                            </a>
+                          </div>
+                          <div>
+                            <p className="text-white font-semibold text-sm">
+                              Healthcare & Pharma Solutions
+                            </p>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Telemedicine & Healthcare Apps
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              Pharmaceutical Management Software
+                            </a>
+                            <a
+                              href="#"
+                              className="block text-white hover:text-[#18CB96] text-xs py-1"
+                            >
+                              AI-driven Health Insights
+                            </a>
+                          </div>
+                          <button className="w-full bg-[#18CB96] text-white py-2 rounded-md hover:bg-[#16b585] transition-colors duration-200 text-sm">
+                            Open Innovation
+                          </button>
+                        </motion.div>
+                      )}
                     {/* Mobile Submenu for Products */}
-                    {activeMenu === "products" && item.name.toLowerCase() === "products" && (
-                      <motion.div
-                        className="pl-4 space-y-2 bg-[#1a1f2b] rounded-md py-2"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <a href="#" className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1">
-                          PerformX (Employee Management System)
-                        </a>
-                        <a href="#" className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1">
-                          SkyGrade (Student Management System)
-                        </a>
-                        <a href="#" className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1">
-                          Krafcool (E-commerce Platform)
-                        </a>
-                        <a href="#" className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1">
-                          KrafX-Q1 (Hackathon & Event Management System)
-                        </a>
-                        <button className="w-full bg-[#18CB96] text-white py-2 rounded-md hover:bg-[#16b585] transition-colors duration-200 text-sm">
-                          Open Innovation
-                        </button>
-                      </motion.div>
-                    )}
+                    {activeMenu === "products" &&
+                      item.name.toLowerCase() === "products" && (
+                        <motion.div
+                          className="pl-4 space-y-2 bg-[#1a1f2b] rounded-md py-2"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <a
+                            href="#"
+                            className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1"
+                          >
+                            PerformX (Employee Management System)
+                          </a>
+                          <a
+                            href="#"
+                            className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1"
+                          >
+                            SkyGrade (Student Management System)
+                          </a>
+                          <a
+                            href="#"
+                            className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1"
+                          >
+                            Krafcool (E-commerce Platform)
+                          </a>
+                          <a
+                            href="#"
+                            className="block text-white font-semibold hover:text-[#18CB96] text-sm py-1"
+                          >
+                            KrafX-Q1 (Hackathon & Event Management System)
+                          </a>
+                          <button className="w-full bg-[#18CB96] text-white py-2 rounded-md hover:bg-[#16b585] transition-colors duration-200 text-sm">
+                            Open Innovation
+                          </button>
+                        </motion.div>
+                      )}
                   </div>
                 ))}
-                <a href="/kraf-think-2025" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                <a
+                  href="/kraf-think-2025"
+                  className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                >
                   #KrafThink2025
                 </a>
-                <a href="https://ems.kraftechnologies.com/" className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm" target="_blank">
+                <a
+                  href="https://ems.kraftechnologies.com/"
+                  className="text-white py-2 hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                  target="_blank"
+                >
                   Employee Login
                 </a>
                 <a
@@ -384,78 +512,156 @@ export default function Header() {
               {activeMenu === "solutions" && (
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
                   <div className="space-y-3">
-                    <p className="text-[#0a0e1a] font-semibold">Business Solutions</p>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <p className="text-[#0a0e1a] font-semibold">
+                      Business Solutions
+                    </p>
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Enterprise Resource Planning (ERP)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Customer Relationship Management (CRM)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Business Intelligence & Analytics
                     </a>
-                    <p className="text-[#0a0e1a] font-semibold mt-4">Software Development</p>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
-                      Custom Software Development
-                    </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <p className="text-[#0a0e1a] font-semibold mt-4">
+                      Software Development
+                    </p>
+                    <Link
+                      to="/custom-software"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
+                      Custom Software Development 
+                    </Link> 
+                    <Link
+                      to ="/web-mobile-app-dev"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                      >
                       Web & Mobile App Development
-                    </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+  
+                    </Link>   
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       AI & ML Solutions
                     </a>
                   </div>
                   <div className="space-y-3">
-                    <p className="text-[#0a0e1a] font-semibold">B2B SaaS Products</p>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <p className="text-[#0a0e1a] font-semibold">
+                      B2B SaaS Products
+                    </p>
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       KrafX-Q1 (Hackathon Management System)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       SkyGrade (Student Management with LMS & AI)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Scheduler (Task & Project Management)
                     </a>
-                    <p className="text-[#0a0e1a] font-semibold mt-4">E-commerce & Fintech</p>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <p className="text-[#0a0e1a] font-semibold mt-4">
+                      E-commerce & Fintech
+                    </p>
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       E-commerce Platforms
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Secure Payment Gateway Solutions
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Subscription & Billing Systems
                     </a>
                   </div>
                   <div className="space-y-3">
-                    <p className="text-[#0a0e1a] font-semibold">Security & Cloud Solutions</p>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <p className="text-[#0a0e1a] font-semibold">
+                      Security & Cloud Solutions
+                    </p>
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Cybersecurity & Data Protection
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Cloud Infrastructure (AWS, Azure, GCP)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       DevOps & CI/CD Solutions
                     </a>
-                    <p className="text-[#0a0e1a] font-semibold mt-4">AI & Automation</p>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <p className="text-[#0a0e1a] font-semibold mt-4">
+                      AI & Automation
+                    </p>
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       AI Chatbots & Virtual Assistants
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Workflow Automation
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Predictive Analytics
                     </a>
-                    <p className="text-[#0a0e1a] font-semibold mt-4">Healthcare & Pharma Solutions</p>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <p className="text-[#0a0e1a] font-semibold mt-4">
+                      Healthcare & Pharma Solutions
+                    </p>
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Telemedicine & Healthcare Apps
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       Pharmaceutical Management Software
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
+                    >
                       AI-driven Health Insights
                     </a>
                     <button className="mt-4 w-full bg-[#18CB96] text-white py-2 rounded-md hover:bg-[#16b585] transition-colors duration-200 text-sm">
@@ -469,16 +675,28 @@ export default function Header() {
               {activeMenu === "products" && (
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
                   <div className="space-y-3">
-                    <a href="#" className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200"
+                    >
                       PerformX (Employee Management System)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200"
+                    >
                       SkyGrade (Student Management System)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200"
+                    >
                       Krafcool (E-commerce Platform)
                     </a>
-                    <a href="#" className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200">
+                    <a
+                      href="#"
+                      className="block text-[#0a0e1a] font-semibold hover:text-[#18CB96] transition-colors duration-200"
+                    >
                       KrafX-Q1 (Hackathon & Event Management System)
                     </a>
                   </div>

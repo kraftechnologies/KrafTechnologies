@@ -104,7 +104,7 @@ export default function Footer() {
                   <Link to="/careers" className="block hover:text-white transition-colors">
                     Careers
                   </Link>
-                  <span className="text-xs font-medium bg-[#12cb96] text-black px-2 py-1 rounded">
+                  <span className="text-xs font-medium bg-[#12cb96]  text-black px-2 py-1 rounded">
                     WE'RE HIRING
                   </span>
                 </div>

@@ -4,6 +4,8 @@ import Headers from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import BookFreeConsultation from "./components/BookFreeConsultation";
+import CustomSoftware from "./pages/CustomSoftware";
+import WebMobilApp from "./pages/WebMobilApp";
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -51,6 +53,8 @@ function App() {
           <Route path="/careers/registration" element={<CareerRegistration />} />
           <Route path="/kraf-think-2025" element={<KrafThink />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/custom-software" element={<CustomSoftware />} />
+          <Route path="/web-mobile-app-dev" element={< WebMobilApp />} />
         </Routes>
       </Suspense>
       <BookFreeConsultation />
