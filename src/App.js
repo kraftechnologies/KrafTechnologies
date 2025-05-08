@@ -25,6 +25,20 @@ const CareerRegistration = lazy(() => import("./pages/CareerRegistration"));
 const KrafThink = lazy(() => import("./pages/krafThink/KrafThink"));
 const NotFound = lazy(() => import("./pages/404Page"));
 
+<<<<<<< HEAD
+=======
+const NewServices = lazy(() => import("./pages/NewServices"));
+const Company = lazy(() => import("./pages/Company"));
+const Partners = lazy(() => import("./pages/Partners")); // Assuming you have a Partners page
+
+const CRM = lazy(() => import("./pages/CRM"));
+const BusinessIntelligenceAnalytics = lazy(() => import("./pages/BusinessIntelligenceAnalytics"));
+const AiMlSolution = lazy(() => import("./pages/AiMlSolution"));
+const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
+const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));  
+const ERP = lazy(() => import("./pages/ERP"));
+
+>>>>>>> 9069dce2959311db8b9f167d14a6de3e75b8a8e5
 // Scroll to Top Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -65,11 +79,36 @@ function App() {
           <Route path="/kraf-think-2025" element={<KrafThink />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/custom-software" element={<CustomSoftware />} />
+<<<<<<< HEAD
           <Route path="/web-mobile-app-dev" element={< WebMobilApp />} />
           <Route path="/ai-ml-solution" element={< AiMlSolution />} />
           <Route path="/customer-relationship-managemnet" element={< CustomerRelationshipCMR />} />
           <Route path="/business-intelligence-analytics" element={< BusinessIntelligenceAnalytics/>} />
           <Route path="/crm" element={< CRM />} />
+=======
+
+          <Route path="/web-mobile-app-dev" element={<WebMobilApp />} />
+          <Route path="/ai-ml-solution" element={<AiMlSolution />} />
+          <Route
+            path="/customer-relationship-managemnet"
+            element={<CustomerRelationshipCMR />}
+          />
+          <Route
+            path="/business-intelligence-analytics"
+            element={<BusinessIntelligenceAnalytics />}
+          />
+          <Route path="/crm" element={<CRM />} />
+          <Route path="/services" element={<NewServices />} />
+          <Route path="/company" element={<Company />} />
+          <Route path="/partners" element={<Partners />} />
+
+          <Route path="/web-mobile-app-dev" element={< WebMobilApp />} />
+          <Route path="/ai-ml-solution" element={< AiMlSolution />} />
+          <Route path="/business-intelligence-analytics" element={< BusinessIntelligenceAnalytics/>} />
+          <Route path="/crm" element={< CRM />} />
+          <Route path="/erp" element={< ERP />} />
+
+>>>>>>> 9069dce2959311db8b9f167d14a6de3e75b8a8e5
         </Routes>
       </Suspense>
       <BookFreeConsultation />
