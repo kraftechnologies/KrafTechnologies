@@ -269,18 +269,18 @@ export default function Header() {
                             <p className="text-white font-semibold text-sm">
                               Business Solutions
                             </p>
-                            <a
-                              href="#"
+                            <Link
+                              to="/erp"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Enterprise Resource Planning (ERP)
-                            </a>
-                            <a
-                              href="/crm"
+                            </Link>
+                            <Link
+                              to="/crm"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Customer Relationship Management (CRM)
-                            </a>
+                            </Link>
                             <Link
                               to="/business-intelligence-analytics"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
@@ -515,18 +515,18 @@ export default function Header() {
                     <p className="text-[#0a0e1a] font-semibold">
                       Business Solutions
                     </p>
-                    <a
-                      href="#"
+                    <Link
+                      to="/erp"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Enterprise Resource Planning (ERP)
-                    </a>
-                    <a
-                      href="/crm"
+                    </Link>
+                    <Link
+                      to="/crm"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Customer Relationship Management (CRM)
-                    </a>
+                    </Link>
                     <Link
                       to="/business-intelligence-analytics"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
