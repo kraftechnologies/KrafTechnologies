@@ -25,8 +25,6 @@ const CareerRegistration = lazy(() => import("./pages/CareerRegistration"));
 const KrafThink = lazy(() => import("./pages/krafThink/KrafThink"));
 const NotFound = lazy(() => import("./pages/404Page"));
 
-<<<<<<< HEAD
-=======
 const NewServices = lazy(() => import("./pages/NewServices"));
 const Company = lazy(() => import("./pages/Company"));
 const Partners = lazy(() => import("./pages/Partners")); // Assuming you have a Partners page
@@ -38,7 +36,6 @@ const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
 const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));  
 const ERP = lazy(() => import("./pages/ERP"));
 
->>>>>>> 9069dce2959311db8b9f167d14a6de3e75b8a8e5
 // Scroll to Top Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
