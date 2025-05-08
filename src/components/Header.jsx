@@ -540,15 +540,14 @@ export default function Header() {
                       to="/custom-software"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
-                      Custom Software Development 
-                    </Link> 
+                      Custom Software Development
+                    </Link>
                     <Link
-                      to ="/web-mobile-app-dev"
+                      to="/web-mobile-app-dev"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
-                      >
+                    >
                       Web & Mobile App Development
-  
-                    </Link>   
+                    </Link>
                     <Link
                       to="/ai-ml-solution"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
