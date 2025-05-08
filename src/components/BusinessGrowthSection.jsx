@@ -6,7 +6,7 @@ const BusinessGrowthSection = () => {
     <div className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white font-sans]">
       <div className="text-white py-12 px-6 flex flex-col lg:flex-row items-stretch  justify-between gap-6 max-w-7xl mx-auto px-3 py-12">
         <div className="max-w-xl">
-          <h2 className="text-5xl font-semibold leading-snug">
+          <h2 className="text-4xl font-semibold leading-snug">
             Driving <span className="text-[#18cb96]">Growth</span> for{" "}
             <span className="text-[#18cb96]">Businesses</span> of All Sizes
           </h2>

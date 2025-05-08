@@ -40,7 +40,7 @@ const OurServices = () => {
         </div>
 
         {/* Description Paragraph */}
-        <p className="xsm:text-2xl md:text-5xl leading-normal max-w-[100%] p-0">
+        <p className="xsm:text-2xl md:text-3xl leading-normal max-w-[100%] p-0">
           We deliver cutting-edge{" "}
           <span className="text-[#18cb96] font-semibold">
             Software-as-a-Service
