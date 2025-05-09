@@ -70,6 +70,10 @@ function App() {
           />
           <Route path="/kraf-think-2025" element={<KrafThink />} />
           <Route path="/custom-software" element={<CustomSoftware />} />
+<<<<<<< HEAD
+=======
+
+>>>>>>> a6310bc (update)
           <Route path="/crm" element={<CRM />} />
           <Route path="/services" element={<NewServices />} />
           <Route path="/company" element={<Company />} />
@@ -79,6 +83,8 @@ function App() {
           <Route path="/ai-ml-solution" element={< AiMlSolution />} />
           <Route path="/business-intelligence-analytics" element={< BusinessIntelligenceAnalytics/>} />
           <Route path="/erp" element={< ERP />} />
+          
+          <Route path="*" element={<NotFound />} />
 
           {/* Not Found */}
           <Route path="*" element={<NotFound />} />
