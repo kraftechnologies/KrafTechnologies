@@ -8,23 +8,23 @@ import {
 const TrustedPartners = () => {
   const items = [
     {
-      icon: <FaClipboardList className="text-2xl text-white" />,
+      icon: <FaClipboardList className="h-8 w-8 md:h-12 md:w-12 text-white" />,
       title: "Custom Setup",
       description: "Easy onboarding built exclusively for your platform",
     },
     {
-      icon: <FaHandshake className="text-2xl text-white" />,
+      icon: <FaHandshake className="h-8 w-8 md:h-12 md:w-12 text-white" />,
       title: "Cobranding",
       description: "Brand positioning in product and communications",
     },
     {
-      icon: <FaBullhorn className="text-2xl text-white" />,
+      icon: <FaBullhorn className="h-8 w-8 md:h-12 md:w-12 text-white" />,
       title: "Comms",
       description:
         "Dedicated communications to help your people every step of the way",
     },
     {
-      icon: <FaBookOpen className="text-2xl text-white" />,
+      icon: <FaBookOpen className="h-8 w-8 md:h-12 md:w-12 text-white" />,
       title: "Content",
       description:
         "Financial education to make complicated decisions a little easier",
@@ -32,19 +32,23 @@ const TrustedPartners = () => {
   ];
 
   return (
-    <div className="bg-[#2a2a2a] py-10">
+    <div className="bg-[#2a2a2a]   p-8">
       <section className="bg-[#1b1b1b] text-white py-12 px-6 rounded-2xl max-w-7xl mx-auto m-8 shadow-3xl">
-        <h2 className="text-2xl sm:text-3xl font-semibold mb-8">
+        <h2 className="text-3xl md:text-5xl font-semibold mb-8 pl-3 md:pl-6">
           Trusted by independents, <br /> trusted by partners
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-3 md:px-12">
           {items.map((item, index) => (
-            <div key={index} className="flex items-start space-x-4">
-              <div className="bg-gray-700 p-3 rounded-md">{item.icon}</div>
-              <div>
-                <p className="font-bold">{item.title}</p>
-                <p className="text-sm text-gray-300">{item.description}</p>
+            <div key={index} className="flex-col items-start ">
+              <div className=" p-3 rounded-md ">{item.icon}</div>
+              <div className="max-w-full md:max-w-[80%]">
+                <p className="font-semibold text-xl md:2xl">
+                  {item.title}.
+                  <span className=" text-gray-400 text-lg">
+                    {item.description}
+                  </span>
+                </p>
               </div>
             </div>
           ))}
