@@ -19,7 +19,7 @@ const points = [
 const PrivacyAndSecurity = () => {
   return (
     <section className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white py-12 px-6 md:px-16 mb-12">
-      <div className="bg-[#1b1b1b] rounded-xl p-8">
+      <div className="bg-[#1b1b1b] rounded-xl p-8 max-w-7xl mx-auto shadow-3xl">
         <h2 className="text-3xl md:text-5xl font-bold mb-6 py-6 md:py-10 pl-3">
           Compliance, Privacy, Security
         </h2>
