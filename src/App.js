@@ -30,7 +30,7 @@ const AiMlSolution = lazy(() => import("./pages/AiMlSolution"));
 const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
 const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));  
 const ERP = lazy(() => import("./pages/ERP"));
-
+const CybersecAndDataProtection = lazy(() => import("./pages/CybersecAndDataProtection"));
 // Scroll to Top Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -80,7 +80,7 @@ function App() {
           <Route path="/ai-ml-solution" element={< AiMlSolution />} />
           <Route path="/business-intelligence-analytics" element={< BusinessIntelligenceAnalytics/>} />
           <Route path="/erp" element={< ERP />} />
-          
+          <Route path="/cybersec-and-data-protection" element={< CybersecAndDataProtection/>} />
           <Route path="*" element={<NotFound />} />
 
         </Routes>
