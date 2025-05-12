@@ -361,12 +361,12 @@ export default function Header() {
                             <p className="text-white font-semibold text-sm">
                               Security & Cloud Solutions
                             </p>
-                            <a
-                              href="#"
+                            <Link
+                              to="/cybersec-and-data-protection"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Cybersecurity & Data Protection
-                            </a>
+                            </Link>
                             <a
                               href="#"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
@@ -603,12 +603,12 @@ export default function Header() {
                     <p className="text-[#0a0e1a] font-semibold">
                       Security & Cloud Solutions
                     </p>
-                    <a
-                      href="#"
+                    <Link
+                      to="/cybersec-and-data-protection"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Cybersecurity & Data Protection
-                    </a>
+                    </Link>
                     <a
                       href="#"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
