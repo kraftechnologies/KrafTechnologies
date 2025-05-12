@@ -1,5 +1,19 @@
 import React from "react";
 import { ArrowRight, Building, Cloud, Triangle } from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const features = [
   {
@@ -29,18 +43,34 @@ const features = [
 const GetStarted = () => {
   return (
     <section className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white py-12 px-6 md:px-16">
-      <h2 className="text-3xl md:text-6xl font-bold mb-10 text-left max-w-7xl pl-4 md:pl-12">
+      <motion.h2
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+        custom={0}
+        className="text-3xl md:text-6xl font-bold mb-10 text-left max-w-7xl pl-4 md:pl-12"
+      >
         It’s free and easy to get started
-      </h2>
+      </motion.h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto mb-12">
         {features.map((feature, index) => (
-          <div key={index} className="flex-col items-start gap-12 px-4">
+          <motion.div
+            key={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={index + 1}
+            className="flex-col items-start gap-12 px-4 hover:text-[#18cb96] cursor-default"
+          >
             <div className="my-3">{feature.icon}</div>
             <div>
               <h3 className="font-semibold text-2xl">{feature.title}</h3>
               <p className="text-xl opacity-70">{feature.description}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

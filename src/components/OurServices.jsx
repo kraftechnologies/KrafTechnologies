@@ -26,7 +26,7 @@ const OurServices = () => {
         </div>
 
         {/* Explore Button */}
-        <button className="bg-[#18cb96] hover:bg-[#18cccc] text-black font-medium py-4 px-6 rounded-full mb-10 w-[20%] min-w-[150px]">
+        <button className="bg-[#18cb96] hover:bg-green-400 text-black font-medium py-4 px-6 rounded-full mb-10 w-[20%] min-w-[150px]">
           Explore Now
         </button>
 

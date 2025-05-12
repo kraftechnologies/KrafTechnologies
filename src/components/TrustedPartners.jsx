@@ -1,9 +1,24 @@
+import React from "react";
 import {
   FaClipboardList,
   FaHandshake,
   FaBullhorn,
   FaBookOpen,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const TrustedPartners = () => {
   const items = [
@@ -32,28 +47,42 @@ const TrustedPartners = () => {
   ];
 
   return (
-    <div className="bg-[#2a2a2a]   p-8">
-      <section className="bg-[#1b1b1b] text-white py-12 px-6 rounded-2xl max-w-7xl mx-auto m-8 shadow-3xl">
-        <h2 className="text-3xl md:text-5xl font-semibold mb-8 pl-3 md:pl-6">
+    <div className="bg-[#2a2a2a] p-8">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="bg-[#1b1b1b] text-white py-12 px-6 rounded-2xl max-w-7xl mx-auto m-8 shadow-3xl"
+      >
+        <motion.h2
+          variants={fadeUp}
+          custom={0}
+          className="text-3xl md:text-5xl font-semibold mb-8 pl-3 md:pl-6"
+        >
           Trusted by independents, <br /> trusted by partners
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-3 md:px-12">
           {items.map((item, index) => (
-            <div key={index} className="flex-col items-start ">
-              <div className=" p-3 rounded-md ">{item.icon}</div>
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              custom={index + 1}
+              className="flex-col items-start"
+            >
+              <div className="p-3 rounded-md">{item.icon}</div>
               <div className="max-w-full md:max-w-[80%]">
-                <p className="font-semibold text-xl md:2xl">
+                <p className="font-semibold text-xl md:2xl hover:text-[#18cb96]">
                   {item.title}.
-                  <span className=" text-gray-400 text-lg">
+                  <span className="text-gray-400 text-lg ml-2">
                     {item.description}
                   </span>
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
