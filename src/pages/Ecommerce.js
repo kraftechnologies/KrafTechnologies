@@ -100,7 +100,7 @@ const Ecommerce = () => {
 
 
     {/* Section: Design your store */}
-    <div className="bg-white text-black py-16 px-6 md:px-20">
+    <div className="bg-gray-900 text-white py-16 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Headings */}
         <h1 className="text-[52px] font-bold leading-tight tracking-tight">Design</h1>
@@ -113,18 +113,18 @@ const Ecommerce = () => {
           {/* Left Text Block */}
           <div>
             <h3 className="text-[28px] font-semibold leading-snug">Create end-to-end customer experiences</h3>
-            <p className="text-gray-500 text-[18px] mt-3 leading-relaxed">
+            <p className="text-gray-300 text-[18px] mt-3 leading-relaxed">
               Create pixel-perfect, branded purchase flows for your customers. Our intuitive drag-and-drop builder lets you design beautiful storefronts with ease.
             </p>
             <div className="mt-6">
-              <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors">
+              <button className="bg-white text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors">
                 Start Building
               </button>
             </div>
           </div>
 
           {/* Right Quote Block */}
-          <div className="bg-gray-50 p-8 rounded-xl">
+          <div className="bg-gradient-to-b from-gray-900 to-black p-8 rounded-xl">
             <p className="text-[18px] font-medium leading-relaxed italic">
               "Our ecommerce platform enabled us to increase sales by 300% in the first quarter. The customization options are endless and the interface is incredibly intuitive."
             </p>
@@ -142,28 +142,28 @@ const Ecommerce = () => {
 
         {/* Feature Grid */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="p-6 bg-gray-50 rounded-xl">
+          <div className="p-6 bg-gray-800 rounded-xl">
             <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center mb-4">
               <div className="text-white text-2xl">🎨</div>
             </div>
             <h4 className="font-semibold mb-2">Custom Design</h4>
             <p className="text-gray-500 text-sm">Build your unique brand identity</p>
           </div>
-          <div className="p-6 bg-gray-50 rounded-xl">
+          <div className="p-6 bg-gray-800 rounded-xl">
             <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center mb-4">
               <div className="text-white text-2xl">📱</div>
             </div>
             <h4 className="font-semibold mb-2">Mobile-First</h4>
             <p className="text-gray-500 text-sm">Optimized for all devices</p>
           </div>
-          <div className="p-6 bg-gray-50 rounded-xl">
+          <div className="p-6 bg-gray-800 rounded-xl">
             <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center mb-4">
               <div className="text-white text-2xl">⚡</div>
             </div>
             <h4 className="font-semibold mb-2">Fast Loading</h4>
             <p className="text-gray-500 text-sm">Lightning quick performance</p>
           </div>
-          <div className="p-6 bg-gray-50 rounded-xl">
+          <div className="p-6 bg-gray-800 rounded-xl">
             <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center mb-4">
               <div className="text-white text-2xl">🔒</div>
             </div>
@@ -267,18 +267,16 @@ const Ecommerce = () => {
   </div>
 </div>
 
-
-
-<div className="bg-gradient-to-b from-gray-50 to-white text-black px-6 py-20 md:px-20 font-sans">
   {/* Header */}
+<div className="bg-gradient-to-b from-gray-900 to-black text-white px-6 py-20 md:px-20 font-sans">
   <div className="max-w-7xl mx-auto">
     <h2 className="text-[40px] md:text-[56px] font-bold mb-4">Platform Comparison</h2>
-    <p className="text-gray-600 text-xl mb-12 max-w-2xl">See how we stack up against other ecommerce platforms and find the perfect solution for your business.</p>
+    <p className="text-gray-300 text-xl mb-12 max-w-2xl">See how we stack up against other ecommerce platforms and find the perfect solution for your business.</p>
 
     {/* Table container */}
-    <div className="overflow-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+    <div className="overflow-auto rounded-xl border border-gray-700 bg-gray-900 shadow-lg">
       <table className="w-full table-auto border-separate border-spacing-y-4 text-left text-[16px]">
-        <thead className="bg-gray-50">
+        <thead className="bg-gray-800">
           <tr className="text-center">
             <th className="w-[180px] px-6 py-4"></th>
             <th className="px-6 py-4">
@@ -314,7 +312,7 @@ const Ecommerce = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="hover:bg-gray-50">
+          <tr className="hover:bg-gray-800">
             <td className="px-6 py-4 font-semibold">Entry pricing</td>
             <td className="px-6 py-4 text-[#12cb96] font-medium">$29/month</td>
             <td className="px-6 py-4">$29/month</td>
@@ -322,7 +320,7 @@ const Ecommerce = () => {
             <td className="px-6 py-4">Depends on hosting</td>
             <td className="px-6 py-4">$29.95/month</td>
           </tr>
-          <tr className="hover:bg-gray-50">
+          <tr className="hover:bg-gray-800">
             <td className="px-6 py-4 font-semibold">Transaction fee</td>
             <td className="px-6 py-4 text-[#12cb96] font-medium">0–2%</td>
             <td className="px-6 py-4">0–2%</td>
@@ -367,12 +365,12 @@ const Ecommerce = () => {
         }
       ].map((section, idx) => (
         <div key={idx} 
-          className="border border-gray-200 rounded-lg p-6 hover:border-[#12cb96] hover:shadow-md transition-all cursor-pointer"
+          className="border border-gray-700 rounded-lg p-6 hover:border-[#12cb96] hover:shadow-md transition-all cursor-pointer bg-gray-900"
         >
           <div className="flex justify-between items-center">
             <div>
               <h3 className="font-semibold text-xl">{section.label}</h3>
-              <p className="text-gray-600 mt-1">{section.description}</p>
+              <p className="text-gray-400 mt-1">{section.description}</p>
             </div>
             <span className="text-2xl text-[#12cb96]">→</span>
           </div>
