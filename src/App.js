@@ -22,8 +22,8 @@ const NotFound = lazy(() => import("./pages/404Page"));
 
 const NewServices = lazy(() => import("./pages/NewServices"));
 const Company = lazy(() => import("./pages/Company"));
-const Partners = lazy(() => import("./pages/Partners")); // Assuming you have a Partners page
-
+const Partners = lazy(() => import("./pages/Partners"));
+const Ecommerce = lazy(() => import("./pages/Ecommerce"));
 const CRM = lazy(() => import("./pages/CRM"));
 const BusinessIntelligenceAnalytics = lazy(() =>
   import("./pages/BusinessIntelligenceAnalytics")
@@ -76,7 +76,7 @@ function App() {
           <Route path="/services" element={<NewServices />} />
           <Route path="/company" element={<Company />} />
           <Route path="/partners" element={<Partners />} />
-
+          <Route path="/ecommerce" element={<Ecommerce />} />
           <Route path="/web-mobile-app-dev" element={<WebMobilApp />} />
           <Route path="/ai-ml-solution" element={<AiMlSolution />} />
           <Route
