@@ -30,6 +30,7 @@ const AiMlSolution = lazy(() => import("./pages/AiMlSolution"));
 const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
 const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));  
 const ERP = lazy(() => import("./pages/ERP"));
+const Ecommerce = lazy(() => import("./pages/Ecommerce"));
 
 // Scroll to Top Component
 const ScrollToTop = () => {
@@ -80,7 +81,7 @@ function App() {
           <Route path="/ai-ml-solution" element={< AiMlSolution />} />
           <Route path="/business-intelligence-analytics" element={< BusinessIntelligenceAnalytics/>} />
           <Route path="/erp" element={< ERP />} />
-          
+          <Route path="/ecommerce" element={< Ecommerce />} />
           <Route path="*" element={<NotFound />} />
 
         </Routes>
