@@ -44,17 +44,6 @@ const ScrollToTop = () => {
 };
 
 function App() {
-  // Maintenance alert (runs once on first visit)
-  useEffect(() => {
-    const hasSeenAlert = sessionStorage.getItem("maintenanceAlertShown");
-    if (!hasSeenAlert) {
-      alert(
-        "This website is under maintenance. Some features may not work. Please wait for maintenance to complete."
-      );
-      sessionStorage.setItem("maintenanceAlertShown", "true");
-    }
-  }, []);
-
   return (
     <Router>
       <ScrollToTop />
