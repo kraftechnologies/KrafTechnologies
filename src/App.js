@@ -31,6 +31,7 @@ const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
 const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));  
 const ERP = lazy(() => import("./pages/ERP"));
 const CybersecAndDataProtection = lazy(() => import("./pages/CybersecAndDataProtection"));
+const CloudInfra = lazy(() => import("./pages/CloudInfra"));
 // Scroll to Top Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -82,6 +83,7 @@ function App() {
           <Route path="/erp" element={< ERP />} />
           <Route path="/cybersec-and-data-protection" element={< CybersecAndDataProtection/>} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/cloud-infrastructure" element={< CloudInfra/>} />
 
         </Routes>
       </Suspense>
