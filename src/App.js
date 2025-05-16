@@ -22,13 +22,15 @@ const NotFound = lazy(() => import("./pages/404Page"));
 
 const NewServices = lazy(() => import("./pages/NewServices"));
 const Company = lazy(() => import("./pages/Company"));
-const Partners = lazy(() => import("./pages/Partners")); // Assuming you have a Partners page
-
+const Partners = lazy(() => import("./pages/Partners"));
+const Ecommerce = lazy(() => import("./pages/Ecommerce"));
 const CRM = lazy(() => import("./pages/CRM"));
-const BusinessIntelligenceAnalytics = lazy(() => import("./pages/BusinessIntelligenceAnalytics"));
+const BusinessIntelligenceAnalytics = lazy(() =>
+  import("./pages/BusinessIntelligenceAnalytics")
+);
 const AiMlSolution = lazy(() => import("./pages/AiMlSolution"));
 const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
-const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));  
+const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));
 const ERP = lazy(() => import("./pages/ERP"));
 const CybersecAndDataProtection = lazy(() => import("./pages/CybersecAndDataProtection"));
 const CloudInfra = lazy(() => import("./pages/CloudInfra"));
@@ -43,17 +45,6 @@ const ScrollToTop = () => {
 };
 
 function App() {
-  // Maintenance alert (runs once on first visit)
-  useEffect(() => {
-    const hasSeenAlert = sessionStorage.getItem("maintenanceAlertShown");
-    if (!hasSeenAlert) {
-      alert(
-        "This website is under maintenance. Some features may not work. Please wait for maintenance to complete."
-      );
-      sessionStorage.setItem("maintenanceAlertShown", "true");
-    }
-  }, []);
-
   return (
     <Router>
       <ScrollToTop />
@@ -71,20 +62,24 @@ function App() {
           />
           <Route path="/kraf-think-2025" element={<KrafThink />} />
           <Route path="/custom-software" element={<CustomSoftware />} />
-
           <Route path="/crm" element={<CRM />} />
           <Route path="/services" element={<NewServices />} />
           <Route path="/company" element={<Company />} />
           <Route path="/partners" element={<Partners />} />
+          <Route path="/ecommerce" element={<Ecommerce />} />
+          <Route path="/web-mobile-app-dev" element={<WebMobilApp />} />
+          <Route path="/ai-ml-solution" element={<AiMlSolution />} />
+          <Route
+            path="/business-intelligence-analytics"
+            element={<BusinessIntelligenceAnalytics />}
+          />
+          <Route path="/erp" element={<ERP />} />
 
-          <Route path="/web-mobile-app-dev" element={< WebMobilApp />} />
-          <Route path="/ai-ml-solution" element={< AiMlSolution />} />
-          <Route path="/business-intelligence-analytics" element={< BusinessIntelligenceAnalytics/>} />
-          <Route path="/erp" element={< ERP />} />
-          <Route path="/cybersec-and-data-protection" element={< CybersecAndDataProtection/>} />
           <Route path="*" element={<NotFound />} />
           <Route path="/cloud-infrastructure" element={< CloudInfra/>} />
 
+          {/* Not Found */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <BookFreeConsultation />
@@ -94,4 +89,3 @@ function App() {
 }
 
 export default App;
- 
