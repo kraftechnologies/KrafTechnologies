@@ -77,6 +77,7 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
           <Route path="/cloud-infrastructure" element={< CloudInfra/>} />
+          <Route path="/cybersec-and-data-protection" element={< CybersecAndDataProtection/>} />
 
           {/* Not Found */}
           <Route path="*" element={<NotFound />} />
