@@ -31,6 +31,7 @@ const BusinessIntelligenceAnalytics = lazy(() =>
 const AiMlSolution = lazy(() => import("./pages/AiMlSolution"));
 const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
 const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));
+const BillingSystem = lazy(() => import("./pages/BillingSystem"));
 const ERP = lazy(() => import("./pages/ERP"));
 
 // Scroll to Top Component
@@ -72,6 +73,7 @@ function App() {
             path="/business-intelligence-analytics"
             element={<BusinessIntelligenceAnalytics />}
           />
+          <Route path="/billing-system" element={<BillingSystem />} />
           <Route path="/erp" element={<ERP />} />
 
           <Route path="*" element={<NotFound />} />
