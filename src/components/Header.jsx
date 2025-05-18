@@ -1,6 +1,6 @@
 // src/components/Header.jsx
 import { useState, useEffect } from "react";
-import logo from "../assets/favicon.png";
+import logo from "../assets/logos/logo.png";
 import {
   ChevronRight,
   ChevronDown,
