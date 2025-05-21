@@ -31,7 +31,7 @@ const fadeUp = {
 
 export default function Community() {
   return (
-    <section className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white py-16 px-6">
+    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white py-16 px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Side */}
         <motion.div
@@ -46,7 +46,7 @@ export default function Community() {
             viewport={{ once: true }}
             variants={fadeUp}
             custom={0}
-            className="text-3xl md:text-4xl font-bold leading-snug mb-4"
+            className="text-3xl md:text-4xl font-semibold leading-snug mb-4"
           >
             Develop <span className="text-[#18cb96]">engaged</span> & <br />
             <span className="text-[#18cb96]">high-performing</span> team
@@ -58,7 +58,7 @@ export default function Community() {
             viewport={{ once: true }}
             variants={fadeUp}
             custom={1}
-            className="text-white mb-6 text-2xl md:text-3xl"
+            className="text-white mb-6 text-xl md:text-2xl"
           >
             People spend most of their waking hours at work — our goal is to
             make those hours better. Kraf works with People teams across the

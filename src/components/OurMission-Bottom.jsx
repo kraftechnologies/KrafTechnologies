@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 
 export default function Bottom() {
   return (
-    <section className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white py-16 px-6 text-center">
+    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white py-16 px-6 text-center">
       {/* Title Animation */}
       <motion.h2
-        className="text-3xl md:text-6xl font-bold mb-6"
+        className="text-2xl md:text-4xl font-bold mb-6"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

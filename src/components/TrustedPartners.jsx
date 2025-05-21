@@ -47,17 +47,17 @@ const TrustedPartners = () => {
   ];
 
   return (
-    <div className="bg-[#2a2a2a] p-8">
+    <div className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black p-8">
       <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="bg-[#1b1b1b] text-white py-12 px-6 rounded-2xl max-w-7xl mx-auto m-8 shadow-3xl"
+        className=" text-white py-12  px-2 md:px-6 rounded-2xl  md:max-w-7xl mx-auto m-8 shadow-3xl"
       >
         <motion.h2
           variants={fadeUp}
           custom={0}
-          className="text-3xl md:text-5xl font-semibold mb-8 pl-3 md:pl-6"
+          className="text-3xl md:text-4xl font-semibold mb-8 pl-3 md:pl-10"
         >
           Trusted by independents, <br /> trusted by partners
         </motion.h2>
@@ -68,9 +68,9 @@ const TrustedPartners = () => {
               key={index}
               variants={fadeUp}
               custom={index + 1}
-              className="flex-col items-start"
+              className="flex-col items-start backdrop-blur-md bg-gray-900/80 border border-gray-800 rounded-xl p-8   rounded-xl border border-gray-800 hover:border-[#18CB96]/50 transition-all p-8"
             >
-              <div className="p-3 rounded-md">{item.icon}</div>
+              <div className="p-2 rounded-sm ">{item.icon}</div>
               <div className="max-w-full md:max-w-[80%]">
                 <p className="font-semibold text-xl md:2xl hover:text-[#18cb96]">
                   {item.title}.

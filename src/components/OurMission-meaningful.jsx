@@ -25,7 +25,7 @@ const fadeUp = {
 
 export default function MissionSection() {
   return (
-    <section className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white px-6 py-16 text-center">
+    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white px-6 py-16 text-center">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial="hidden"
@@ -33,7 +33,7 @@ export default function MissionSection() {
           viewport={{ once: true }}
           variants={fadeUp}
           custom={0}
-          className="text-3xl md:text-6xl font-bold mb-4"
+          className="text-3xl md:text-4xl font-semibold mb-4"
         >
           Our mission is to make <br />
           work <span className="text-[#18cb96]">meaningful</span>
@@ -45,7 +45,7 @@ export default function MissionSection() {
           viewport={{ once: true }}
           variants={fadeUp}
           custom={1}
-          className="text-white text-xl md:text-2xl max-w-full md:max-w-[50%] mx-auto mb-8"
+          className="text-white text-xl md:text-2xl max-w-full md:max-w-[70%] mx-auto mb-8 leading-snug"
         >
           Kraf Technologies delivers smart, scalable SaaS solutions that drive
           business growth. Power your digital future with seamless, cloud-based
@@ -55,7 +55,7 @@ export default function MissionSection() {
         <motion.img
           src={image}
           alt="Woman with coffee"
-          className="rounded-xl mx-auto w-full max-w-[50%] shadow-lg min-w-[250px]"
+          className="rounded-xl mx-auto w-full max-w-[60%] shadow-lg min-w-[250px]"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

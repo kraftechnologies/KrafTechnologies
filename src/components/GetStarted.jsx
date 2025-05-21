@@ -42,14 +42,14 @@ const features = [
 
 const GetStarted = () => {
   return (
-    <section className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white py-12 px-6 md:px-16">
+    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white py-12 px-6 md:px-16">
       <motion.h2
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeUp}
         custom={0}
-        className="text-3xl md:text-6xl font-bold mb-10 text-left max-w-7xl pl-4 md:pl-12"
+        className="text-3xl md:text-4xl font-semibold mb-10 text-left max-w-7xl pl-4 md:pl-12"
       >
         It’s free and easy to get started
       </motion.h2>
@@ -65,10 +65,10 @@ const GetStarted = () => {
             custom={index + 1}
             className="flex-col items-start gap-12 px-4 hover:text-[#18cb96] cursor-default"
           >
-            <div className="my-3">{feature.icon}</div>
+            <div className="my-2">{feature.icon}</div>
             <div>
-              <h3 className="font-semibold text-2xl">{feature.title}</h3>
-              <p className="text-xl opacity-70">{feature.description}</p>
+              <h3 className="font-semibold text-xl">{feature.title}</h3>
+              <p className="text-lg opacity-70 ">{feature.description}</p>
             </div>
           </motion.div>
         ))}

@@ -12,13 +12,13 @@ const stats = [
 export default function AboutUs() {
   return (
     <section
-      className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white px-6 py-12 h-auto bg-image w-[100%] bg-cover bg-center"
+      className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white px-6 py-12 h-auto bg-image w-[100%] bg-cover bg-center"
       style={{ backgroundImage: `url(${BG})` }}
     >
-      <h2 className="text-4xl md:text-5xl font-bold mb-4 max-w-7xl text-center mx-auto mt-[10%] mb-[5%]">
+      <h2 className="text-3xl md:text-4xl font-semibold mb-4 max-w-7xl text-center mx-auto mt-[5%] mb-[5%]">
         About us
       </h2>
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-[10%] items-start">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-[5%] items-start">
         {/* Image with animation from left, triggers when it comes into view */}
         <motion.div
           className="relative"
@@ -27,23 +27,23 @@ export default function AboutUs() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }} // triggers only once when in view
         >
-          <div className="absolute top-6 left-6 w-[90%] h-[90%]"></div>
+          <div className="absolute top-6 left-6 w-[70%] h-[70%]"></div>
           <img
             src={Team}
             alt="Team meeting"
-            className="relative z-10 rounded-lg shadow-lg"
+            className="relative z-10 rounded-lg shadow-lg max-w-full md:max-w-[80%] h-auto object-cover mx-auto"
           />
         </motion.div>
 
         {/* Text and Stats with animation from right, triggers when they come into view */}
         <div>
-          <p className="text-3xl md:text-4xl font-medium leading-normal mb-6">
+          <p className="text-2xl md:text-3xl font-medium leading-normal mb-6">
             At Kraf we craft the future{" "}
             <span className="text-green-500">bright</span>,<br />
             SaaS solutions built to{" "}
             <span className="text-green-500">ignite</span>.
           </p>
-          <p className="text-white mb-8 text-xl md:text-2xl">
+          <p className="text-white mb-8 text-xl md:text-xl">
             We create organic teas designed to bring comfort, clarity, and calm
             to your everyday routine. Our blends are crafted with natural
             ingredients, sourced sustainably from farms around the world. We

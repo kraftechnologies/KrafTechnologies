@@ -17,7 +17,7 @@ const fadeUp = {
 const BenefitsOfPartnership = () => {
   return (
     <div className="bg-[#010C09] text-white font-sans">
-      <div className="w-full text-center py-12 p-6 bg-gradient-to-b from-black to-[#18cb96]/10">
+      <div className="w-full text-center py-12 p-6 bg-gradient-to-br from-[#010C09] via-[#010C09] to-black">
         {/* Header Text */}
         <motion.div
           initial="hidden"
@@ -35,14 +35,14 @@ const BenefitsOfPartnership = () => {
           <motion.h1
             variants={fadeUp}
             custom={2}
-            className="text-4xl md:text-6xl font-bold leading-tight py-6"
+            className="text-3xl md:text-5xl font-semibold leading-tight py-6"
           >
             Benefits that make <br className="hidden sm:block" /> the difference
           </motion.h1>
           <motion.p
             variants={fadeUp}
             custom={3}
-            className="text-2xl md:text-3xl text-white max-w-5xl mx-auto"
+            className="text-xl md:text-xl text-white max-w-4xl mx-auto"
           >
             Help independent contractors on your platform take care of health,
             dental and more automatically. At no cost to you.
@@ -52,7 +52,7 @@ const BenefitsOfPartnership = () => {
             whileTap={{ scale: 0.97 }}
             variants={fadeUp}
             custom={4}
-            className="bg-[#18cb96] hover:bg-green-400 text-black font-semibold text-xl px-12 py-4 rounded-full transition duration-300"
+            className="bg-[#18cb96] hover:bg-green-400 text-black font-semibold text-lg px-10 py-3 rounded-full transition duration-300"
           >
             Get in Touch
           </motion.button>
@@ -68,14 +68,14 @@ const BenefitsOfPartnership = () => {
           <motion.h2
             variants={fadeUp}
             custom={1}
-            className="text-3xl md:text-6xl font-bold text-left w-[80%] min-w-[200px] mb-6"
+            className="text-3xl md:text-5xl font-semibold text-left w-[60%] min-w-[200px] mb-6"
           >
             The only all-in-one portable benefits platform
           </motion.h2>
           <motion.p
             variants={fadeUp}
             custom={2}
-            className="text-2xl md:text-4xl text-white text-left"
+            className="text-xl md:text-xl text-white text-left"
           >
             Everything independents need in one easy-to-use platform
           </motion.p>
@@ -84,7 +84,7 @@ const BenefitsOfPartnership = () => {
             whileTap={{ scale: 0.97 }}
             variants={fadeUp}
             custom={3}
-            className="bg-[#18cb96] text-left hover:bg-green-400 text-black text-xl font-semibold px-12 py-4 rounded-full transition duration-300"
+            className="bg-[#18cb96] text-left hover:bg-green-400 text-black text-lg font-semibold px-10 py-3 rounded-full transition duration-300"
           >
             Get Started
           </motion.button>

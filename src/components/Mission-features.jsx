@@ -25,13 +25,13 @@ const missionData = [
 
 export default function MissionCards() {
   return (
-    <section className="bg-gradient-to-b from-black to-[#18cb96]/10 py-16 px-6 text-white">
+    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black py-16 px-6 text-white">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+        <h2 className="text-3xl sm:text-3xl md:text-4xl font-semibold">
           Our mission
         </h2>
       </div>
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid sm:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {missionData.map((item, index) => (
           <div
             key={index}
@@ -43,10 +43,10 @@ export default function MissionCards() {
               className="w-full h-52 object-cover"
             />
             <div className="p-6">
-              <h3 className="font-semibold text-2xl md:text-3xl text-white mb-2">
+              <h3 className="font-semibold text-xl md:text-2xl text-white mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-300 text-xl">{item.description}</p>
+              <p className="text-gray-300 text-lg">{item.description}</p>
             </div>
           </div>
         ))}

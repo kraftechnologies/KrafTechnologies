@@ -18,7 +18,7 @@ const fadeUp = {
 
 const points = [
   {
-    icon: <FaShield className="h-8 w-8 md:h-12 md:w-12 text-white" />,
+    icon: <FaShield className="h-8 w-8 md:h-12 md:w-12 text-white" size={16} />,
     text: "Experts in regulatory compliance for financial services, insurance, and benefits",
   },
   {
@@ -33,31 +33,33 @@ const points = [
 
 const PrivacyAndSecurity = () => {
   return (
-    <section className="bg-gradient-to-b from-black to-[#18cb96]/10 text-white py-12 px-6 md:px-16 mb-12">
+    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white py-12 px-6 md:px-16 mb-12">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="bg-[#1b1b1b] rounded-xl p-8 max-w-7xl mx-auto shadow-3xl"
+        className=" p-8 max-w-7xl mx-auto shadow-3xl"
       >
         <motion.h2
           variants={fadeUp}
           custom={0}
-          className="text-3xl md:text-5xl font-bold mb-6 py-6 md:py-10 pl-3"
+          className="text-3xl md:text-4xl font-bold mb-6 py-6 md:py-10 pl-3"
         >
           Compliance, Privacy, Security
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 md:mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 md:mt-8">
           {points.map((point, index) => (
             <motion.div
               key={index}
               variants={fadeUp}
               custom={index + 1}
-              className="flex-col items-start gap-4 px-3 md:px-6 hover:text-[#18cb96]"
+              className="flex-col items-start backdrop-blur-md bg-gray-900/80 border border-gray-800 rounded-xl p-8   rounded-xl border border-gray-800 hover:border-[#18CB96]/50 transition-all p-8"
             >
-              <div className="mt-1">{point.icon}</div>
-              <p className="text-xl md:text-2xl mt-4 md:mt-6">{point.text}</p>
+              <div className="mt-1  text-xs">{point.icon}</div>
+              <p className="text-xl md:text-xl mt-4 md:mt-6 font-normal">
+                {point.text}
+              </p>
             </motion.div>
           ))}
         </div>
