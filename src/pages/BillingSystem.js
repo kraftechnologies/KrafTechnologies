@@ -4,40 +4,37 @@ const BillingSystem = () => {
   return (
     <div className="bg-black text-white">
       {/* Hero Section */}
-      <section className="flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 py-24 lg:py-32">
-        <div className="max-w-2xl lg:max-w-3xl">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-[#18CB96] via-emerald-400 to-blue-500 bg-clip-text text-transparent leading-tight">
-            Unify payments, billing,<br />
-            and revenue management
-          </h1>
-          <p className="text-gray-300 text-xl lg:text-2xl mb-10 max-w-2xl leading-relaxed">
-            Improve customer experience, grow recurring revenue, and reduce costs with a single unified platform for payments, subscriptions, invoicing, accounting, tax, and more.
-          </p>
-          <div className="flex flex-wrap gap-6">
-            <button className="px-10 py-4 border-2 border-[#18CB96] rounded-xl hover:bg-[#18CB96]/10 transition-all font-semibold text-base lg:text-lg">
-              Contact Sales
-            </button>
-            <button className="px-10 py-4 bg-gradient-to-r from-[#18CB96] to-emerald-400 text-black rounded-xl hover:opacity-90 transition-all font-semibold text-base lg:text-lg shadow-lg shadow-[#18CB96]/20">
-              Start Now
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-16 lg:mt-0 lg:ml-16 w-full max-w-2xl h-[450px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl flex flex-col p-10 shadow-2xl shadow-black/30 border border-gray-800">
-          <div className="mb-4 text-xl font-semibold">Invoice from Kraft Technologies</div>
-          <div className="text-sm text-gray-300 mb-8">Billed to Client Name</div>
-          <div className="text-3xl font-bold mb-10 text-[#18CB96]">$199.00 due June 1, 2023</div>
-          
-          <div className="space-y-5">
-            <div className="bg-gray-800/80 rounded-xl p-5 text-center hover:bg-gray-800 transition-all cursor-pointer">Card Payment</div>
-            <div className="bg-gray-800/30 rounded-xl p-5 text-center text-gray-400 hover:bg-gray-800/50 transition-all cursor-pointer">Bank Transfer</div>
-          </div>
-          
-          <button className="mt-auto w-full py-4 bg-gradient-to-r from-[#18CB96] to-emerald-400 text-black rounded-xl font-semibold hover:opacity-90 transition-all shadow-lg shadow-[#18CB96]/20">
-            Pay Invoice
-          </button>
-        </div>
-      </section>
+      <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+  <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24">
+    <div className="max-w-2xl lg:max-w-3xl relative">
+      {/* Animated gradient background */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#18CB96]/20 rounded-full mix-blend-soft-light filter blur-3xl opacity-30 animate-pulse"></div>
+      
+      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-[#18CB96] via-emerald-400 to-blue-500 bg-clip-text text-transparent leading-tight animate-gradient">
+        Unify payments, billing,<br />
+        and revenue management
+      </h1>
+      
+      <p className="text-gray-300 text-xl lg:text-2xl mb-10 max-w-2xl leading-relaxed opacity-90">
+        Improve customer experience, grow recurring revenue, and reduce costs with a single unified platform for payments, subscriptions, invoicing, accounting, tax, and more.
+      </p>
+      
+      <div className="flex flex-wrap gap-6">
+        <button className="px-10 py-4 border-2 border-[#18CB96] rounded-xl hover:bg-[#18CB96]/10 transition-all font-semibold text-base lg:text-lg hover:scale-[1.02] transform-gpu hover:shadow-lg hover:shadow-[#18CB96]/10">
+          Contact Sales
+        </button>
+        <button className="px-10 py-4 bg-gradient-to-r from-[#18CB96] to-emerald-400 text-gray-900 rounded-xl hover:opacity-90 transition-all font-semibold text-base lg:text-lg shadow-lg shadow-[#18CB96]/20 hover:scale-[1.02] transform-gpu hover:shadow-xl hover:shadow-[#18CB96]/30">
+          Start Now →
+        </button>
+      </div>
+    </div>
+    
+    {/* Add optional graphic/illustration on the right if needed */}
+    <div className="lg:w-1/2 flex items-center justify-center">
+      <div className="w-64 h-64 lg:w-96 lg:h-96 bg-gradient-to-tr from-[#18CB96]/20 to-blue-500/20 rounded-full blur-2xl opacity-50 animate-float"></div>
+    </div>
+  </div>
+</section>
 
       {/* Trusted Brands */}
       <section className="py-16 px-4 sm:px-8 bg-gradient-to-b from-transparent to-gray-900/30">

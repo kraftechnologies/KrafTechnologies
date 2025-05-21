@@ -344,12 +344,12 @@ export default function Header() {
                             >
                               E-commerce Platforms
                             </Link>
-                            <a
-                              href="#"
+                            <Link
+                              to="/payment-gateway"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Secure Payment Gateway Solutions
-                            </a>
+                            </Link>
                             <Link
                               to="/billing-system"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
@@ -586,12 +586,12 @@ export default function Header() {
                     >
                       E-commerce Platforms
                     </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to="/payment-gateway"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Secure Payment Gateway Solutions
-                    </a>
+                    </Link>
                     <Link
                       to="/billing-system"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"

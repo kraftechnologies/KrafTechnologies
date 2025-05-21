@@ -32,6 +32,7 @@ const AiMlSolution = lazy(() => import("./pages/AiMlSolution"));
 const WebMobilApp = lazy(() => import("./pages/WebMobilApp"));
 const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));
 const BillingSystem = lazy(() => import("./pages/BillingSystem"));
+const PaymentGateway = lazy(() => import("./pages/PaymentGateway"));
 const ERP = lazy(() => import("./pages/ERP"));
 
 // Scroll to Top Component
@@ -74,6 +75,7 @@ function App() {
             element={<BusinessIntelligenceAnalytics />}
           />
           <Route path="/billing-system" element={<BillingSystem />} />
+          <Route path="/payment-gateway" element={<PaymentGateway />} />
           <Route path="/erp" element={<ERP />} />
 
           <Route path="*" element={<NotFound />} />
