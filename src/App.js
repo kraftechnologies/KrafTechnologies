@@ -36,6 +36,7 @@ const PaymentGateway = lazy(() => import("./pages/PaymentGateway"));
 const ERP = lazy(() => import("./pages/ERP"));
 const CybersecAndDataProtection = lazy(() => import("./pages/CybersecAndDataProtection"));
 const CloudInfra = lazy(() => import("./pages/CloudInfra"));
+const Devops = lazy(() => import("./pages/Devops"));
 // Scroll to Top Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -82,6 +83,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/cloud-infrastructure" element={< CloudInfra/>} />
           <Route path="/cybersec-and-data-protection" element={< CybersecAndDataProtection/>} />
+          <Route path="/devops" element={< Devops/>} />
 
           {/* Not Found */}
           <Route path="*" element={<NotFound />} />

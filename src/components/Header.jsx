@@ -1,6 +1,6 @@
 // src/components/Header.jsx
 import { useState, useEffect } from "react";
-import logo from "../assets/logos/logo.png";
+import logo from "../assets/favicon.png";
 import {
   ChevronRight,
   ChevronDown,
@@ -344,12 +344,12 @@ export default function Header() {
                             >
                               E-commerce Platforms
                             </Link>
-                            <Link
-                              to="/payment-gateway"
+                            <a
+                              href="#"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Secure Payment Gateway Solutions
-                            </Link>
+                            </a>
                             <Link
                               to="/billing-system"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
@@ -373,12 +373,12 @@ export default function Header() {
                             >
                               Cloud Infrastructure (AWS, Azure, GCP)
                             </Link>
-                            <a
-                              href="#"
+                            <Link
+                              to="/devops"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               DevOps & CI/CD Solutions
-                            </a>
+                            </Link>
                           </div>
                           <div>
                             <p className="text-white font-semibold text-sm">
@@ -586,12 +586,12 @@ export default function Header() {
                     >
                       E-commerce Platforms
                     </Link>
-                    <Link
-                      to="/payment-gateway"
+                    <a
+                      href="#"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Secure Payment Gateway Solutions
-                    </Link>
+                    </a>
                     <Link
                       to="/billing-system"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
@@ -615,12 +615,12 @@ export default function Header() {
                     >
                       Cloud Infrastructure (AWS, Azure, GCP)
                     </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to="/devops"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       DevOps & CI/CD Solutions
-                    </a>
+                    </Link>
                     <p className="text-[#0a0e1a] font-semibold mt-4">
                       AI & Automation
                     </p>
