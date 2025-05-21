@@ -1,6 +1,6 @@
 // src/components/Header.jsx
 import { useState, useEffect } from "react";
-import logo from "../assets/favicon.png";
+import logo from "../assets/logos/logo.png";
 import {
   ChevronRight,
   ChevronDown,
@@ -367,12 +367,12 @@ export default function Header() {
                             >
                               Cybersecurity & Data Protection
                             </Link>
-                            <a
-                              href="#"
+                            <Link
+                              to="/cloud-infrastructure"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Cloud Infrastructure (AWS, Azure, GCP)
-                            </a>
+                            </Link>
                             <a
                               href="#"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
@@ -609,12 +609,12 @@ export default function Header() {
                     >
                       Cybersecurity & Data Protection
                     </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to="/cloud-infrastructure"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Cloud Infrastructure (AWS, Azure, GCP)
-                    </a>
+                    </Link>
                     <a
                       href="#"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
