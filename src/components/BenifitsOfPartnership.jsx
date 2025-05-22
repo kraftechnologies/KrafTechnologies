@@ -16,7 +16,7 @@ const fadeUp = {
 
 const BenefitsOfPartnership = () => {
   return (
-    <div className="bg-[#010C09] text-white font-sans">
+    <div className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white font-sans text-center">
       <div className="w-full text-center py-12 p-6 bg-gradient-to-br from-[#010C09] via-[#010C09] to-black">
         {/* Header Text */}
         <motion.div
@@ -30,7 +30,7 @@ const BenefitsOfPartnership = () => {
             custom={1}
             className="text-white text-xl font-medium"
           >
-            Partner with Kraf Technology
+            Partner with <span className="text-[#18cb96]">Kraf</span> Technology
           </motion.p>
           <motion.h1
             variants={fadeUp}
@@ -63,19 +63,19 @@ const BenefitsOfPartnership = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="space-y-4 max-w-7xl mx-auto px-4 py-12 text-left"
+          className="space-y-6 w-full mt-12 pl-5"
         >
           <motion.h2
             variants={fadeUp}
             custom={1}
-            className="text-3xl md:text-5xl font-semibold text-left w-[60%] min-w-[200px] mb-6"
+            className="text-3xl md:text-4xl font-semibold text-left w-full text-center  mb-6"
           >
             The only all-in-one portable benefits platform
           </motion.h2>
           <motion.p
             variants={fadeUp}
             custom={2}
-            className="text-xl md:text-xl text-white text-left"
+            className="text-xl md:text-xl text-white"
           >
             Everything independents need in one easy-to-use platform
           </motion.p>
@@ -84,7 +84,7 @@ const BenefitsOfPartnership = () => {
             whileTap={{ scale: 0.97 }}
             variants={fadeUp}
             custom={3}
-            className="bg-[#18cb96] text-left hover:bg-green-400 text-black text-lg font-semibold px-10 py-3 rounded-full transition duration-300"
+            className="bg-[#18cb96] hover:bg-green-400 text-black font-semibold text-lg mt-3 px-10 py-3  rounded-full transition duration-300"
           >
             Get Started
           </motion.button>

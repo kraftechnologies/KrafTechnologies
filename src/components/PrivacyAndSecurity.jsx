@@ -33,7 +33,7 @@ const points = [
 
 const PrivacyAndSecurity = () => {
   return (
-    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white py-12 px-6 md:px-16 mb-12">
+    <section className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black text-white py-3 px-6 md:px-16 mb-12">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -43,7 +43,7 @@ const PrivacyAndSecurity = () => {
         <motion.h2
           variants={fadeUp}
           custom={0}
-          className="text-3xl md:text-4xl font-bold mb-6 py-6 md:py-10 pl-3"
+          className="text-3xl md:text-4xl font-bold mb-6 py-3 pl-3"
         >
           Compliance, Privacy, Security
         </motion.h2>

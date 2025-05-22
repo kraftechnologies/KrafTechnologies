@@ -47,7 +47,7 @@ const TrustedPartners = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black p-8">
+    <div className="bg-gradient-to-br from-[#010C09] via-[#010C09] to-black p-8 pt-1">
       <motion.section
         initial="hidden"
         whileInView="visible"
