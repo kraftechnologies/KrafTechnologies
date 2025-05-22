@@ -350,12 +350,12 @@ export default function Header() {
                             >
                               Secure Payment Gateway Solutions
                             </a>
-                            <a
-                              href="#"
+                            <Link
+                              to="/billing-system"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Subscription & Billing Systems
-                            </a>
+                            </Link>
                           </div>
                           <div>
                             <p className="text-white font-semibold text-sm">
@@ -367,18 +367,18 @@ export default function Header() {
                             >
                               Cybersecurity & Data Protection
                             </Link>
-                            <a
-                              href="#"
+                            <Link
+                              to="/cloud-infrastructure"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Cloud Infrastructure (AWS, Azure, GCP)
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="/devops"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               DevOps & CI/CD Solutions
-                            </a>
+                            </Link>
                           </div>
                           <div>
                             <p className="text-white font-semibold text-sm">
@@ -592,12 +592,12 @@ export default function Header() {
                     >
                       Secure Payment Gateway Solutions
                     </a>
-                    <a
-                      href="#"
+                    <Link
+                      to="/billing-system"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Subscription & Billing Systems
-                    </a>
+                    </Link>
                   </div>
                   <div className="space-y-3">
                     <p className="text-[#0a0e1a] font-semibold">
@@ -609,18 +609,18 @@ export default function Header() {
                     >
                       Cybersecurity & Data Protection
                     </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to="/cloud-infrastructure"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Cloud Infrastructure (AWS, Azure, GCP)
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      to="/devops"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       DevOps & CI/CD Solutions
-                    </a>
+                    </Link>
                     <p className="text-[#0a0e1a] font-semibold mt-4">
                       AI & Automation
                     </p>

@@ -732,62 +732,103 @@ function CareerRegistration() {
                   </motion.div>
                 )}
 
-                {step === 2 && (
-                  <motion.div
-                    key="terms"
-                    variants={formVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    className="space-y-6 md:space-y-8"
-                  >
-                    <div className="flex items-center gap-3 pb-4 border-b border-gray-800">
-                      <div className="p-2 bg-[#18cb96]/10 rounded-lg">
-                        <ScrollText className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Terms & Conditions</h3>
-                        <p className="text-gray-400 text-xs md:text-sm">Review and accept our terms</p>
-                      </div>
-                    </div>
+{step === 2 && (
+  <motion.div
+    key="terms"
+    variants={formVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit"
+    className="space-y-6 md:space-y-8"
+  >
+    <div className="flex items-center gap-3 pb-4 border-b border-gray-800">
+      <div className="p-2 bg-[#18cb96]/10 rounded-lg">
+        <ScrollText className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
+      </div>
+      <div>
+        <h3 className="text-lg md:text-xl font-semibold text-white">Terms & Conditions</h3>
+        <p className="text-gray-400 text-xs md:text-sm">Review and accept our terms</p>
+      </div>
+    </div>
 
-                    <div className="space-y-6">
-                      <div className="text-gray-300">
-                        <h4 className="text-base md:text-lg font-medium mb-2">Terms and Conditions</h4>
-                        <p className="text-xs md:text-sm text-gray-400">
-                          By submitting this application, you agree to the following terms:
-                        </p>
-                        <ul className="list-disc pl-5 text-xs md:text-sm text-gray-400 space-y-2 mt-2">
-                          <li>All information provided is accurate and truthful</li>
-                          <li>You consent to background verification if required</li>
-                          <li>Your data will be stored and processed as per our privacy policy</li>
-                          <li>You understand this application doesn’t guarantee employment</li>
-                        </ul>
-                      </div>
+    <div className="space-y-6 text-gray-300 text-xs md:text-sm">
+      <div>
+        <h4 className="text-base md:text-lg font-medium mb-2">Terms and Conditions – Kraf Technologies Careers</h4>
 
-                      <div className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          id="accept_terms"
-                          name="accept_terms"
-                          checked={formData.accept_terms}
-                          onChange={handleCheckboxChange}
-                          className="form-checkbox h-5 w-5 text-[#18cb96] border-gray-700 rounded focus:ring-[#18cb96]"
-                          required
-                        />
-                        <label htmlFor="accept_terms" className="text-gray-300 text-sm font-medium">
-                          I accept the terms and conditions <span className="text-red-500">*</span>
-                        </label>
-                      </div>
-                    </div>
+        <p className="mb-4">
+          Thank you for your interest in joining Kraf Technologies. Before submitting your application, please read the following terms and conditions carefully:
+        </p>
 
-                    <div className="flex items-center gap-2 p-4 bg-[#18cb96]/5 backdrop-blur-sm rounded-lg border border-[#18cb96]/20">
-                      <Clock className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
-                      <p className="text-xs md:text-sm text-gray-400">
-                        Pro tip: Ensure all details are correct before submission for a smooth process.
-                      </p>
-                    </div>
-                  </motion.div>
+        <h5 className="font-semibold mb-1">1. Application Review Process</h5>
+        <p className="mb-3">
+          All applications will be carefully reviewed by our recruitment and technical evaluation teams. The initial review period generally takes 10–15 business days. Only shortlisted candidates will be contacted via email or phone for the next steps in the hiring process.
+        </p>
+
+        <h5 className="font-semibold mb-1">2. Internship Opportunities</h5>
+        <ul className="list-disc pl-5 space-y-2 mb-3">
+          <li>Internship roles are intended for students, fresh graduates, or self-learners seeking hands-on experience in a real-world technology environment.</li>
+          <li>Interns may be assigned to active projects, support tasks, research modules, or internal development initiatives based on their skills and interests.</li>
+          <li>An Internship Agreement will outline the structure, learning outcomes, code of conduct, confidentiality, and duration of the internship.</li>
+          <li>At the end of the internship period, interns will receive a Certificate of Completion recognizing their contribution and learning.</li>
+          <li>Based on overall performance, technical skills, consistency, and team feedback, selected interns may be offered a Pre-Placement Offer (PPO).</li>
+          <li>A PPO is not guaranteed and is only extended to interns who demonstrate exceptional capabilities, commitment, and cultural fit.</li>
+          <li>PPO candidates may receive a full-time offer before completing their studies or internship duration.</li>
+        </ul>
+
+        <h5 className="font-semibold mb-1">3. Full-Time Employment</h5>
+        <ul className="list-disc pl-5 space-y-2 mb-3">
+          <li>Full-time roles begin with a probation period (usually 3–6 months), during which performance is closely monitored.</li>
+          <li>Selected employees will receive an official Offer Letter detailing compensation, job responsibilities, working hours, policies, and terms of employment.</li>
+          <li>All full-time hires are required to sign a Non-Disclosure Agreement (NDA) and may undergo background verification as part of the hiring process.</li>
+        </ul>
+
+        <h5 className="font-semibold mb-1">4. Candidate Declarations & Consent</h5>
+        <ul className="list-disc pl-5 space-y-2 mb-3">
+          <li>All the information provided by you (in your resume, form, or interviews) is accurate and truthful to the best of your knowledge.</li>
+          <li>You consent to background verification, if required.</li>
+          <li>Your data will be securely stored and processed in accordance with our privacy policy.</li>
+          <li>Submission of your application does not guarantee employment or internship selection.</li>
+        </ul>
+
+        <h5 className="font-semibold mb-1">5. Communication</h5>
+        <p className="mb-3">
+          All recruitment-related communications will be sent via official channels using <code>@kraftechnologies.com</code>. Please check your email (including spam folders) for updates.
+        </p>
+
+        <h5 className="font-semibold mb-1">6. Equal Opportunity Policy</h5>
+        <p className="mb-3">
+          We are proud to be an Equal Opportunity Employer. Kraf Technologies embraces diversity and does not discriminate on the basis of race, gender, religion, disability, age, or background. We are committed to providing a professional, inclusive, and respectful work environment for everyone.
+        </p>
+
+        <p className="italic text-gray-400">
+          By applying, you confirm that you have read and agree to the above Terms & Conditions.
+        </p>
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          id="accept_terms"
+          name="accept_terms"
+          checked={formData.accept_terms}
+          onChange={handleCheckboxChange}
+          className="form-checkbox h-5 w-5 text-[#18cb96] border-gray-700 rounded focus:ring-[#18cb96]"
+          required
+        />
+        <label htmlFor="accept_terms" className="text-gray-300 text-sm font-medium">
+          I accept the terms and conditions <span className="text-red-500">*</span>
+        </label>
+      </div>
+    </div>
+
+    <div className="flex items-center gap-2 p-4 bg-[#18cb96]/5 backdrop-blur-sm rounded-lg border border-[#18cb96]/20">
+      <Clock className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
+      <p className="text-xs md:text-sm text-gray-400">
+        Pro tip: Ensure all details are correct before submission for a smooth process.
+      </p>
+    </div>
+  </motion.div>
+
                 )}
               </AnimatePresence>
 
