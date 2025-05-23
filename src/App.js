@@ -34,9 +34,12 @@ const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));
 const BillingSystem = lazy(() => import("./pages/BillingSystem"));
 const PaymentGateway = lazy(() => import("./pages/PaymentGateway"));
 const ERP = lazy(() => import("./pages/ERP"));
-const CybersecAndDataProtection = lazy(() => import("./pages/CybersecAndDataProtection"));
+const CybersecAndDataProtection = lazy(() =>
+  import("./pages/CybersecAndDataProtection")
+);
 const CloudInfra = lazy(() => import("./pages/CloudInfra"));
 const Devops = lazy(() => import("./pages/Devops"));
+const PredictiveAnalysis = lazy(() => import("./pages/PredictiveAnalysis"));
 // Scroll to Top Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -81,10 +84,13 @@ function App() {
           <Route path="/erp" element={<ERP />} />
 
           <Route path="*" element={<NotFound />} />
-          <Route path="/cloud-infrastructure" element={< CloudInfra/>} />
-          <Route path="/cybersec-and-data-protection" element={< CybersecAndDataProtection/>} />
-          <Route path="/devops" element={< Devops/>} />
-
+          <Route path="/cloud-infrastructure" element={<CloudInfra />} />
+          <Route
+            path="/cybersec-and-data-protection"
+            element={<CybersecAndDataProtection />}
+          />
+          <Route path="/devops" element={<Devops />} />
+          <Route path="/predictive-analysis" element={<PredictiveAnalysis />} />
           {/* Not Found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
