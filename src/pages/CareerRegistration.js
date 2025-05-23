@@ -7,7 +7,6 @@ import {
   ChevronRight,
   ChevronLeft,
   CheckCircle,
-  Building2,
   Shield,
   Clock,
   MapPin,
@@ -17,12 +16,14 @@ import { supabase } from "../services/supabaseClient";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emailjs from "emailjs-com";
+import { Helmet } from "react-helmet";
 
 const positions = [
   "Software Engineer",
   "Frontend Developer",
   "Sales/Marketing Executive",
   "Business Analyst",
+  "Human Resource (HR)",
   "Project Manager",
   "Data Analyst",
   "Mobile App Developer",
@@ -39,21 +40,15 @@ const positions = [
   "Cybersecurity Analyst",
   "Machine Learning Engineer",
   "AI Engineer",
-  "Blockchain Developer",
-  "Game Developer",
   "Business Intelligence Developer",
   "Research Scientist",
   "Technical Support Engineer",
   "IT Consultant",
-  "Network Engineer",
   "Cloud Solutions Architect",
   "Software Tester",
   "Security Engineer",
   "Data Architect",
   "Data Engineer",
-  "Data Architect",
-  "Data Analyst",
-  "Data Architect",
   "Backend Developer",
   "Full Stack Developer",
   "DevOps Engineer",
@@ -67,6 +62,7 @@ const positions = [
 function CareerRegistration() {
   const [step, setStep] = useState(1);
   const [uploading, setUploading] = useState(false);
+  const [registrationDetails, setRegistrationDetails] = useState(null);
   const fileInputRef = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -170,6 +166,25 @@ function CareerRegistration() {
       );
   };
 
+  const checkRegistrationStatus = async () => {
+    if (formData.email) {
+      const { data, error } = await supabase
+        .from("kt_careerregistration")
+        .select("registration_id, position, status")
+        .eq("email", formData.email)
+        .single();
+
+      if (error && error.code !== "PGRST116") { // PGRST116: No rows found
+        toast.error(`Error checking registration status: ${error.message}`);
+        console.error("Check Status Error:", error);
+        return null;
+      }
+
+      return data;
+    }
+    return null;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (step === 1) {
@@ -196,11 +211,22 @@ function CareerRegistration() {
           toast.error(`Please fill all fresher fields: ${missingFresherFields.join(", ")}`);
           return;
         }
-        const maxYear = 2035; 
+        const maxYear = 2035;
         if (!formData.passing_year || formData.passing_year < 1900 || formData.passing_year > maxYear) {
           toast.error(`Please enter a valid passing year (1900-${maxYear})`);
           return;
         }
+      }
+
+      // Check registration status when clicking "Continue"
+      const registrationData = await checkRegistrationStatus();
+      setRegistrationDetails(registrationData);
+
+      if (registrationData && registrationData.status !== "Rejected") {
+        toast.error(
+          `You are already registered. Your application is under process with status: ${registrationData.status}. Please check your email for updates.`
+        );
+        return;
       }
 
       setStep(2);
@@ -223,6 +249,7 @@ function CareerRegistration() {
         registration_id: registrationId,
         registration_time: registrationTime,
         registration_date: registrationDate,
+        status: "Pending", // Set initial status to Pending
       };
 
       console.log("Submitting formData:", submissionData);
@@ -240,7 +267,9 @@ function CareerRegistration() {
           registration_date: registrationDate,
         };
         sendRegistrationEmail(registrationId, emailData);
-        toast.success(`Thank you for registration! We will send you a registration mail. Your Registration ID: ${registrationId}`);
+        toast.success(
+          `Thank you for registration! We will send you a registration mail. Your Registration ID: ${registrationId}`
+        );
 
         setFormData({
           name: "",
@@ -262,6 +291,7 @@ function CareerRegistration() {
           employee_name: "",
         });
         setStep(1);
+        setRegistrationDetails(null);
       }
     }
   };
@@ -274,6 +304,16 @@ function CareerRegistration() {
 
   return (
     <div className="relative min-h-screen">
+          <Helmet>
+          <title>Register at Kraf Technologies - Join Our Team</title>
+          <meta name="description" content="Join Kraf Technologies and be part of an innovative team. Explore exciting career opportunities in software development, AI, and cloud computing." />
+          <meta name="keywords" content="Careers, Jobs, Software Development, AI, Cloud Computing, Kraf Technologies, KT, kt, register, registration, internship, fresher, experienced, referral" />
+          <meta property="og:title" content="Register at Kraf Technologies - Join Our Team" />
+          <meta property="og:description" content="Explore job openings and work with the best in the industry at Kraf Technologies." />
+          <meta property="og:image" content="https://kraftechnologies.com/assets/careers-og-image.jpg" />
+          <meta property="og:url" content="https://kraftechnologies.com/careers/registration" />
+          <link rel="canonical" href="https://kraftechnologies.com/careers/registration" />
+        </Helmet>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} closeOnClick draggable pauseOnHover />
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
@@ -297,567 +337,587 @@ function CareerRegistration() {
             </p>
           </motion.div>
 
-          <div className="mb-8 md:mb-12">
-            <div className="flex justify-between mb-6 relative">
-              <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-800 -translate-y-1/2"></div>
-              {[1, 2].map((item) => (
-                <motion.div
-                  key={item}
-                  initial={{ scale: 0.8, opacity: 0.5 }}
-                  animate={{
-                    scale: step >= item ? 1 : 0.8,
-                    opacity: step >= item ? 1 : 0.5,
-                  }}
-                  className="flex flex-col items-center relative z-10"
-                >
-                  <div className="relative">
-                    <div
-                      className={`absolute inset-0 rounded-full blur-md ${step >= item ? "bg-[#18cb96]/50" : "bg-gray-700/30"}`}
-                    ></div>
-                    <div
-                      className={`relative z-10 rounded-full flex items-center justify-center w-10 h-10 md:w-12 md:h-12 mb-2 border-2
-                        ${
-                          step > item
-                            ? "bg-[#18cb96] border-[#18cb96]"
-                            : step === item
-                            ? "bg-black border-[#18cb96]"
-                            : "bg-black border-gray-700"
-                        }`}
+          {registrationDetails && registrationDetails.status !== "Rejected" ? (
+            <div className="relative bg-gray-900/50 backdrop-blur-xl rounded-2xl p-6 md:p-10 shadow-[0_0_25px_rgba(0,0,0,0.3)] border border-gray-800 text-center">
+              <h3 className="text-lg md:text-xl font-semibold text-white mb-4">
+                Application Already Submitted
+              </h3>
+              <p className="text-gray-300 text-sm md:text-base mb-4">
+                You are already registered with the following details:
+              </p>
+              <ul className="text-gray-300 text-sm md:text-base mb-4 space-y-2">
+                <li><span className="font-semibold">Registration ID:</span> <span className="text-[#18cb96]">{registrationDetails.registration_id}</span></li>
+                <li><span className="font-semibold">Applied Position:</span> <span className="text-[#18cb96]">{registrationDetails.position}</span></li>
+                <li><span className="font-semibold">Application Status:</span> <span className="text-[#18cb96]">{registrationDetails.status}</span></li>
+              </ul>
+              <p className="text-gray-300 text-sm md:text-base">
+                Please wait for the next procedure in the hiring process. Kindly check your email (including spam/junk folders) for updates or contact our support team for assistance. Note that the evaluation process may take some time.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="mb-8 md:mb-12">
+                <div className="flex justify-between mb-6 relative">
+                  <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-800 -translate-y-1/2"></div>
+                  {[1, 2].map((item) => (
+                    <motion.div
+                      key={item}
+                      initial={{ scale: 0.8, opacity: 0.5 }}
+                      animate={{
+                        scale: step >= item ? 1 : 0.8,
+                        opacity: step >= item ? 1 : 0.5,
+                      }}
+                      className="flex flex-col items-center relative z-10"
                     >
-                      {step > item ? (
-                        <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-white" />
-                      ) : item === 1 ? (
-                        <User className="h-4 w-4 md:h-5 md:w-5 text-white" />
-                      ) : (
-                        <FileText className="h-4 w-4 md:h-5 md:w-5 text-white" />
-                      )}
-                    </div>
-                  </div>
-                  <span
-                    className={`text-xs font-medium uppercase tracking-wider ${step >= item ? "text-white" : "text-gray-500"}`}
-                  >
-                    {item === 1 ? "Details" : "Terms"}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-0 bg-gray-900/50 backdrop-blur-xl rounded-2xl"></div>
-            <div className="relative z-10 backdrop-blur-sm bg-black/40 rounded-2xl p-6 md:p-10 shadow-[0_0_25px_rgba(0,0,0,0.3)] border border-gray-800">
-              <AnimatePresence mode="wait">
-                {step === 1 && (
-                  <motion.div
-                    key="details"
-                    variants={formVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    className="space-y-6 md:space-y-8"
-                  >
-                    <div className="flex items-center gap-3 pb-4 border-b border-gray-800">
-                      <div className="p-2 bg-[#18cb96]/10 rounded-lg">
-                        <User className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Candidate Details</h3>
-                        <p className="text-gray-400 text-xs md:text-sm">Provide your information and resume</p>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                      <div className="space-y-3">
-                        <label htmlFor="name" className="text-gray-300 text-sm font-medium">
-                          Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Enter your full name"
-                          className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                          required
-                        />
-                      </div>
-
-                      <div className="space-y-3">
-                        <label htmlFor="email" className="text-gray-300 text-sm font-medium">
-                          Email Address <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            placeholder="your.email@example.com"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 pl-12 rounded-lg text-white"
-                            required
-                          />
-                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <rect width="20" height="16" x="2" y="4" rx="2" />
-                              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <label htmlFor="mobile" className="text-gray-300 text-sm font-medium">
-                          Mobile Number <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <input
-                            id="mobile"
-                            name="mobile"
-                            value={formData.mobile}
-                            onChange={handleInputChange}
-                            placeholder="(123) 456-7890"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 pl-12 rounded-lg text-white"
-                            required
-                          />
-                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <label htmlFor="position" className="text-gray-300 text-sm font-medium">
-                          Position <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          id="position"
-                          name="position"
-                          value={formData.position}
-                          onChange={handleInputChange}
-                          className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-gray-300 px-4"
-                          required
+                      <div className="relative">
+                        <div
+                          className={`absolute inset-0 rounded-full blur-md ${step >= item ? "bg-[#18cb96]/50" : "bg-gray-700/30"}`}
+                        ></div>
+                        <div
+                          className={`relative z-10 rounded-full flex items-center justify-center w-10 h-10 md:w-12 md:h-12 mb-2 border-2
+                            ${
+                              step > item
+                                ? "bg-[#18cb96] border-[#18cb96]"
+                                : step === item
+                                ? "bg-black border-[#18cb96]"
+                                : "bg-black border-gray-700"
+                            }`}
                         >
-                          <option value="">Select Position</option>
-                          {positions.map((pos) => (
-                            <option key={pos} value={pos}>
-                              {pos}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="space-y-3">
-                        <label htmlFor="location" className="text-gray-300 text-sm font-medium">
-                          Location <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <input
-                            id="location"
-                            name="location"
-                            value={formData.location}
-                            onChange={handleInputChange}
-                            placeholder="Current Location"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 pl-12 rounded-lg text-white"
-                            required
-                          />
-                          <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 h-4 w-4" />
+                          {step > item ? (
+                            <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-white" />
+                          ) : item === 1 ? (
+                            <User className="h-4 w-4 md:h-5 md:w-5 text-white" />
+                          ) : (
+                            <FileText className="h-4 w-4 md:h-5 md:w-5 text-white" />
+                          )}
                         </div>
                       </div>
-                    </div>
+                      <span
+                        className={`text-xs font-medium uppercase tracking-wider ${step >= item ? "text-white" : "text-gray-500"}`}
+                      >
+                        {item === 1 ? "Details" : "Terms"}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
 
-                    <div className="space-y-3">
-                      <label className="text-gray-300 text-sm font-medium">
-                        Candidate Type <span className="text-red-500">*</span>
-                      </label>
-                      <div className="flex flex-wrap gap-4">
-                        <label className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            name="candidate_type"
-                            value="fresher"
-                            checked={formData.candidate_type === "fresher"}
-                            onChange={() => handleRadioChange("fresher")}
-                            className="form-radio text-[#18cb96] border-gray-700 focus:ring-[#18cb96]"
-                          />
-                          <span className="text-gray-300">Fresher</span>
-                        </label>
-                        <label className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            name="candidate_type"
-                            value="experienced"
-                            checked={formData.candidate_type === "experienced"}
-                            onChange={() => handleRadioChange("experienced")}
-                            className="form-radio text-[#18cb96] border-gray-700 focus:ring-[#18cb96]"
-                          />
-                          <span className="text-gray-300">Experienced</span>
-                        </label>
-                        <label className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            name="candidate_type"
-                            value="referral"
-                            checked={formData.candidate_type === "referral"}
-                            onChange={() => handleRadioChange("referral")}
-                            className="form-radio text-[#18cb96] border-gray-700 focus:ring-[#18cb96]"
-                          />
-                          <span className="text-gray-300">Referral</span>
-                        </label>
-                      </div>
-                    </div>
-
-                    {formData.candidate_type === "fresher" && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <div className="space-y-3">
-                          <label htmlFor="college_name" className="text-gray-300 text-sm font-medium">
-                            College Name <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="college_name"
-                            name="college_name"
-                            value={formData.college_name}
-                            onChange={handleInputChange}
-                            placeholder="Enter your college name"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-
-                        <div className="space-y-3">
-                          <label htmlFor="passing_year" className="text-gray-300 text-sm font-medium">
-                            Passing Year <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="passing_year"
-                            name="passing_year"
-                            type="number"
-                            value={formData.passing_year}
-                            onChange={handleInputChange}
-                            placeholder="e.g., 2023"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-
-                        <div className="space-y-3">
-                          <label htmlFor="branch" className="text-gray-300 text-sm font-medium">
-                            Branch <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="branch"
-                            name="branch"
-                            value={formData.branch}
-                            onChange={handleInputChange}
-                            placeholder="e.g., Computer Science"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    {formData.candidate_type === "experienced" && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <div className="space-y-3">
-                          <label htmlFor="company_name" className="text-gray-300 text-sm font-medium">
-                            Current Company Name <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="company_name"
-                            name="company_name"
-                            value={formData.company_name}
-                            onChange={handleInputChange}
-                            placeholder="Enter your current company"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-
-                        <div className="space-y-3">
-                          <label htmlFor="experience_years" className="text-gray-300 text-sm font-medium">
-                            Experience (Years) <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="experience_years"
-                            name="experience_years"
-                            type="number"
-                            value={formData.experience_years}
-                            onChange={handleInputChange}
-                            placeholder="e.g., 3"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-
-                        <div className="space-y-3">
-                          <label htmlFor="current_salary" className="text-gray-300 text-sm font-medium">
-                            Current Salary (Annual) <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="current_salary"
-                            name="current_salary"
-                            type="number"
-                            value={formData.current_salary}
-                            onChange={handleInputChange}
-                            placeholder="e.g., 500000"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    {formData.candidate_type === "referral" && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <div className="space-y-3">
-                          <label htmlFor="employee_id" className="text-gray-300 text-sm font-medium">
-                            Employee ID <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="employee_id"
-                            name="employee_id"
-                            value={formData.employee_id}
-                            onChange={handleInputChange}
-                            placeholder="Enter referring employee ID"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-
-                        <div className="space-y-3">
-                          <label htmlFor="employee_name" className="text-gray-300 text-sm font-medium">
-                            Employee Name <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            id="employee_name"
-                            name="employee_name"
-                            value={formData.employee_name}
-                            onChange={handleInputChange}
-                            placeholder="Enter referring employee name"
-                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
-                            required
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="space-y-3">
-                      <label htmlFor="resume" className="text-gray-300 text-sm font-medium">
-                        Upload Resume <span className="text-red-500">*</span>
-                      </label>
-                      <div className="group border-2 border-dashed border-gray-700 hover:border-[#18cb96] transition-colors duration-300 rounded-xl p-6 text-center cursor-pointer bg-gray-900/30 backdrop-blur-sm">
-                        <div className="relative mx-auto mb-4 w-16 h-16">
-                          <div className="absolute inset-0 bg-[#18cb96]/20 rounded-full blur-md group-hover:bg-[#18cb96]/30 transition-all duration-300"></div>
-                          <div className="relative z-10 flex items-center justify-center w-16 h-16 bg-gray-900/70 backdrop-blur-sm rounded-full border border-gray-700 group-hover:border-[#18cb96] transition-all duration-300">
-                            <FileText className="h-7 w-7 text-gray-400 group-hover:text-[#18cb96] transition-colors duration-300" />
+              <div className="relative">
+                <div className="absolute inset-0 bg-gray-900/50 backdrop-blur-xl rounded-2xl"></div>
+                <div className="relative z-10 backdrop-blur-sm bg-black/40 rounded-2xl p-6 md:p-10 shadow-[0_0_25px_rgba(0,0,0,0.3)] border border-gray-800">
+                  <AnimatePresence mode="wait">
+                    {step === 1 && (
+                      <motion.div
+                        key="details"
+                        variants={formVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="space-y-6 md:space-y-8"
+                      >
+                        <div className="flex items-center gap-3 pb-4 border-b border-gray-800">
+                          <div className="p-2 bg-[#18cb96]/10 rounded-lg">
+                            <User className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg md:text-xl font-semibold text-white">Candidate Details</h3>
+                            <p className="text-gray-400 text-xs md:text-sm">Provide your information and resume</p>
                           </div>
                         </div>
-                        <p className="text-gray-300 mb-2 font-medium">
-                          {formData.resume_url ? "Resume Uploaded" : "Drag and drop your resume here"}
-                        </p>
-                        {!formData.resume_url && (
-                          <>
-                            <p className="text-gray-500 mb-4 text-sm">or click to browse your files</p>
-                            <p className="text-xs text-gray-500">Supported formats: PDF, DOCX (Max 5MB)</p>
-                          </>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                          <div className="space-y-3">
+                            <label htmlFor="name" className="text-gray-300 text-sm font-medium">
+                              Full Name <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              id="name"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleInputChange}
+                              placeholder="Enter your full name"
+                              className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                              required
+                            />
+                          </div>
+
+                          <div className="space-y-3">
+                            <label htmlFor="email" className="text-gray-300 text-sm font-medium">
+                              Email Address <span className="text-red-500">*</span>
+                            </label>
+                            <div className="relative">
+                              <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                placeholder="your.email@example.com"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 pl-12 rounded-lg text-white"
+                                required
+                              />
+                              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <label htmlFor="mobile" className="text-gray-300 text-sm font-medium">
+                              Mobile Number <span className="text-red-500">*</span>
+                            </label>
+                            <div className="relative">
+                              <input
+                                id="mobile"
+                                name="mobile"
+                                value={formData.mobile}
+                                onChange={handleInputChange}
+                                placeholder="(123) 456-7890"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 pl-12 rounded-lg text-white"
+                                required
+                              />
+                              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <label htmlFor="position" className="text-gray-300 text-sm font-medium">
+                              Position <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                              id="position"
+                              name="position"
+                              value={formData.position}
+                              onChange={handleInputChange}
+                              className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-gray-300 px-4"
+                              required
+                            >
+                              <option value="">Select Position</option>
+                              {positions.map((pos) => (
+                                <option key={pos} value={pos}>
+                                  {pos}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="space-y-3">
+                            <label htmlFor="location" className="text-gray-300 text-sm font-medium">
+                              Location <span className="text-red-500">*</span>
+                            </label>
+                            <div className="relative">
+                              <input
+                                id="location"
+                                name="location"
+                                value={formData.location}
+                                onChange={handleInputChange}
+                                placeholder="Current Location"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 pl-12 rounded-lg text-white"
+                                required
+                              />
+                              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 h-4 w-4" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <label className="text-gray-300 text-sm font-medium">
+                            Candidate Type <span className="text-red-500">*</span>
+                          </label>
+                          <div className="flex flex-wrap gap-4">
+                            <label className="flex items-center space-x-2">
+                              <input
+                                type="radio"
+                                name="candidate_type"
+                                value="fresher"
+                                checked={formData.candidate_type === "fresher"}
+                                onChange={() => handleRadioChange("fresher")}
+                                className="form-radio text-[#18cb96] border-gray-700 focus:ring-[#18cb96]"
+                              />
+                              <span className="text-gray-300">Fresher</span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                              <input
+                                type="radio"
+                                name="candidate_type"
+                                value="experienced"
+                                checked={formData.candidate_type === "experienced"}
+                                onChange={() => handleRadioChange("experienced")}
+                                className="form-radio text-[#18cb96] border-gray-700 focus:ring-[#18cb96]"
+                              />
+                              <span className="text-gray-300">Experienced</span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                              <input
+                                type="radio"
+                                name="candidate_type"
+                                value="referral"
+                                checked={formData.candidate_type === "referral"}
+                                onChange={() => handleRadioChange("referral")}
+                                className="form-radio text-[#18cb96] border-gray-700 focus:ring-[#18cb96]"
+                              />
+                              <span className="text-gray-300">Referral</span>
+                            </label>
+                          </div>
+                        </div>
+
+                        {formData.candidate_type === "fresher" && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <div className="space-y-3">
+                              <label htmlFor="college_name" className="text-gray-300 text-sm font-medium">
+                                College Name <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="college_name"
+                                name="college_name"
+                                value={formData.college_name}
+                                onChange={handleInputChange}
+                                placeholder="Enter your college name"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-3">
+                              <label htmlFor="passing_year" className="text-gray-300 text-sm font-medium">
+                                Passing Year <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="passing_year"
+                                name="passing_year"
+                                type="number"
+                                value={formData.passing_year}
+                                onChange={handleInputChange}
+                                placeholder="e.g., 2023"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-3">
+                              <label htmlFor="branch" className="text-gray-300 text-sm font-medium">
+                                Branch <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="branch"
+                                name="branch"
+                                value={formData.branch}
+                                onChange={handleInputChange}
+                                placeholder="e.g., Computer Science"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
+                          </div>
                         )}
-                        <input
-                          type="file"
-                          id="resume"
-                          name="resume"
-                          ref={fileInputRef}
-                          onChange={handleFileUpload}
-                          accept=".pdf,.doc,.docx"
-                          className="hidden"
-                          disabled={uploading}
-                        />
-                        {!formData.resume_url && (
-                          <button
-                            className="mt-4 border border-gray-700 hover:bg-gray-800 hover:text-white transition-all duration-300 px-4 py-2 rounded-lg text-gray-300"
-                            disabled={uploading}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              fileInputRef.current.click();
-                            }}
-                          >
-                            {uploading ? "Uploading..." : "Select File"}
-                          </button>
+
+                        {formData.candidate_type === "experienced" && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <div className="space-y-3">
+                              <label htmlFor="company_name" className="text-gray-300 text-sm font-medium">
+                                Current Company Name <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="company_name"
+                                name="company_name"
+                                value={formData.company_name}
+                                onChange={handleInputChange}
+                                placeholder="Enter your current company"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-3">
+                              <label htmlFor="experience_years" className="text-gray-300 text-sm font-medium">
+                                Experience (Years) <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="experience_years"
+                                name="experience_years"
+                                type="number"
+                                value={formData.experience_years}
+                                onChange={handleInputChange}
+                                placeholder="e.g., 3"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-3">
+                              <label htmlFor="current_salary" className="text-gray-300 text-sm font-medium">
+                                Current Salary (Annual) <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="current_salary"
+                                name="current_salary"
+                                type="number"
+                                value={formData.current_salary}
+                                onChange={handleInputChange}
+                                placeholder="e.g., 500000"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
+                          </div>
                         )}
-                      </div>
-                    </div>
 
-                    <div className="space-y-3">
-                      <label htmlFor="additional_info" className="text-gray-300 text-sm font-medium">
-                        Additional Information
-                      </label>
-                      <textarea
-                        id="additional_info"
-                        name="additional_info"
-                        value={formData.additional_info}
-                        onChange={handleInputChange}
-                        placeholder="Anything else you'd like us to know?"
-                        className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] min-h-[120px] rounded-lg text-white px-4 py-2"
-                      />
-                    </div>
+                        {formData.candidate_type === "referral" && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <div className="space-y-3">
+                              <label htmlFor="employee_id" className="text-gray-300 text-sm font-medium">
+                                Employee ID <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="employee_id"
+                                name="employee_id"
+                                value={formData.employee_id}
+                                onChange={handleInputChange}
+                                placeholder="Enter referring employee ID"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
 
-                    <div className="flex items-center gap-2 p-4 bg-gray-800/30 backdrop-blur-sm rounded-lg border border-gray-700/50">
-                      <Shield className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
-                      <p className="text-xs md:text-sm text-gray-400">
-                        Your information is securely stored and only shared with our hiring team.
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
+                            <div className="space-y-3">
+                              <label htmlFor="employee_name" className="text-gray-300 text-sm font-medium">
+                                Employee Name <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                id="employee_name"
+                                name="employee_name"
+                                value={formData.employee_name}
+                                onChange={handleInputChange}
+                                placeholder="Enter referring employee name"
+                                className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] h-12 rounded-lg text-white px-4"
+                                required
+                              />
+                            </div>
+                          </div>
+                        )}
 
-{step === 2 && (
-  <motion.div
-    key="terms"
-    variants={formVariants}
-    initial="hidden"
-    animate="visible"
-    exit="exit"
-    className="space-y-6 md:space-y-8"
-  >
-    <div className="flex items-center gap-3 pb-4 border-b border-gray-800">
-      <div className="p-2 bg-[#18cb96]/10 rounded-lg">
-        <ScrollText className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
-      </div>
-      <div>
-        <h3 className="text-lg md:text-xl font-semibold text-white">Terms & Conditions</h3>
-        <p className="text-gray-400 text-xs md:text-sm">Review and accept our terms</p>
-      </div>
-    </div>
+                        <div className="space-y-3">
+                          <label htmlFor="resume" className="text-gray-300 text-sm font-medium">
+                            Upload Resume <span className="text-red-500">*</span>
+                          </label>
+                          <div className="group border-2 border-dashed border-gray-700 hover:border-[#18cb96] transition-colors duration-300 rounded-xl p-6 text-center cursor-pointer bg-gray-900/30 backdrop-blur-sm">
+                            <div className="relative mx-auto mb-4 w-16 h-16">
+                              <div className="absolute inset-0 bg-[#18cb96]/20 rounded-full blur-md group-hover:bg-[#18cb96]/30 transition-all duration-300"></div>
+                              <div className="relative z-10 flex items-center justify-center w-16 h-16 bg-gray-900/70 backdrop-blur-sm rounded-full border border-gray-700 group-hover:border-[#18cb96] transition-all duration-300">
+                                <FileText className="h-7 w-7 text-gray-400 group-hover:text-[#18cb96] transition-colors duration-300" />
+                              </div>
+                            </div>
+                            <p className="text-gray-300 mb-2 font-medium">
+                              {formData.resume_url ? "Resume Uploaded" : "Drag and drop your resume here"}
+                            </p>
+                            {!formData.resume_url && (
+                              <>
+                                <p className="text-gray-500 mb-4 text-sm">or click to browse your files</p>
+                                <p className="text-xs text-gray-500">Supported formats: PDF, DOCX (Max 5MB)</p>
+                              </>
+                            )}
+                            <input
+                              type="file"
+                              id="resume"
+                              name="resume"
+                              ref={fileInputRef}
+                              onChange={handleFileUpload}
+                              accept=".pdf,.doc,.docx"
+                              className="hidden"
+                              disabled={uploading}
+                            />
+                            {!formData.resume_url && (
+                              <button
+                                className="mt-4 border border-gray-700 hover:bg-gray-800 hover:text-white transition-all duration-300 px-4 py-2 rounded-lg text-gray-300"
+                                disabled={uploading}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  fileInputRef.current.click();
+                                }}
+                              >
+                                {uploading ? "Uploading..." : "Select File"}
+                              </button>
+                            )}
+                          </div>
+                        </div>
 
-    <div className="space-y-6 text-gray-300 text-xs md:text-sm">
-      <div>
-        <h4 className="text-base md:text-lg font-medium mb-2">Terms and Conditions – Kraf Technologies Careers</h4>
+                        <div className="space-y-3">
+                          <label htmlFor="additional_info" className="text-gray-300 text-sm font-medium">
+                            Additional Information
+                          </label>
+                          <textarea
+                            id="additional_info"
+                            name="additional_info"
+                            value={formData.additional_info}
+                            onChange={handleInputChange}
+                            placeholder="Anything else you'd like us to know?"
+                            className="w-full bg-gray-900/50 backdrop-blur-sm border border-gray-700 focus:border-[#18cb96] min-h-[120px] rounded-lg text-white px-4 py-2"
+                          />
+                        </div>
 
-        <p className="mb-4">
-          Thank you for your interest in joining Kraf Technologies. Before submitting your application, please read the following terms and conditions carefully:
-        </p>
+                        <div className="flex items-center gap-2 p-4 bg-gray-800/30 backdrop-blur-sm rounded-lg border border-gray-700/50">
+                          <Shield className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
+                          <p className="text-xs md:text-sm text-gray-400">
+                            Your information is securely stored and only shared with our hiring team.
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
 
-        <h5 className="font-semibold mb-1">1. Application Review Process</h5>
-        <p className="mb-3">
-          All applications will be carefully reviewed by our recruitment and technical evaluation teams. The initial review period generally takes 10–15 business days. Only shortlisted candidates will be contacted via email or phone for the next steps in the hiring process.
-        </p>
+                    {step === 2 && (
+                      <motion.div
+                        key="terms"
+                        variants={formVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="space-y-6 md:space-y-8"
+                      >
+                        <div className="flex items-center gap-3 pb-4 border-b border-gray-800">
+                          <div className="p-2 bg-[#18cb96]/10 rounded-lg">
+                            <ScrollText className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg md:text-xl font-semibold text-white">Terms & Conditions</h3>
+                            <p className="text-gray-400 text-xs md:text-sm">Review and accept our terms</p>
+                          </div>
+                        </div>
 
-        <h5 className="font-semibold mb-1">2. Internship Opportunities</h5>
-        <ul className="list-disc pl-5 space-y-2 mb-3">
-          <li>Internship roles are intended for students, fresh graduates, or self-learners seeking hands-on experience in a real-world technology environment.</li>
-          <li>Interns may be assigned to active projects, support tasks, research modules, or internal development initiatives based on their skills and interests.</li>
-          <li>An Internship Agreement will outline the structure, learning outcomes, code of conduct, confidentiality, and duration of the internship.</li>
-          <li>At the end of the internship period, interns will receive a Certificate of Completion recognizing their contribution and learning.</li>
-          <li>Based on overall performance, technical skills, consistency, and team feedback, selected interns may be offered a Pre-Placement Offer (PPO).</li>
-          <li>A PPO is not guaranteed and is only extended to interns who demonstrate exceptional capabilities, commitment, and cultural fit.</li>
-          <li>PPO candidates may receive a full-time offer before completing their studies or internship duration.</li>
-        </ul>
+                        <div className="space-y-6 text-gray-300 text-xs md:text-sm">
+                          <div>
+                            <h4 className="text-base md:text-lg font-medium mb-2">Terms and Conditions – Kraf Technologies Careers</h4>
 
-        <h5 className="font-semibold mb-1">3. Full-Time Employment</h5>
-        <ul className="list-disc pl-5 space-y-2 mb-3">
-          <li>Full-time roles begin with a probation period (usually 3–6 months), during which performance is closely monitored.</li>
-          <li>Selected employees will receive an official Offer Letter detailing compensation, job responsibilities, working hours, policies, and terms of employment.</li>
-          <li>All full-time hires are required to sign a Non-Disclosure Agreement (NDA) and may undergo background verification as part of the hiring process.</li>
-        </ul>
+                            <p className="mb-4">
+                              Thank you for your interest in joining Kraf Technologies. Before submitting your application, please read the following terms and conditions carefully:
+                            </p>
 
-        <h5 className="font-semibold mb-1">4. Candidate Declarations & Consent</h5>
-        <ul className="list-disc pl-5 space-y-2 mb-3">
-          <li>All the information provided by you (in your resume, form, or interviews) is accurate and truthful to the best of your knowledge.</li>
-          <li>You consent to background verification, if required.</li>
-          <li>Your data will be securely stored and processed in accordance with our privacy policy.</li>
-          <li>Submission of your application does not guarantee employment or internship selection.</li>
-        </ul>
+                            <h5 className="font-semibold mb-1">1. Application Review Process</h5>
+                            <p className="mb-3">
+                              All applications will be carefully reviewed by our recruitment and technical evaluation teams. The initial review period generally takes 10–15 business days. Only shortlisted candidates will be contacted via email or phone for the next steps in the hiring process.
+                            </p>
 
-        <h5 className="font-semibold mb-1">5. Communication</h5>
-        <p className="mb-3">
-          All recruitment-related communications will be sent via official channels using <code>@kraftechnologies.com</code>. Please check your email (including spam folders) for updates.
-        </p>
+                            <h5 className="font-semibold mb-1">2. Internship Opportunities</h5>
+                            <ul className="list-disc pl-5 space-y-2 mb-3">
+                              <li>Internship roles are intended for students, fresh graduates, or self-learners seeking hands-on experience in a real-world technology environment.</li>
+                              <li>Interns may be assigned to active projects, support tasks, research modules, or internal development initiatives based on their skills and interests.</li>
+                              <li>An Internship Agreement will outline the structure, learning outcomes, code of conduct, confidentiality, and duration of the internship.</li>
+                              <li>At the end of the internship period, interns will receive a Certificate of Completion recognizing their contribution and learning.</li>
+                              <li>Based on overall performance, technical skills, consistency, and team feedback, selected interns may be offered a Pre-Placement Offer (PPO).</li>
+                              <li>A PPO is not guaranteed and is only extended to interns who demonstrate exceptional capabilities, commitment, and cultural fit.</li>
+                              <li>PPO candidates may receive a full-time offer before completing their studies or internship duration.</li>
+                            </ul>
 
-        <h5 className="font-semibold mb-1">6. Equal Opportunity Policy</h5>
-        <p className="mb-3">
-          We are proud to be an Equal Opportunity Employer. Kraf Technologies embraces diversity and does not discriminate on the basis of race, gender, religion, disability, age, or background. We are committed to providing a professional, inclusive, and respectful work environment for everyone.
-        </p>
+                            <h5 className="font-semibold mb-1">3. Full-Time Employment</h5>
+                            <ul className="list-disc pl-5 space-y-2 mb-3">
+                              <li>Full-time roles begin with a probation period (usually 3–6 months), during which performance is closely monitored.</li>
+                              <li>Selected employees will receive an official Offer Letter detailing compensation, job responsibilities, working hours, policies, and terms of employment.</li>
+                              <li>All full-time hires are required to sign a Non-Disclosure Agreement (NDA) and may undergo background verification as part of the hiring process.</li>
+                            </ul>
 
-        <p className="italic text-gray-400">
-          By applying, you confirm that you have read and agree to the above Terms & Conditions.
-        </p>
-      </div>
+                            <h5 className="font-semibold mb-1">4. Candidate Declarations & Consent</h5>
+                            <ul className="list-disc pl-5 space-y-2 mb-3">
+                              <li>All the information provided by you (in your resume, form, or interviews) is accurate and truthful to the best of your knowledge.</li>
+                              <li>You consent to background verification, if required.</li>
+                              <li>Your data will be securely stored and processed in accordance with our privacy policy.</li>
+                              <li>Submission of your application does not guarantee employment or internship selection.</li>
+                            </ul>
 
-      <div className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          id="accept_terms"
-          name="accept_terms"
-          checked={formData.accept_terms}
-          onChange={handleCheckboxChange}
-          className="form-checkbox h-5 w-5 text-[#18cb96] border-gray-700 rounded focus:ring-[#18cb96]"
-          required
-        />
-        <label htmlFor="accept_terms" className="text-gray-300 text-sm font-medium">
-          I accept the terms and conditions <span className="text-red-500">*</span>
-        </label>
-      </div>
-    </div>
+                            <h5 className="font-semibold mb-1">5. Communication</h5>
+                            <p className="mb-3">
+                              All recruitment-related communications will be sent via official channels using <code>@kraftechnologies.com</code>. Please check your email (including spam folders) for updates.
+                            </p>
 
-    <div className="flex items-center gap-2 p-4 bg-[#18cb96]/5 backdrop-blur-sm rounded-lg border border-[#18cb96]/20">
-      <Clock className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
-      <p className="text-xs md:text-sm text-gray-400">
-        Pro tip: Ensure all details are correct before submission for a smooth process.
-      </p>
-    </div>
-  </motion.div>
+                            <h5 className="font-semibold mb-1">6. Equal Opportunity Policy</h5>
+                            <p className="mb-3">
+                              We are proud to be an Equal Opportunity Employer. Kraf Technologies embraces diversity and does not discriminate on the basis of race, gender, religion, disability, age, or background. We are committed to providing a professional, inclusive, and respectful work environment for everyone.
+                            </p>
 
-                )}
-              </AnimatePresence>
+                            <p className="italic text-gray-400">
+                              By applying, you confirm that you have read and agree to the above Terms & Conditions.
+                            </p>
+                          </div>
 
-              <div className="flex flex-col sm:flex-row justify-between mt-8 md:mt-10 pt-6 border-t border-gray-800 gap-4">
-                <button
-                  onClick={() => setStep(1)}
-                  disabled={step === 1}
-                  className="flex items-center justify-center gap-2 border border-gray-700 hover:bg-gray-800 hover:text-white transition-all duration-300 h-12 px-6 rounded-lg text-gray-300 disabled:opacity-50 w-full sm:w-auto"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                  Previous
-                </button>
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="checkbox"
+                              id="accept_terms"
+                              name="accept_terms"
+                              checked={formData.accept_terms}
+                              onChange={handleCheckboxChange}
+                              className="form-checkbox h-5 w-5 text-[#18cb96] border-gray-700 rounded focus:ring-[#18cb96]"
+                              required
+                            />
+                            <label htmlFor="accept_terms" className="text-gray-300 text-sm font-medium">
+                              I accept the terms and conditions <span className="text-red-500">*</span>
+                            </label>
+                          </div>
+                        </div>
 
-                <button
-                  onClick={handleSubmit}
-                  className="bg-[#18cb96] hover:bg-[#16b585] flex items-center justify-center gap-2 h-12 px-6 md:px-8 rounded-lg text-white shadow-[0_0_15px_rgba(24,203,150,0.3)] transition-all duration-300 w-full sm:w-auto"
-                >
-                  {step === 1 ? (
-                    <>
-                      Continue
-                      <ChevronRight className="h-4 w-4" />
-                    </>
-                  ) : (
-                    "Submit Application"
-                  )}
-                </button>
+                        <div className="flex items-center gap-2 p-4 bg-[#18cb96]/5 backdrop-blur-sm rounded-lg border border-[#18cb96]/20">
+                          <Clock className="h-4 w-4 md:h-5 md:w-5 text-[#18cb96]" />
+                          <p className="text-xs md:text-sm text-gray-400">
+                            Pro tip: Ensure all details are correct before submission for a smooth process.
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <div className="flex flex-col sm:flex-row justify-between mt-8 md:mt-10 pt-6 border-t border-gray-800 gap-4">
+                    <button
+                      onClick={() => setStep(1)}
+                      disabled={step === 1}
+                      className="flex items-center justify-center gap-2 border border-gray-700 hover:bg-gray-800 hover:text-white transition-all duration-300 h-12 px-6 rounded-lg text-gray-300 disabled:opacity-50 w-full sm:w-auto"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      Previous
+                    </button>
+
+                    <button
+                      onClick={handleSubmit}
+                      className="bg-[#18cb96] hover:bg-[#16b585] flex items-center justify-center gap-2 h-12 px-6 md:px-8 rounded-lg text-white shadow-[0_0_15px_rgba(24,203,150,0.3)] transition-all duration-300 w-full sm:w-auto"
+                    >
+                      {step === 1 ? (
+                        <>
+                          Continue
+                          <ChevronRight className="h-4 w-4" />
+                        </>
+                      ) : (
+                        "Submit Application"
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </div>
