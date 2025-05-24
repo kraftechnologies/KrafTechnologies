@@ -8,7 +8,8 @@ const services = [
   {
     id: 1,
     title: "AI & Automation",
-    description: "Empower your business with AI-driven automation and predictive analytics.",
+    description:
+      "Empower your business with AI-driven automation and predictive analytics.",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="11" width="18" height="10" rx="2" />
       <circle cx="12" cy="5" r="2" />
@@ -19,60 +20,63 @@ const services = [
       <path d="M15 7l1-4" />
     </svg>`,
     features: [
-      "AI-Driven Automation Tools",
-      "Predictive Analytics",
-      "Intelligent Chatbots",
-      "Machine Learning Models",
-      "Process Optimization",
+      ["Predictive Analytics", "/predictive-analysis"],
+      ["Intelligent Chatbots", "/chatbot-and-virtual"],
+      ["Machine Learning Models", "/ai-ml-solution"],
+      ["AI-Driven Automation Tools", "#"],
+      ["Process Optimization", "#"],
     ],
   },
   {
     id: 2,
     title: "Web3 & Blockchain",
-    description: "Secure, decentralized solutions for the future of digital transactions.",
+    description:
+      "Secure, decentralized solutions for the future of digital transactions.",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="2" y="7" width="6" height="10" rx="1" />
       <rect x="9" y="3" width="6" height="18" rx="1" />
       <rect x="16" y="7" width="6" height="10" rx="1" />
     </svg>`,
     features: [
-      "Smart Contract Development",
-      "Decentralized Apps (dApps)",
-      "Blockchain Payments",
-      "Web3 Integration",
-      "Tokenization",
+      ["Blockchain Payments", "/billing-system"],
+      ["Smart Contract Development", "#"],
+      ["Decentralized Apps (dApps)", "#"],
+      ["Web3 Integration", "#"],
+      ["Tokenization", "#"],
     ],
   },
   {
     id: 3,
     title: "Web Development",
-    description: "Dynamic, responsive web applications for seamless user experiences.",
+    description:
+      "Dynamic, responsive web applications for seamless user experiences.",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
       <line x1="12" y1="18" x2="12" y2="18" />
     </svg>`,
     features: [
-      "Full-Stack Development",
-      "Progressive Web Apps",
-      "Responsive Design",
-      "CMS Solutions",
-      "eCommerce Platforms",
+      ["eCommerce Platforms", "/ecommerce"],
+      ["Full-Stack Development", "#"],
+      ["Progressive Web Apps", "#"],
+      ["Responsive Design", "#"],
+      ["CMS Solutions", "#"],
     ],
   },
   {
     id: 4,
     title: "Cloud & DevOps",
-    description: "Scalable cloud solutions with automated deployment pipelines.",
+    description:
+      "Scalable cloud solutions with automated deployment pipelines.",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M8 17.5a6 6 0 0 0 8.8-8.3A5 5 0 1 0 8.2 4.2a5 5 0 0 0 .1 7.8A6 6 0 0 0 8 17.5z" />
       <path d="M13 15h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2" />
     </svg>`,
     features: [
-      "Cloud-Native Development",
-      "CI/CD Pipelines",
-      "Serverless Architecture",
-      "Cloud Migration",
-      "Infrastructure Optimization",
+      ["Infrastructure Optimization", "/cloud-infrastructure"],
+      ["CI/CD Pipelines", "/devops"],
+      ["Cloud-Native Development", "#"],
+      ["Serverless Architecture", "#"],
+      ["Cloud Migration", "#"],
     ],
   },
   {
@@ -87,11 +91,11 @@ const services = [
       <path d="M16 11v8" />
     </svg>`,
     features: [
-      "Fintech Applications",
-      "Telemedicine Platforms",
-      "AR Shopping Experiences",
-      "Learning Management Systems",
-      "Logistics Automation",
+      ["Fintech Applications", "#"],
+      ["Telemedicine Platforms", "#"],
+      ["AR Shopping Experiences", "#"],
+      ["Learning Management Systems", "#"],
+      ["Logistics Automation", "#"],
     ],
   },
 ];
@@ -102,6 +106,9 @@ const WhatWeOffer = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const node = ref.current; // Capture current value when effect runs
+    if (!node) return; // Early return if no node
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
@@ -109,23 +116,23 @@ const WhatWeOffer = () => {
       { threshold: 0.2 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(node); // Use the captured value
+      // Alternatively: observer.disconnect();
     };
-  }, []);
+  }, []); // Empty dependency array is fine here
 
   const handleContactClick = () => {
-    navigate('/contact-us');
+    navigate("/contact-us");
   };
 
   return (
-    <section ref={ref} className="w-full py-8 bg-black text-white relative overflow-hidden">
+    <section
+      ref={ref}
+      className="w-full py-8 bg-black text-white relative overflow-hidden"
+    >
       <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#18CB96]/20 filter blur-[100px] opacity-40"></div>
       <div className="absolute bottom-1/4 right-1/3 w-96 h-96 rounded-full bg-[#18CB96]/10 filter blur-[120px] opacity-30"></div>
 
@@ -152,7 +159,9 @@ const WhatWeOffer = () => {
             </h1>
 
             <p className="text-gray-300 mt-6 text-lg md:text-xl max-w-xl leading-relaxed">
-              At Kraf Technologies, we deliver scalable SaaS solutions to drive your digital transformation, automate processes, and accelerate growth.
+              At Kraf Technologies, we deliver scalable SaaS solutions to drive
+              your digital transformation, automate processes, and accelerate
+              growth.
             </p>
           </motion.div>
 
@@ -179,15 +188,17 @@ const WhatWeOffer = () => {
                   />
                 </div>
                 <h3 className="ml-4 text-2xl font-bold tracking-tight">
-                  Your <span className="text-[#18CB96]">Tech Partner</span> for Growth
+                  Your <span className="text-[#18CB96]">Tech Partner</span> for
+                  Growth
                 </h3>
               </div>
 
               <p className="text-gray-300 mb-8 leading-relaxed">
-                From startups to enterprises, we craft innovative solutions to scale your vision.
+                From startups to enterprises, we craft innovative solutions to
+                scale your vision.
               </p>
 
-              <button 
+              <button
                 onClick={handleContactClick}
                 className="bg-gradient-to-r from-[#18CB96] to-[#18CB96] text-white rounded-full px-8 py-3 font-medium flex items-center group hover:shadow-lg hover:shadow-[#18CB96]/30 transition-all duration-300 transform hover:-translate-y-1"
               >
@@ -218,6 +229,9 @@ const AutoScrollCards = ({ services }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
@@ -225,29 +239,29 @@ const AutoScrollCards = ({ services }) => {
       { threshold: 0.5 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
+      observer.unobserve(node);
     };
   }, []);
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="relative h-full overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="absolute bottom-0 left-0 w-full">
-        <div className={`animate-scroll-up ${isHovered || !isVisible ? 'pause-animation' : ''}`}>
+        <div
+          className={`animate-scroll-up ${
+            isHovered || !isVisible ? "pause-animation" : ""
+          }`}
+        >
           {services.map((service, index) => (
             <motion.div
-              key={`scroll-1-${service.id}`}
+              key={`scroll-1-${service.id}-${index}`}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -258,10 +272,14 @@ const AutoScrollCards = ({ services }) => {
           ))}
         </div>
 
-        <div className={`animate-scroll-up ${isHovered || !isVisible ? 'pause-animation' : ''}`}>
+        <div
+          className={`animate-scroll-up ${
+            isHovered || !isVisible ? "pause-animation" : ""
+          }`}
+        >
           {services.map((service, index) => (
             <motion.div
-              key={`scroll-2-${service.id}`}
+              key={`scroll-2-${service.id}-${index}`}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}

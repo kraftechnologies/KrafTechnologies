@@ -397,7 +397,7 @@ export default function Header() {
                               Workflow Automation
                             </a>
                             <a
-                              href="#"
+                              href="/predictive-analysis"
                               className="block text-white hover:text-[#18CB96] text-xs py-1"
                             >
                               Predictive Analytics
@@ -637,7 +637,7 @@ export default function Header() {
                       Workflow Automation
                     </a>
                     <a
-                      href="#"
+                      href="/predictive-analysis"
                       className="block text-[#0a0e1a] hover:text-[#18CB96] transition-colors duration-200 text-sm"
                     >
                       Predictive Analytics
