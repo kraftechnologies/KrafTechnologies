@@ -6,7 +6,7 @@ export default function NotFound() {
       <div className="text-center">
         <p className="text-base font-semibold text-[#18CB96]">404</p>
         <h1 className="mt-4 text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-          Page not found
+          Page does not found
         </h1>
         <p className="mt-6 text-lg text-gray-300 sm:text-xl">
           Sorry, we couldn’t find the page you’re looking for.
