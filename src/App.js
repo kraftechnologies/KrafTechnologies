@@ -46,7 +46,7 @@ const ScrollToTop = () => {
 function App() {
   return (
     <Router>
-      <ScrollToTop />
+      <ScrollToTop /> 
       <Headers />
       <Suspense fallback={<Loader />}>
         <Routes>
