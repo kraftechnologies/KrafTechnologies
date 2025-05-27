@@ -227,8 +227,7 @@ export default function Footer() {
                 <p>
                   HQ Office Address:{" "}
                   <span className="text-white hover:opacity-80">
-                    Property No. 55, 3rd Floor Saidulajab, Near Westend, Marg
-                    Lane-2, New Delhi, 110030
+                    400-A, 4 th Floor, 12 Ajit Singh House, Yusuf Sarai Commercial Complex, New Delhi 110016, Near Green Park Metro Station Exit-2.
                   </span>
                 </p>
               </div>
