@@ -447,24 +447,7 @@ const Contact = () => {
         </div>
       </div>
       
-      {/* Footer */}
-      <footer className="bg-black py-12 mt-24">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center gap-6 mb-6">
-            <a href="https://www.linkedin.com/company/kraftechnologies/?viewAsMember=true" className="text-gray-400 hover:text-[#18CB96] transition-colors" aria-label="LinkedIn">
-              <Linkedin size={24} />
-            </a>
-            <a href="https://github.com/Kraf-Technologies" className="text-gray-400 hover:text-[#18CB96] transition-colors" aria-label="GitHub">
-              <Github size={24} />
-            </a>
-            <a href="https://instagram.com/kraftechnologies" className="text-gray-400 hover:text-[#18CB96] transition-colors" aria-label="Instagram">
-              <Instagram size={24} />
-            </a>
-          </div>
-          <p className="text-gray-500">© {new Date().getFullYear()} Kraf Technologies. All rights reserved.</p>
-          <p className="text-gray-600 mt-2">Transforming ideas into digital solutions</p>
-        </div>
-      </footer>
+     
     </div>
   );
 }
