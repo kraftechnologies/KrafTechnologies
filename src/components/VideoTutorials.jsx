@@ -14,8 +14,9 @@ const TutorialCard = () => {
               Video Tutorials
             </h3>
             <p className="text-lg text-white mb-5 ">
-              Looking for some video tutorials on how to use Calendly? We've got
-              you covered.
+              Looking for some video tutorials on how to use{" "}
+              <span className="text-[#18cb96]">resorces</span>? We've got you
+              covered.
             </p>
             <button className="bg-[#18cb96] hover:bg-[#18bb96] font-semibold text-grey-800 py-3 px-6 rounded-lg text-sm transition-colors">
               Watch tutorials
