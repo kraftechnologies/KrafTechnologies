@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 
+
 function FeaturedInsights() {
   const scrollRef = useRef(null);
   const [insights, setInsights] = useState([]);
