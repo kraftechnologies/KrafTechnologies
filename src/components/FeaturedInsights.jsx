@@ -1,76 +1,35 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 
-const articles = [
-  {
-    category: 'Digital Marketing',
-    title: 'How AI is Transforming Influencer Marketing for Maximum Reach',
-    description:
-      'Nearly 48.7% of brands use AI tools to enhance their influencer marketing campaigns. Discover how AI is revolutionizing brand-audience connections.',
-    image: 'https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&q=80&w=800',
-    author: { name: 'Sarah Lee', image: 'https://randomuser.me/api/portraits/women/1.jpg' },
-  },
-  {
-    category: 'eCommerce',
-    title: 'Chatbots vs Generative AI: Which is Better for Your eCommerce App?',
-    description:
-      'About 23% of businesses use chatbots for customer service. Find out which AI solution best fits your eCommerce needs.',
-    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=800',
-    author: { name: 'John Doe', image: 'https://randomuser.me/api/portraits/men/2.jpg' },
-  },
-  {
-    category: 'Digital Marketing',
-    title: 'How to Power Your SEO Content With AI',
-    description:
-      "SEO is crucial for online success. Learn how AI can supercharge your SEO strategy.",
-    image: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?auto=format&fit=crop&q=80&w=800',
-    author: { name: 'Emily Chen', image: 'https://randomuser.me/api/portraits/women/3.jpg' },
-  },
-  {
-    category: 'Technology',
-    title: 'The Future of AI in Software Development',
-    description:
-      'AI is reshaping coding practices. Explore its impact on the future of software engineering.',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
-    author: { name: 'Michael Brown', image: 'https://randomuser.me/api/portraits/men/4.jpg' },
-  },
-  {
-    category: 'Business',
-    title: 'Scaling Startups with Open Innovation',
-    description:
-      'Collaboration drives growth. See how open innovation can scale your startup.',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800',
-    author: { name: 'Lisa Patel', image: 'https://randomuser.me/api/portraits/women/5.jpg' },
-  },
-  {
-    category: 'eCommerce',
-    title: 'Personalization in eCommerce: The AI Advantage',
-    description:
-      'AI-driven personalization boosts sales. Learn how to implement it effectively.',
-    image: 'https://images.unsplash.com/photo-1657812159103-1b2a52a7f5e8?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    author: { name: 'David Kim', image: 'https://randomuser.me/api/portraits/men/6.jpg' },
-  },
-  {
-    category: 'Digital Marketing',
-    title: 'Leveraging AI for Social Media Success',
-    description:
-      'AI tools enhance social media strategies. Discover the latest trends and techniques.',
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&q=80&w=800',
-    author: { name: 'Rachel Adams', image: 'https://randomuser.me/api/portraits/women/7.jpg' },
-  },
-  {
-    category: 'Technology',
-    title: 'AI and Cybersecurity: A New Frontier',
-    description:
-      'AI is transforming cybersecurity. Explore how it protects businesses in the digital age.',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
-    author: { name: 'Tom Wilson', image: 'https://randomuser.me/api/portraits/men/8.jpg' },
-  },
-];
 
 function FeaturedInsights() {
   const scrollRef = useRef(null);
+  const [insights, setInsights] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchInsights = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/admin/featuredinsights`);
+        
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setInsights(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("Error fetching insights:", err);
+        setError(err.message || "Failed to load insights");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInsights();
+  }, []);
 
   const scroll = (direction) => {
     const container = scrollRef.current;
@@ -121,79 +80,108 @@ function FeaturedInsights() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            Over 1000 articles on tech and talent
+            View all articles
             <ArrowRight className="ml-2 h-5 w-5" />
           </motion.a>
         </motion.div>
 
         {/* Scrollable Articles */}
         <div className="relative">
-          <div
-            ref={scrollRef}
-            className="flex space-x-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
-            style={{ scrollSnapType: 'x mandatory' }}
-          >
-            {articles.map((article, index) => (
-              <motion.div
-                key={index}
-                className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 backdrop-blur-md border border-[#18CB96]/30 hover:shadow-[#18CB96]/40 transition-all duration-500"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                style={{
-                  background:
-                    'radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))',
-                }}
-              >
-                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
-                  />
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-[#18CB96]/90 rounded-full text-sm font-medium text-white">
-                    {article.category}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-medium text-white mb-3 line-clamp-2 group-hover:text-[#18CB96] transition-colors duration-300">
-                    {article.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
-                    {article.description}
-                  </p>
-                  <div className="flex items-center mt-4">
-                    <img
-                      src={article.author.image}
-                      alt={article.author.name}
-                      className="w-10 h-10 rounded-full mr-3 border border-[#18CB96]/50"
-                    />
-                    <span className="text-gray-300 text-sm font-medium">
-                      {article.author.name}
-                    </span>
+          {loading ? (
+            <div className="flex space-x-6 overflow-x-auto pb-8">
+              {[...Array(4)].map((_, index) => (
+                <div 
+                  key={index}
+                  className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 border border-[#18CB96]/30"
+                >
+                  <div className="h-48 sm:h-56 md:h-64 bg-gray-800 animate-pulse"></div>
+                  <div className="p-6">
+                    <div className="h-6 bg-gray-800 rounded animate-pulse mb-3"></div>
+                    <div className="h-4 bg-gray-800 rounded animate-pulse mb-2"></div>
+                    <div className="h-4 bg-gray-800 rounded animate-pulse mb-2"></div>
+                    <div className="h-4 bg-gray-800 rounded animate-pulse mb-4"></div>
+                    <div className="flex items-center mt-4">
+                      <div className="w-10 h-10 rounded-full bg-gray-800 animate-pulse mr-3"></div>
+                      <div className="h-4 w-24 bg-gray-800 rounded animate-pulse"></div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : error ? (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          ) : (
+            <div
+              ref={scrollRef}
+              className="flex space-x-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
+              style={{ scrollSnapType: 'x mandatory' }}
+            >
+              {insights.map((insight, index) => (
+                <motion.div
+                  key={insight.id || index}
+                  className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 backdrop-blur-md border border-[#18CB96]/30 hover:shadow-[#18CB96]/40 transition-all duration-500"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  style={{
+                    background:
+                      'radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))',
+                  }}
+                >
+                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                    <img
+                      src={insight.image}
+                      alt={insight.title}
+                      className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                    />
+                    <span className="absolute top-4 left-4 px-3 py-1 bg-[#18CB96]/90 rounded-full text-sm font-medium text-white">
+                      {insight.category}
+                    </span>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-medium text-white mb-3 line-clamp-2 group-hover:text-[#18CB96] transition-colors duration-300">
+                      {insight.title}
+                    </h3>
+                    <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+                      {insight.description}
+                    </p>
+                    <div className="flex items-center mt-4">
+                      <div className="w-10 h-10 rounded-full mr-3 border border-[#18CB96]/50 flex items-center justify-center bg-gray-800 text-white">
+                        {insight.authorName?.charAt(0) || "A"}
+                      </div>
+                      <span className="text-gray-300 text-sm font-medium">
+                        {insight.authorName || "Anonymous"}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
 
           {/* Navigation Buttons */}
-          <motion.button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
-            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-            animate={{ scale: 1, transition: { duration: 0.2 } }}
-          >
-            <ArrowLeft className="w-6 h-6 text-white" />
-          </motion.button>
-          <motion.button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
-            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-            animate={{ scale: 1, transition: { duration: 0.2 } }}
-          >
-            <ArrowRight className="w-6 h-6 text-white" />
-          </motion.button>
+          {!loading && insights.length > 0 && (
+            <>
+              <motion.button
+                onClick={() => scroll('left')}
+                className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
+                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                animate={{ scale: 1, transition: { duration: 0.2 } }}
+              >
+                <ArrowLeft className="w-6 h-6 text-white" />
+              </motion.button>
+              <motion.button
+                onClick={() => scroll('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
+                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                animate={{ scale: 1, transition: { duration: 0.2 } }}
+              >
+                <ArrowRight className="w-6 h-6 text-white" />
+              </motion.button>
+            </>
+          )}
         </div>
       </div>
     </section>
