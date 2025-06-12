@@ -42,6 +42,7 @@ const Devops = lazy(() => import("./pages/Devops"));
 const ChatbotAndVirtual = lazy(() => import("./pages/ChatbotAndVirtual"));
 const PredictiveAnalysis = lazy(() => import("./pages/PredictiveAnalysis"));
 const Resource = lazy(() => import("./pages/Resource"));
+const OpenInnovation = lazy(() => import("./pages/OpenInnovation"));
 // Scroll to Top Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -95,6 +96,7 @@ function App() {
           <Route path="/chatbot-and-virtual" element={<ChatbotAndVirtual />} />
           <Route path="/predictive-analysis" element={<PredictiveAnalysis />} />
           <Route path="/resources" element={<Resource />} />
+          <Route path="/open-innovation" element={<OpenInnovation />} />
           {/* Not Found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
