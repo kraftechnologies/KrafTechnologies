@@ -1,7 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
-
+import React, { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 function FeaturedInsights() {
   const scrollRef = useRef(null);
@@ -12,12 +11,14 @@ function FeaturedInsights() {
   useEffect(() => {
     const fetchInsights = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/admin/featuredinsights`);
-        
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/api/admin/featuredinsights`
+        );
+
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-        
+
         const data = await response.json();
         setInsights(Array.isArray(data) ? data : []);
       } catch (err) {
@@ -34,10 +35,10 @@ function FeaturedInsights() {
   const scroll = (direction) => {
     const container = scrollRef.current;
     if (container) {
-      const scrollAmount = direction === 'left' ? -300 : 300;
+      const scrollAmount = direction === "left" ? -300 : 300;
       container.scrollTo({
         left: container.scrollLeft + scrollAmount,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
@@ -51,7 +52,7 @@ function FeaturedInsights() {
           style={{
             backgroundImage: `linear-gradient(to right, rgba(24, 203, 150, 0.1) 1px, transparent 1px),
                              linear-gradient(to bottom, rgba(24, 203, 150, 0.1) 1px, transparent 1px)`,
-            backgroundSize: '2rem 2rem',
+            backgroundSize: "2rem 2rem",
           }}
         ></div>
       </div>
@@ -69,8 +70,8 @@ function FeaturedInsights() {
               Featured Insights
             </h1>
             <p className="text-base md:text-lg text-gray-300 max-w-2xl leading-relaxed">
-              Explore Kraf Technologies' insights on leveraging tech and talent to turn your vision
-              into reality.
+              Explore Kraf Technologies' insights on leveraging tech and talent
+              to turn your vision into reality.
             </p>
           </div>
           <motion.a
@@ -90,7 +91,7 @@ function FeaturedInsights() {
           {loading ? (
             <div className="flex space-x-6 overflow-x-auto pb-8">
               {[...Array(4)].map((_, index) => (
-                <div 
+                <div
                   key={index}
                   className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 border border-[#18CB96]/30"
                 >
@@ -116,7 +117,7 @@ function FeaturedInsights() {
             <div
               ref={scrollRef}
               className="flex space-x-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
-              style={{ scrollSnapType: 'x mandatory' }}
+              style={{ scrollSnapType: "x mandatory" }}
             >
               {insights.map((insight, index) => (
                 <motion.div
@@ -127,7 +128,7 @@ function FeaturedInsights() {
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   style={{
                     background:
-                      'radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))',
+                      "radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))",
                   }}
                 >
                   <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
@@ -165,7 +166,7 @@ function FeaturedInsights() {
           {!loading && insights.length > 0 && (
             <>
               <motion.button
-                onClick={() => scroll('left')}
+                onClick={() => scroll("left")}
                 className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
                 whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                 animate={{ scale: 1, transition: { duration: 0.2 } }}
@@ -173,7 +174,7 @@ function FeaturedInsights() {
                 <ArrowLeft className="w-6 h-6 text-white" />
               </motion.button>
               <motion.button
-                onClick={() => scroll('right')}
+                onClick={() => scroll("right")}
                 className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
                 whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                 animate={{ scale: 1, transition: { duration: 0.2 } }}
