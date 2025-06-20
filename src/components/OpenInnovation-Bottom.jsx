@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { RiFacebookCircleLine } from "react-icons/ri";
-import { BsInstagram } from "react-icons/bs";
-import { AiOutlineLinkedin } from "react-icons/ai";
-import { RiTwitterXLine } from "react-icons/ri";
+import facebook from "../assets/facebook.png";
+import instagram from "../assets/instagram.png";
+import linkedin from "../assets/linkedin.png";
+import twitter from "../assets/twitter.png";
 
 const Footer = () => {
   return (
@@ -45,10 +45,10 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex-1 flex justify-center md:justify-end space-x-5 text-2xl text-[#18cb96]">
-            <RiFacebookCircleLine className="h-9 w-9" />
-            <BsInstagram className="h-7 w-7" />
-            <AiOutlineLinkedin className="h-7 w-7" />
-            <RiTwitterXLine className="h-7 w-7" />
+            <img src={facebook} alt="facebook" className="h-8 w-8" />
+            <img src={instagram} alt="instagram" className="h-8 w-8" />
+            <img src={linkedin} alt="linkedin" className="h-8 w-8" />
+            <img src={twitter} alt="twitter" className="h-8 w-8" />
           </div>
         </motion.div>
 
