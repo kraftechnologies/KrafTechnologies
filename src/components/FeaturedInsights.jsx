@@ -9,27 +9,38 @@ function FeaturedInsights() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchInsights = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/api/admin/featuredinsights`
-        );
+   const fetchInsights = async () => {
+  const backendURL = "http://localhost:5000"; 
+  try {
+    const response = await fetch(`${backendURL}/api/admin/featuredinsights`, {
+      headers: { Accept: "application/json" },
+    });
 
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.statusText || response.status}`);
+    }
 
-        const data = await response.json();
-        setInsights(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("Error fetching insights:", err);
-        setError(err.message || "Failed to load insights");
-      } finally {
-        setLoading(false);
-      }
-    };
-
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      const data = await response.json();
+      setInsights(Array.isArray(data) ? data : []);
+    } else {
+      throw new Error("Response is not valid JSON.");
+    }
+  } catch (err) {
+    console.error("Fetch error:", err);
+    setError(err.message || "Failed to load insights.");
+  } finally {
+    setLoading(false);
+  }
+};
+    // Fetch insights when the component mounts
     fetchInsights();
+
+    // Optionally, you can set an interval to refresh insights periodically
+    // const intervalId = setInterval(fetchInsights, 60000); // Refresh every 60 seconds  
+
+    fetchInsights(true);
   }, []);
 
   const scroll = (direction) => {
@@ -42,10 +53,34 @@ function FeaturedInsights() {
       });
     }
   };
+const fetchInsights = async () => {
+  const backendURL = "http://localhost:5000"; 
+  try {
+    const response = await fetch(`${backendURL}/api/admin/featuredinsights`, {
+      headers: { Accept: "application/json" },
+    });
+
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.statusText || response.status}`);
+    }
+
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      const data = await response.json();
+      setInsights(Array.isArray(data) ? data : []);
+    } else {
+      throw new Error("Response is not valid JSON.");
+    }
+  } catch (err) {
+    console.error("Fetch error:", err);
+    setError(err.message || "Failed to load insights.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section className="relative bg-black py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden font-jost">
-      {/* Background Elements */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
@@ -58,7 +93,6 @@ function FeaturedInsights() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
         <motion.div
           className="flex justify-between items-end mb-12"
           initial={{ opacity: 0, y: -50 }}
@@ -66,12 +100,11 @@ function FeaturedInsights() {
           transition={{ duration: 1 }}
         >
           <div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#18CB96] to-[#18CB96]/80 mb-4 tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#18CB96] to-[#18CB96]/80 mb-4">
               Featured Insights
             </h1>
             <p className="text-base md:text-lg text-gray-300 max-w-2xl leading-relaxed">
-              Explore Kraf Technologies' insights on leveraging tech and talent
-              to turn your vision into reality.
+              Explore Kraf Technologies' insights on leveraging tech and talent to turn your vision into reality.
             </p>
           </div>
           <motion.a
@@ -86,7 +119,6 @@ function FeaturedInsights() {
           </motion.a>
         </motion.div>
 
-        {/* Scrollable Articles */}
         <div className="relative">
           {loading ? (
             <div className="flex space-x-6 overflow-x-auto pb-8">
@@ -95,7 +127,7 @@ function FeaturedInsights() {
                   key={index}
                   className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 border border-[#18CB96]/30"
                 >
-                  <div className="h-48 sm:h-56 md:h-64 bg-gray-800 animate-pulse"></div>
+                  <div className="h-48 bg-gray-800 animate-pulse"></div>
                   <div className="p-6">
                     <div className="h-6 bg-gray-800 rounded animate-pulse mb-3"></div>
                     <div className="h-4 bg-gray-800 rounded animate-pulse mb-2"></div>
@@ -127,26 +159,25 @@ function FeaturedInsights() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   style={{
-                    background:
-                      "radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))",
+                    background: "radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))",
                   }}
                 >
-                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
                     <img
-                      src={insight.image}
-                      alt={insight.title}
+                      src={insight.image || "/placeholder.jpg"}
+                      alt={insight.title || "Insight Image"}
                       className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
                     />
                     <span className="absolute top-4 left-4 px-3 py-1 bg-[#18CB96]/90 rounded-full text-sm font-medium text-white">
-                      {insight.category}
+                      {insight.category || "General"}
                     </span>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-medium text-white mb-3 line-clamp-2 group-hover:text-[#18CB96] transition-colors duration-300">
-                      {insight.title}
+                    <h3 className="text-xl font-medium text-white mb-3 line-clamp-2">
+                      {insight.title || "Untitled Insight"}
                     </h3>
                     <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
-                      {insight.description}
+                      {insight.description || "No description available."}
                     </p>
                     <div className="flex items-center mt-4">
                       <div className="w-10 h-10 rounded-full mr-3 border border-[#18CB96]/50 flex items-center justify-center bg-gray-800 text-white">
@@ -162,22 +193,21 @@ function FeaturedInsights() {
             </div>
           )}
 
-          {/* Navigation Buttons */}
           {!loading && insights.length > 0 && (
             <>
               <motion.button
                 onClick={() => scroll("left")}
                 className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
-                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                animate={{ scale: 1, transition: { duration: 0.2 } }}
+                whileHover={{ scale: 1.1 }}
+                aria-label="Scroll left"
               >
                 <ArrowLeft className="w-6 h-6 text-white" />
               </motion.button>
               <motion.button
                 onClick={() => scroll("right")}
                 className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-[#18CB96]/80 rounded-full shadow-lg hover:bg-[#18CB96]/60 transition-all duration-300"
-                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                animate={{ scale: 1, transition: { duration: 0.2 } }}
+                whileHover={{ scale: 1.1 }}
+                aria-label="Scroll right"
               >
                 <ArrowRight className="w-6 h-6 text-white" />
               </motion.button>
