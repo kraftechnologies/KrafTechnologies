@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "The Future of AI",
+    "description": "Exploring the potential of artificial intelligence in various industries.",
+    "category": "AI",
+    "image": "/ai-insight.jpg",
+    "authorName": "John Doe"
+  },
+  {
+    "id": 2,
+    "title": "Blockchain Revolution",
+    "description": "How blockchain technology is transforming the financial sector.",
+    "category": "Blockchain",
+    "image": "/blockchain-insight.jpg",
+    "authorName": "Jane Smith"
+  }
+]
