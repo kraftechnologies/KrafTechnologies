@@ -153,7 +153,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-lg">Office</h3>
                     <a href="https://maps.app.goo.gl/jkSKJQPSfYv9Nznm9?g_st=ac" className="text-gray-300 hover:text-white transition-colors block mt-1">
-                      11/2, Tech Park, Mohali, Punjab, 160055
+                      400-A, 4th Floor, 12 Ajit Singh House, Yusuf Sarai Commercial Complex, New Delhi 110016, Near Green Park Metro Station Exit-2
                     </a>
                   </div>
                 </div>
@@ -423,7 +423,7 @@ const Contact = () => {
       <div className="mt-24 w-full h-[500px] relative">
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"></div>
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.0457261075835!2d76.70220000000001!3d30.704600000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fef4aa91c03e5%3A0x4c782b3efbb2c6d4!2sTech%20Park%2C%20Mohali%2C%20Punjab%20160055!5e0!3m2!1sen!2sin!4v1635835669401!5m2!1sen!2sin"
+          src="https://maps.app.goo.gl/hn5sAjSeahk8rg9f8"
           width="100%" 
           height="100%" 
           style={{border: 0}} 
