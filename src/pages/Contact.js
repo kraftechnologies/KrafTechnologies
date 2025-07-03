@@ -439,7 +439,7 @@ const Contact = () => {
             <h3 className="text-xl font-bold">Our Office</h3>
           </div>
           <p className="text-gray-300">
-            11/2, Tech Park, Mohali, Punjab, 160055
+            400-A, 4th Floor, 12 Ajit Singh House, Yusuf Sarai Commercial Complex, New Delhi 110016, Near Green Park Metro Station Exit-2
           </p>
           <p className="text-gray-400 mt-2">
             Open Monday to Friday, 9:00 AM to 6:00 PM
