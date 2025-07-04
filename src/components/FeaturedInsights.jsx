@@ -1,27 +1,38 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import getFeaturedInsights from "../backend/Source/ServicesModule/getFeaturedInsights"; // Adjust the import path as necessary
+import { supabase } from "../services/supabaseClient";
+import { Link } from "react-router-dom";
+// import getFeaturedInsights from "../backend/Source/ServicesModule/getFeaturedInsights"; // Adjust the import path as necessary
 function FeaturedInsights() {
   const scrollRef = useRef(null);
   const [insights, setInsights] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const getFeaturedInsights = async () => {
+    const { data, error } = await supabase.from("FeaturedInsights").select("*");
+    if (error) {
+      console.error("Error fetching featured insights:", error);
+      throw error;
+    }
+    return data;
+  };
+
   useEffect(() => {
- const fetchInsights = async () => {
-   try {
-     const response = await getFeaturedInsights();
-     setInsights(response.data);
-   } catch (error) {
-     console.error('Error fetching featured insights:', error);
-     setError(error.message || "Failed to load insights.");
-   } finally {
-     setLoading(false);
-   }
- };
-    fetchInsights(true);
-  }, []);
+    const fetchInsights = async () => {
+      try {
+        const response = await getFeaturedInsights();
+        setInsights(response);
+      } catch (error) {
+        console.error("Error fetching featured insights:", error);
+        setError(error.message || "Failed to load insights.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchInsights();
+  }, [insights]);
 
   const scroll = (direction) => {
     const container = scrollRef.current;
@@ -33,7 +44,6 @@ function FeaturedInsights() {
       });
     }
   };
-
 
   return (
     <section className="relative bg-black py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden font-jost">
@@ -56,23 +66,14 @@ function FeaturedInsights() {
           transition={{ duration: 1 }}
         >
           <div>
-            <h1 className="text-4xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#18CB96] to-[#18CB96]/80 mb-4">
+            <h1 className="text-4xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#18CB96] to-[#18CB96]/80 mb-4 pb-2">
               Featured Insights
             </h1>
             <p className="text-base md:text-lg text-gray-300 max-w-2xl leading-relaxed">
-              Explore Kraf Technologies' insights on leveraging tech and talent to turn your vision into reality.
+              Explore Kraf Technologies' insights on leveraging tech and talent
+              to turn your vision into reality.
             </p>
           </div>
-          <motion.a
-            href="#"
-            className="hidden md:flex items-center text-[#18CB96] hover:text-[#18CB96]/80 font-medium transition-colors duration-300"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            View all articles
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </motion.a>
         </motion.div>
 
         <div className="relative">
@@ -107,46 +108,49 @@ function FeaturedInsights() {
               className="flex space-x-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
               style={{ scrollSnapType: "x mandatory" }}
             >
-             {insights && insights.map((insight, index) => (
-  <motion.div
-    key={insight.id || index}
-    className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 backdrop-blur-md border border-[#18CB96]/30 hover:shadow-[#18CB96]/40 transition-all duration-500"
-    initial={{ opacity: 0, x: 50 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8, delay: index * 0.2 }}
-    style={{
-      background: "radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))",
-    }}
-  >
-    <div className="relative h-48 overflow-hidden">
-      <img
-        src={insight.image || "/placeholder.jpg"}
-        alt={insight.title || "Insight Image"}
-        className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
-      />
-      <span className="absolute top-4 left-4 px-3 py-1 bg-[#18CB96]/90 rounded-full text-sm font-medium text-white">
-        {insight.category || "General"}
-      </span>
-    </div>
-    <div className="p-6">
-      <h3 className="text-xl font-medium text-white mb-3 line-clamp-2">
-        {insight.title || "Untitled Insight"}
-      </h3>
-      <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
-        {insight.description || "No description available."}
-      </p>
-      <div className="flex items-center mt-4">
-        <div className="w-10 h-10 rounded-full mr-3 border border-[#18CB96]/50 flex items-center justify-center bg-gray-800 text-white">
-          {insight.authorName?.charAt(0) || "A"}
-        </div>
-        <span className="text-gray-300 text-sm font-medium">
-          {insight.authorName || "Anonymous"}
-        </span>
-      </div>
-    </div>
-  </motion.div>
-))}
-
+              {insights &&
+                insights.map((insight, index) => (
+                  <motion.div
+                    key={insight.id || index}
+                    className="flex-none w-full sm:w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] rounded-xl overflow-hidden bg-gray-900/70 backdrop-blur-md border border-[#18CB96]/30 hover:shadow-[#18CB96]/40 transition-all duration-500"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    style={{
+                      background:
+                        "radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.15), rgba(0, 0, 0, 0.9))",
+                    }}
+                  >
+                    <Link to={`/featured-insights/${insight.id}`}>
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={insight.image || "/placeholder.jpg"}
+                          alt={insight.title || "Insight Image"}
+                          className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                        />
+                        <span className="absolute top-4 left-4 px-3 py-1 bg-[#18CB96]/90 rounded-full text-sm font-medium text-white">
+                          {insight.category || "General"}
+                        </span>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-medium text-white mb-3 line-clamp-2">
+                          {insight.title || "Untitled Insight"}
+                        </h3>
+                        <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+                          {insight.description || "No description available."}
+                        </p>
+                        <div className="flex items-center mt-4">
+                          <div className="w-10 h-10 rounded-full mr-3 border border-[#18CB96]/50 flex items-center justify-center bg-gray-800 text-white">
+                            {insight.authorName?.charAt(0) || "A"}
+                          </div>
+                          <span className="text-gray-300 text-sm font-medium">
+                            {insight.authorName || "Anonymous"}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
             </div>
           )}
           {insights && insights.length > 0 && (

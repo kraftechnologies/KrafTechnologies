@@ -17,6 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emailjs from "emailjs-com";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 const positions = [
   "Software Engineer",
@@ -60,6 +61,10 @@ const positions = [
 ];
 
 function CareerRegistration() {
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search);
+  const encoded = queryParams.get("pos");
+  const position = encoded ? atob(encoded) : null;
   const [step, setStep] = useState(1);
   const [uploading, setUploading] = useState(false);
   const [registrationDetails, setRegistrationDetails] = useState(null);
@@ -68,7 +73,7 @@ function CareerRegistration() {
     name: "",
     email: "",
     mobile: "",
-    position: "",
+    position: position,
     candidate_type: "fresher",
     location: "",
     resume_url: "",
@@ -275,7 +280,7 @@ function CareerRegistration() {
           name: "",
           email: "",
           mobile: "",
-          position: "",
+          position: position,
           candidate_type: "fresher",
           location: "",
           resume_url: "",
@@ -507,7 +512,7 @@ function CareerRegistration() {
                             </div>
                           </div>
 
-                          <div className="space-y-3">
+                          {/* <div className="space-y-3">
                             <label htmlFor="position" className="text-gray-300 text-sm font-medium">
                               Position <span className="text-red-500">*</span>
                             </label>
@@ -526,7 +531,7 @@ function CareerRegistration() {
                                 </option>
                               ))}
                             </select>
-                          </div>
+                          </div> */}
 
                           <div className="space-y-3">
                             <label htmlFor="location" className="text-gray-300 text-sm font-medium">
