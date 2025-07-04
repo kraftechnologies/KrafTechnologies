@@ -9,6 +9,8 @@ import Headers from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import BookFreeConsultation from "./components/BookFreeConsultation";
+import FeaturedInsightsDetails from "./pages/FeaturedInsightsDetails";
+import JobDetails from "./pages/JobDetails";
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -65,6 +67,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/careers" element={<Career />} />
+          <Route path="/featured-insights/:id" element={<FeaturedInsightsDetails />} />
+          <Route path="/careers/:id" element={<JobDetails />} />
           <Route
             path="/careers/registration"
             element={<CareerRegistration />}
