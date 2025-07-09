@@ -5,6 +5,7 @@ import { db } from "../services/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import logo from "../assets/favicon.png";
 import inGrey from "../assets/ingrey.png"; // Replace with actual path
+import { supabase } from "../services/supabaseClient";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -50,7 +51,12 @@ export default function Footer() {
 
     try {
       setLoading(true);
-      await addDoc(collection(db, "newsletter_subscriptions"), {
+      // await addDoc(collection(db, "newsletter_subscriptions"), {
+      //   email,
+      //   timestamp: new Date(),
+      // });
+
+      await supabase.from("newsletter_subscriptions").insert({
         email,
         timestamp: new Date(),
       });

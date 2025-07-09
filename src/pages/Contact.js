@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Instagram, Linkedin, Github, Phone, Mail, MapPin, ChevronDown, ChevronUp, User, MessageSquare, Star } from 'lucide-react';
+import { Instagram, Linkedin, Github, Phone, Mail, MapPin, ChevronDown, ChevronUp, User, Star } from 'lucide-react';
+import { supabase } from '../services/supabaseClient';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -64,7 +66,18 @@ const Contact = () => {
     setLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // await new Promise(resolve => setTimeout(resolve, 1500));
+      const { error } = await supabase.from('ContactUs').insert([{
+        name: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: formData.message
+      }])
+      if(error) {
+        toast.error("Failed to send message. Please try again.");
+        setLoading(false);
+        return
+      }
       setSuccessMessage("Message sent successfully! We will get back to you soon.");
       setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" });
     } catch (error) {
