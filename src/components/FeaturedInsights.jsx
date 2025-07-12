@@ -136,9 +136,6 @@ function FeaturedInsights() {
                         <h3 className="text-xl font-medium text-white mb-3 line-clamp-2">
                           {insight.title || "Untitled Insight"}
                         </h3>
-                        <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
-                          {insight.description || "No description available."}
-                        </p>
                         <div className="flex items-center mt-4">
                           <div className="w-10 h-10 rounded-full mr-3 border border-[#18CB96]/50 flex items-center justify-center bg-gray-800 text-white">
                             {insight.authorName?.charAt(0) || "A"}

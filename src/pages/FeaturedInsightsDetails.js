@@ -220,20 +220,6 @@ const FeaturedInsightsDetails = () => {
                             )}
                         </motion.div>
 
-                        {/* Description/Summary */}
-                        {insight.description && (
-                            <motion.div
-                                className="mb-8 p-6 bg-gray-800/50 border border-[#18CB96]/20 rounded-lg"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.4 }}
-                            >
-                                <p className="text-gray-300 text-lg leading-relaxed italic">
-                                    {insight.description}
-                                </p>
-                            </motion.div>
-                        )}
-
                         {/* Main Content */}
                         <motion.div
                             className="prose prose-invert prose-lg max-w-none"
@@ -242,8 +228,8 @@ const FeaturedInsightsDetails = () => {
                             transition={{ duration: 0.8, delay: 0.5 }}
                         >
                             <div className="text-gray-300 leading-relaxed space-y-6">
-                                {insight.content ? (
-                                    <div dangerouslySetInnerHTML={{ __html: insight.content }} />
+                                {insight.description ? (
+                                    <div dangerouslySetInnerHTML={{ __html: insight.description }} className='formatted-content' />
                                 ) : (
                                     <div>
                                         <p className="mb-6">

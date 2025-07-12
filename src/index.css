@@ -441,3 +441,334 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Global CSS for Quill formatted content */
+/* Add this to your global.css file */
+
+.formatted-content {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Hide Quill UI elements */
+.formatted-content .ql-ui {
+  display: none;
+}
+
+/* Headings */
+.formatted-content h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 16px 0;
+}
+
+.formatted-content h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 14px 0;
+}
+
+.formatted-content h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.formatted-content h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.formatted-content h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.formatted-content h6 {
+  font-size: 0.875em;
+  font-weight: bold;
+  margin: 6px 0;
+}
+
+/* Paragraphs */
+.formatted-content p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* Text formatting */
+.formatted-content strong {
+  font-weight: bold;
+}
+
+.formatted-content em {
+  font-style: italic;
+}
+
+.formatted-content u {
+  text-decoration: underline;
+}
+
+.formatted-content s {
+  text-decoration: line-through;
+}
+
+/* Links */
+.formatted-content a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.formatted-content a:hover {
+  text-decoration: underline;
+}
+
+/* Lists - General styling */
+.formatted-content ol,
+.formatted-content ul {
+  margin: 10px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.formatted-content li {
+  margin: 5px 0;
+  padding-left: 25px;
+  position: relative;
+  line-height: 1.5;
+}
+
+/* Ordered lists (numbered) */
+.formatted-content ol {
+  counter-reset: list-counter;
+}
+
+.formatted-content ol li[data-list="ordered"] {
+  counter-increment: list-counter;
+}
+
+.formatted-content ol li[data-list="ordered"]:before {
+  content: counter(list-counter) ".";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  font-weight: bold;
+  min-width: 20px;
+}
+
+/* Bullet lists */
+.formatted-content ol li[data-list="bullet"]:before {
+  content: "•";
+  position: absolute;
+  left: 12px;
+  top: 0;
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+
+/* Nested lists support */
+.formatted-content ol ol,
+.formatted-content ul ul {
+  margin: 5px 0;
+  padding-left: 30px;
+}
+
+.formatted-content ol ol li[data-list="bullet"]:before,
+.formatted-content ul ul li[data-list="bullet"]:before {
+  content: "◦";
+  font-size: 1em;
+}
+
+.formatted-content ol ol li[data-list="ordered"]:before,
+.formatted-content ul ul li[data-list="ordered"]:before {
+  font-size: 0.9em;
+}
+
+/* Blockquotes */
+.formatted-content blockquote {
+  border-left: 4px solid #18cb96;
+  padding-left: 16px;
+  margin: 16px 0;
+  font-style: italic;
+  background-color: #1f2937;
+  padding: 12px 16px;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+.formatted-content pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+
+.formatted-content code {
+  background-color: #f4f4f4;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+/* Tables */
+.formatted-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.formatted-content th,
+.formatted-content td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.formatted-content th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.formatted-content tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Text alignment */
+.formatted-content .ql-align-center {
+  text-align: center;
+}
+
+.formatted-content .ql-align-right {
+  text-align: right;
+}
+
+.formatted-content .ql-align-justify {
+  text-align: justify;
+}
+
+/* Text size */
+.formatted-content .ql-size-small {
+  font-size: 0.75em;
+}
+
+.formatted-content .ql-size-large {
+  font-size: 1.5em;
+}
+
+.formatted-content .ql-size-huge {
+  font-size: 2.5em;
+}
+
+/* Remove all text color classes */
+
+/* Background colors */
+.formatted-content .ql-bg-red {
+  background-color: #e74c3c;
+}
+
+.formatted-content .ql-bg-orange {
+  background-color: #f39c12;
+}
+
+.formatted-content .ql-bg-yellow {
+  background-color: #f1c40f;
+}
+
+.formatted-content .ql-bg-green {
+  background-color: #27ae60;
+}
+
+.formatted-content .ql-bg-blue {
+  background-color: #3498db;
+}
+
+.formatted-content .ql-bg-purple {
+  background-color: #9b59b6;
+}
+
+/* Font families */
+.formatted-content .ql-font-serif {
+  font-family: Georgia, serif;
+}
+
+.formatted-content .ql-font-monospace {
+  font-family: 'Courier New', monospace;
+}
+
+/* Images */
+.formatted-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+/* Videos */
+.formatted-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+/* Horizontal rules */
+.formatted-content hr {
+  border: none;
+  border-top: 2px solid #ecf0f1;
+  margin: 20px 0;
+}
+
+/* Line breaks */
+.formatted-content br {
+  line-height: 1.6;
+}
+
+/* Formulas (if using formula module) */
+.formatted-content .ql-formula {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: 'Times New Roman', serif;
+  margin: 0 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .formatted-content {
+    font-size: 14px;
+  }
+  
+  .formatted-content h1 {
+    font-size: 1.8em;
+  }
+  
+  .formatted-content h2 {
+    font-size: 1.4em;
+  }
+  
+  .formatted-content h3 {
+    font-size: 1.2em;
+  }
+  
+  .formatted-content li {
+    padding-left: 30px;
+  }
+  
+  .formatted-content ol li[data-list="ordered"]:before,
+  .formatted-content ol li[data-list="bullet"]:before {
+    left: 0;
+  }
+  
+  .formatted-content ol li[data-list="bullet"]:before {
+    left: 8px;
+  }
+}
