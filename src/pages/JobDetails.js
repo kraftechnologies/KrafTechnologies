@@ -193,9 +193,7 @@ function JobDetails() {
           
           <div className="text-gray-300 leading-relaxed">
             {job.description ? (
-              <div className="whitespace-pre-wrap">
-                {job.description}
-              </div>
+              <div dangerouslySetInnerHTML={{ __html: job.description }} className='formatted-content' />
             ) : (
               <p className="text-gray-400 italic">
                 No description available for this position.
