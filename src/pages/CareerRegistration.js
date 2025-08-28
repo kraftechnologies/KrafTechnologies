@@ -512,7 +512,7 @@ function CareerRegistration() {
                             </div>
                           </div>
 
-                          {/* <div className="space-y-3">
+                          <div className="space-y-3">
                             <label htmlFor="position" className="text-gray-300 text-sm font-medium">
                               Position <span className="text-red-500">*</span>
                             </label>
@@ -531,7 +531,7 @@ function CareerRegistration() {
                                 </option>
                               ))}
                             </select>
-                          </div> */}
+                          </div>
 
                           <div className="space-y-3">
                             <label htmlFor="location" className="text-gray-300 text-sm font-medium">
